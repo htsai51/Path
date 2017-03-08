@@ -1,4 +1,6 @@
-# C++ Boilerplate
+# Path Finding Project
+[![Build Status](https://travis-ci.org/htsai51/Path.svg?branch=master)](https://travis-ci.org/htsai51/Path)
+[![Coverage Status](https://coveralls.io/repos/github/htsai51/path/badge.svg?branch=master)](https://coveralls.io/github/htsai51/path?branch=master)
 ---
 
 ## Overview
