@@ -18,6 +18,7 @@
 #include "AStarAlgorithm.hpp"
 #include <math.h>
 #include <iostream>
+#include <limits>
 
 
 using std::cout;
@@ -26,7 +27,21 @@ using std::string;
 using std::list;
 
 
-string result_file = "../data/result.txt";
+
+/*
+ *   @brief  Set parameters for AStar algorithm
+ *  
+ *   @param  start node index in int
+ *   @param  end node index in int
+ *   @param  weight for heuristic estimation in double
+ *   @return none
+*/
+void AStarAlgorithm::setParam(int s, int g) {
+    // call parent function to update start, goal
+    // as well as map info
+    PathFindingAlgorithm::setParam(s, g);
+    return;
+}
 
 
 /*
@@ -136,13 +151,11 @@ bool compareCost(Node *first, Node *second) {
  *   @brief  Compute shortest path given start, goal nodes indices,
  *           and weight for heuristic estimates
  *  
- *   @param  start index in int
- *   @param  goal index in int
- *   @param  weight of heuristic cost in double
+ *   @param  none
  *   @return true if shortest path can be found
  *           false otherwise
 */
-bool AStarAlgorithm::ComputPath(int start, int goal, double weight) {
+bool AStarAlgorithm::ComputPath(double weight) {
     int nStep = 0;
 
 

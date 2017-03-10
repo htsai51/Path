@@ -28,14 +28,15 @@
 */
 class AStarAlgorithm : public PathFindingAlgorithm {
  public:
-     AStarAlgorithm() {}                            ///< constructor
-     ~AStarAlgorithm() {}                           ///< constructor
+     AStarAlgorithm() {}                         ///< constructor
+     ~AStarAlgorithm() {}                        ///< deconstructor
 
-     bool ComputPath(int, int, double);             ///< compute shortest path
+     void setParam(int, int);                    ///< set parameters
+     bool ComputPath(double);                    ///< compute shortest path
 
  private:
-     std::list<Node*> openSet;            ///< pointers to nodes in open set
-     std::list<Node*> closedSet;          ///< pointers to nodes in closed set
+     std::list<Node*> openSet;             ///< pointers to nodes in open set
+     std::list<Node*> closedSet;           ///< pointers to nodes in closed set
 
      double getHeuristicCost(Node *, Node *);       ///< compute heuristic cost
      double getCostToNeighbor(int, int);            ///< get cost to neighbor
@@ -45,8 +46,8 @@ class AStarAlgorithm : public PathFindingAlgorithm {
 
 
 // helper functions
-bool checkList(int, std::list<Node*> const &);      ///< check if node in list
-bool compareCost(Node *, Node *);                   ///< compare cost in list
+bool checkList(int, std::list<Node*> const &);   ///< check if node in list
+bool compareCost(Node *, Node *);                ///< compare cost in list
 
 
 #endif  // INCLUDE_ASTARALGORITHM_HPP_

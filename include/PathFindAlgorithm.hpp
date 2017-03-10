@@ -24,7 +24,8 @@
 #include "Map.hpp"
 
 
-
+#define DEFAUTL_INPUT_MAP    "../data/test.csv"
+#define DEFAUTL_OUTPUT_MAP   "../data/testout.csv"
 
 
 /**
@@ -96,19 +97,26 @@ class PathFindingAlgorithm {
      PathFindingAlgorithm() {}              ///< constructor
      ~PathFindingAlgorithm() {}             ///< deconstructor
 
+     void Init();                           ///< initialize map 
+
      void BuildGraph();                     ///< build map by reading in map
 
+     void setParam(int, int);               ///< set start and goal indices
 
      void ReconstructPath(Node*);           ///< build shortest path
 
+     void Output(int);                     ///< output result on screen/file
 
-     virtual void ComputPath();             ///< virtual function to find
+     virtual void ComputPath() {}           ///< virtual function to find
                                             ///< shortest path
 
  protected:
      std::vector<Node> nodes;               ///< vector of nodes
      std::vector<Edge> edges;               ///< vector of edges
+     int start;                             ///< start index
+     int goal;                              ///< goal index
      std::vector<int> path;                 ///< shortest path of node indices
+
  private:
      Map map;                               ///< map info
 

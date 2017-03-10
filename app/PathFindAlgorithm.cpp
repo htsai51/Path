@@ -18,6 +18,7 @@
 #include <list>
 #include <limits>
 #include "PathFindAlgorithm.hpp"
+#include "Map.hpp"
 
 
 using std::cout;
@@ -25,6 +26,19 @@ using std::endl;
 using std::string;
 using std::list;
 using std::vector;
+
+
+/**
+ *   @brief  Initialize map and graph
+ *  
+ *   @param  
+ *   @param  
+ *   @return none
+*/
+void PathFindingAlgorithm::Init(void) {
+    map.createMap(DEFAUTL_INPUT_MAP);
+    BuildGraph();
+}
 
 
 /**
@@ -166,4 +180,47 @@ void PathFindingAlgorithm::ReconstructPath(Node *node) {
 
 
     return;
+}
+
+
+/*
+ *   @brief  Set start and goal indices
+ *  
+ *   @param  start node index in int
+ *   @param  goal node index in int
+ *   @return none
+*/
+void PathFindingAlgorithm::setParam(int s, int g) {
+    start = s;
+    goal = g;
+
+    // update map info for display
+    map.setStartGoal(start, goal);
+}
+
+
+/*
+ *   @brief  Output result on screen or file or both
+ *  
+ *   @param  start node index in int
+ *   @param  goal node index in int
+ *   @return none
+*/
+void PathFindingAlgorithm::Output(int option) {
+
+    switch(option) {
+        case 0: ///< display map on screen
+            map.displayMap(path);
+            break;
+
+        case 1: ///< output to file
+            map.saveMap(DEFAUTL_OUTPUT_MAP, path);
+            break;
+
+        case 2:
+        default:
+            map.displayMap(path);
+            map.saveMap(DEFAUTL_OUTPUT_MAP, path);
+            break;
+    }
 }
