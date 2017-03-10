@@ -197,6 +197,14 @@ bool AStarAlgorithm::ComputPath(double weight) {
             return true;
         }
 
+
+        if (curNode->getCost() >= std::numeric_limits<int>::max()) {
+            // if front node's cost is infinite
+            // path cannot be found, return fail
+            cout << "fail to find path" << endl;
+            break;
+        }
+
         // remove current from open set
         openSet.pop_front();
 
