@@ -180,7 +180,7 @@ bool AStarAlgorithm::ComputPath(int start, int goal, double weight) {
             nStep = closedSet.size();
             cout << "found goal in " << nStep << " steps" << endl;
             cout << "cost is " << curNode->getEstimateCost() << endl;
-            ReconstructPath(result_file, curNode);
+            ReconstructPath(curNode);
             return true;
         }
 

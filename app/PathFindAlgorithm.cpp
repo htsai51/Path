@@ -15,6 +15,7 @@
 */
 
 #include <iostream>
+#include <list>
 #include <limits>
 #include "PathFindAlgorithm.hpp"
 
@@ -22,6 +23,7 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::list;
 using std::vector;
 
 
@@ -132,6 +134,36 @@ void PathFindingAlgorithm::BuildGraph(void) {
  *   @param  
  *   @return none
 */
-void PathFindingAlgorithm::ReconstructPath(string pathFile, Node *node) {
+void PathFindingAlgorithm::ReconstructPath(Node *node) {
+    list<Node*> tempPath;
+    Node *temp = node;
+
+    if (temp == nullptr)
+        return;
+
+    // reconstruct path using node's parent pointer
+    while (temp != nullptr) {
+        tempPath.emplace_front(temp);
+        temp = &nodes[temp->getParentIndex()-1];
+
+        // add the start node and break
+        if (temp->getParentIndex() == 0) {
+            tempPath.emplace_front(temp);
+            break;
+        }
+    }
+
+
+    cout << "Shortest Path: ";
+
+    // save into vector from start to goal
+    for (auto n : tempPath) {
+        cout << n->getIndex() << " ";
+        path.emplace_back(n->getIndex());
+    }
+
+    cout << endl;
+
+
     return;
 }

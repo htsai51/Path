@@ -99,7 +99,7 @@ class PathFindingAlgorithm {
      void BuildGraph();                     ///< build map by reading in map
 
 
-     void ReconstructPath(std::string, Node*);    ///< build shortest path
+     void ReconstructPath(Node*);           ///< build shortest path
 
 
      virtual void ComputPath();             ///< virtual function to find
@@ -108,6 +108,7 @@ class PathFindingAlgorithm {
  protected:
      std::vector<Node> nodes;               ///< vector of nodes
      std::vector<Edge> edges;               ///< vector of edges
+     std::vector<int> path;                 ///< shortest path of node indices
  private:
      Map map;                               ///< map info
 
