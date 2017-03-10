@@ -21,6 +21,10 @@
 #include <vector>
 #include <limits>
 #include <tuple>
+#include "Map.hpp"
+
+
+
 
 
 /**
@@ -92,8 +96,8 @@ class PathFindingAlgorithm {
      PathFindingAlgorithm() {}              ///< constructor
      ~PathFindingAlgorithm() {}             ///< deconstructor
 
-     void BuildGraph(std::string,           ///< build map by reading in map
-                     std::string);          ///< into text file
+     void BuildGraph();                     ///< build map by reading in map
+
 
      void ReconstructPath(std::string, Node*);    ///< build shortest path
 
@@ -104,6 +108,9 @@ class PathFindingAlgorithm {
  protected:
      std::vector<Node> nodes;               ///< vector of nodes
      std::vector<Edge> edges;               ///< vector of edges
+ private:
+     Map map;                               ///< map info
+
 };
 
 #endif  // INCLUDE_PATHFINDALGORITHM_HPP_
