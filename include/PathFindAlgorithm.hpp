@@ -105,18 +105,30 @@ class PathFindingAlgorithm {
 
      void ReconstructPath(Node*);           ///< build shortest path
 
-     void Output(int);                     ///< output result on screen/file
-
      virtual void ComputPath() {}           ///< virtual function to find
                                             ///< shortest path
 
+     void OutputMap();                      ///< display map on screen
+
+     void OutputPath(int);                  ///< output path on screen/file
+
      std::vector<int>& getPath()            ///< get path vectors
                            { return path; }
+
+     double getTotalCost()
+                { return totalCost; }       ///< get path vectors
+
+     double getSteps() { return steps; }    ///< get number of steps take to 
+                                            ///< find shortest path
+
+
  protected:
      std::vector<Node> nodes;               ///< vector of nodes
      std::vector<Edge> edges;               ///< vector of edges
      int start;                             ///< start index
      int goal;                              ///< goal index
+     double totalCost;                      ///< total cost of shortest path
+     int steps;                             ///< total steps to find shortest path
      std::vector<int> path;                 ///< shortest path of node indices
 
  private:

@@ -158,7 +158,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
     int nStep = 0;
 
 
-    cout << "*** A Star Path Searching Algorithm ***" << endl;
+    // cout << "*** A Star Path Searching Algorithm ***" << endl;
 
     // clear path vector
     path.clear();
@@ -176,7 +176,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
     // add start node to open set
     openSet.emplace_back(&nodes[start-1]);
 
-#if 1
+#if 0
     double curXPos = 0;
     double curYPos = 0;
     std::tie(curXPos, curYPos) = openSet.front()->getPos();
@@ -192,13 +192,15 @@ bool AStarAlgorithm::ComputPath(double weight) {
         // current node in open set with lowest cost
         Node *curNode = openSet.front();
 
-        cout << "pop open front index: " << curNode->getIndex() << endl;
+        // cout << "pop open front index: " << curNode->getIndex() << endl;
 
         // check if current equals to goal
         if (curNode->getIndex() == goal) {
             nStep = closedSet.size();
-            cout << "found goal in " << nStep << " steps" << endl;
-            cout << "cost is " << curNode->getEstimateCost() << endl;
+            totalCost = curNode->getEstimateCost();
+            steps = nStep;
+            // cout << "found goal in " << steps << " steps" << endl;
+            // cout << "cost is " << totalCost << endl;
             ReconstructPath(curNode);
             return true;
         }
@@ -206,8 +208,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
 
         if (curNode->getCost() >= std::numeric_limits<int>::max()) {
             // if front node's cost is infinite
-            // path cannot be found, return fail
-            cout << "fail to find path" << endl;
+            // path cannot be found
             break;
         }
 
@@ -217,7 +218,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
         // add current to closed set
         closedSet.emplace_back(curNode);
 
-#if 1
+#if 0
         cout << "Closed Set:" << endl;
         for (auto n : closedSet) {
             double xPos = 0;
@@ -244,8 +245,8 @@ bool AStarAlgorithm::ComputPath(double weight) {
             double tempCost = curNode->getCost() +
                               getCostToNeighbor(curNode->getIndex(),
                                                 n->getIndex());
-            cout << "node = " << curNode->getIndex() << ", tempCost = "
-                 << tempCost << endl;
+            // cout << "node = " << curNode->getIndex() << ", tempCost = "
+            //     << tempCost << endl;
 
 
             if (!checkList(n->getIndex(), openSet)) {
@@ -267,7 +268,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
             // tempCost + heuristic estimate
             double heuristic = weight * getHeuristicCost(n, &nodes[goal-1]);
             n->setEstimateCost(tempCost + heuristic);
-#if 1
+#if 0
             double xPos = 0;
             double yPos = 0;
             std::tie(xPos, yPos) = n->getPos();
@@ -278,6 +279,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
         }
     }
 
+    // cout << "Fail to find path" << endl;
     return false;
 }
 

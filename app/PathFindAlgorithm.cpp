@@ -61,7 +61,7 @@ void PathFindingAlgorithm::BuildGraph(void) {
     int k = 0;
     int index = 1;
     
-    cout << endl << "PathFindingAlgorithm::BuildGraph" << endl;
+    // cout << endl << "PathFindingAlgorithm::BuildGraph" << endl;
     
     mapArray = map.getMap();
     if (mapArray == nullptr)
@@ -71,29 +71,29 @@ void PathFindingAlgorithm::BuildGraph(void) {
     if (dir == nullptr)
         return;
 
-    cout << "Generating nodes" << endl;
+    // cout << "Generating nodes" << endl;
 
 
     int n = map.getRow();
     int m = map.getCol();
 
 
-    cout << "map row " << n << endl;
-    cout << "map column " << m << endl;
+    // cout << "map row " << n << endl;
+    // cout << "map column " << m << endl;
 
     // generate nodes
     for (i = 0, index = 1; i < n; ++i) { // row, y
         for (j = 0; j < m; ++j) { // column, x
             // create a node and add to node vector
 
-            cout << index << " (" << i << ", " << j << ")" << endl;
+            // cout << index << " (" << i << ", " << j << ")" << endl;
         
             nodes.emplace_back(index, i, j);
             ++index;
         }
     }
 
-    cout << endl << "Generating edges" << endl;
+    // cout << endl << "Generating edges" << endl;
 
     // generate edges
     for (i = 0; i < n; ++i) { // row, y
@@ -132,7 +132,7 @@ void PathFindingAlgorithm::BuildGraph(void) {
                     if (cost < std::numeric_limits<int>::max())
                         cost = cost * diagCost;
 
-                    cout << k << " (" << startIdx << "," << endIdx << ") " << cost << endl;
+                    // cout << k << " (" << startIdx << "," << endIdx << ") " << cost << endl;
 
                     edges.emplace_back(startIdx, endIdx, cost);
                 }
@@ -172,15 +172,15 @@ void PathFindingAlgorithm::ReconstructPath(Node *node) {
     }
 
 
-    cout << "Shortest Path: ";
+    // cout << "Shortest Path: ";
 
     // save into vector from start to goal
     for (auto n : tempPath) {
-        cout << n->getIndex() << " ";
+        // cout << n->getIndex() << " ";
         path.emplace_back(n->getIndex());
     }
 
-    cout << endl;
+    // cout << endl;
 
 
     return;
@@ -214,11 +214,11 @@ bool PathFindingAlgorithm::setParam(int s, int g) {
  *   @param  goal node index in int
  *   @return none
 */
-void PathFindingAlgorithm::Output(int option) {
+void PathFindingAlgorithm::OutputPath(int option) {
 
     switch(option) {
         case 0: ///< display map on screen
-            map.displayMap(path);
+            map.displayPath(path);
             break;
 
         case 1: ///< output to file
@@ -227,8 +227,21 @@ void PathFindingAlgorithm::Output(int option) {
 
         case 2:
         default:
-            map.displayMap(path);
+            map.displayPath(path);
             map.saveMap(DEFAUTL_OUTPUT_MAP, path);
             break;
     }
+}
+
+
+/*
+ *   @brief  Output map on screen
+ *  
+ *   @param  none
+ *   @return none
+*/
+void PathFindingAlgorithm::OutputMap() {
+
+    map.displayMap();
+    return;
 }

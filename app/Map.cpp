@@ -79,9 +79,9 @@ bool Map::createMap(string inputFile) {
 
         }
 
-        cout << "number of cols: " << col << endl;
-        cout << "number of rows: " << row << endl;
-        cout << "size of vector array: " << mapArray.size() << endl;
+        // cout << "number of cols: " << col << endl;
+        // cout << "number of rows: " << row << endl;
+        // cout << "size of vector array: " << mapArray.size() << endl;
         inputFs.close();
 
         return true;
@@ -194,12 +194,12 @@ bool Map::isInPath(int index, vector<int> &path) {
 
 
 /*
- *   @brief  Display map on screen
+ *   @brief  Display path in map on screen
  *  
  *   @param  vector of path indices in int
  *   @return none
 */
-void Map::displayMap(vector<int> &path) {
+void Map::displayPath(vector<int> &path) {
     int x = 0;
     int y = 0;
     int index = 0;
@@ -223,7 +223,9 @@ void Map::displayMap(vector<int> &path) {
 
                     index = (x * col + y + 1);
 
-                    if (index == startIdx)
+                    if ((index == startIdx) && (index == goalIdx))
+                        cout << "S/G";
+                    else if (index == startIdx)
                         cout << " S ";
                     else if (index == goalIdx)
                         cout << " G ";
@@ -244,3 +246,47 @@ void Map::displayMap(vector<int> &path) {
 }
 
 
+/*
+ *   @brief  Display map on screen
+ *  
+ *   @param  vector of path indices in int
+ *   @return none
+*/
+void Map::displayMap(void) {
+    int x = 0;
+    int y = 0;
+    int index = 0;
+
+
+    int displayRow = row * 2 + 1;
+    int displayCol = col * 2 + 1;
+
+    for (int i = 0; i < displayRow; ++i) {
+        for (int j = 0; j < displayCol; ++j) {
+            if (i % 2 == 0) {
+                if (j % 2 == 0)
+                    cout << " ";
+                else
+                    cout << "---";
+            } else {
+                if (j % 2 == 0)
+                    cout << "|";
+                else {
+                    x = i/2;
+                    y = j/2;
+
+                    index = (x * col + y + 1);
+
+                    if (mapArray[index-1] == std::numeric_limits<int>::max())
+                        cout << " O ";
+                    else
+                        cout << std::setw(3) << index;
+                }
+
+            }
+        }
+        cout << endl;
+    }
+
+    return;
+}

@@ -40,7 +40,8 @@ class Map {
      std::vector<int>* getMap(void)
                            { return &mapArray; }        ///< get map
      int* getMoveDir(void) { return moveDirection; }    ///< get move direction
-     void displayMap(std::vector<int>&);                ///< display map
+     void displayPath(std::vector<int>&);               ///< display path in map
+     void displayMap();                                 ///< display map
 
 
  private:
