@@ -1,0 +1,240 @@
+\hypertarget{classAStarAlgorithm}{\section{A\-Star\-Algorithm Class Reference}
+\label{classAStarAlgorithm}\index{A\-Star\-Algorithm@{A\-Star\-Algorithm}}
+}
+
+
+Class definition of \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} class which is derived from base class \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} for path planning.  
+
+
+
+
+{\ttfamily \#include $<$A\-Star\-Algorithm.\-hpp$>$}
+
+Inheritance diagram for A\-Star\-Algorithm\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/d12/classAStarAlgorithm}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAStarAlgorithm_afa80dc5f04400d38c43a609da0ce948e}{A\-Star\-Algorithm} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} class. \end{DoxyCompactList}\item 
+\hyperlink{classAStarAlgorithm_a2ab75ee9abadf5919c22fe1ee812b8d4}{$\sim$\-A\-Star\-Algorithm} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor of \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} class. \end{DoxyCompactList}\item 
+bool \hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{comput\-Path} (double)
+\begin{DoxyCompactList}\small\item\em Compute shortest path using given start, goal nodes indices, and weight for heuristic estimates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class definition of \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} class which is derived from base class \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} for path planning. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAStarAlgorithm_afa80dc5f04400d38c43a609da0ce948e}{\index{A\-Star\-Algorithm@{A\-Star\-Algorithm}!A\-Star\-Algorithm@{A\-Star\-Algorithm}}
+\index{A\-Star\-Algorithm@{A\-Star\-Algorithm}!AStarAlgorithm@{A\-Star\-Algorithm}}
+\subsubsection[{A\-Star\-Algorithm}]{\setlength{\rightskip}{0pt plus 5cm}A\-Star\-Algorithm\-::\-A\-Star\-Algorithm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAStarAlgorithm_afa80dc5f04400d38c43a609da0ce948e}
+
+
+Constructor of \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+55 \{\}
+\end{DoxyCode}
+\hypertarget{classAStarAlgorithm_a2ab75ee9abadf5919c22fe1ee812b8d4}{\index{A\-Star\-Algorithm@{A\-Star\-Algorithm}!$\sim$\-A\-Star\-Algorithm@{$\sim$\-A\-Star\-Algorithm}}
+\index{$\sim$\-A\-Star\-Algorithm@{$\sim$\-A\-Star\-Algorithm}!AStarAlgorithm@{A\-Star\-Algorithm}}
+\subsubsection[{$\sim$\-A\-Star\-Algorithm}]{\setlength{\rightskip}{0pt plus 5cm}A\-Star\-Algorithm\-::$\sim$\-A\-Star\-Algorithm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAStarAlgorithm_a2ab75ee9abadf5919c22fe1ee812b8d4}
+
+
+Deconstructor of \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+64 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{\index{A\-Star\-Algorithm@{A\-Star\-Algorithm}!comput\-Path@{comput\-Path}}
+\index{comput\-Path@{comput\-Path}!AStarAlgorithm@{A\-Star\-Algorithm}}
+\subsubsection[{comput\-Path}]{\setlength{\rightskip}{0pt plus 5cm}bool A\-Star\-Algorithm\-::comput\-Path (
+\begin{DoxyParamCaption}
+\item[{double}]{weight}
+\end{DoxyParamCaption}
+)}}\label{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}
+
+
+Compute shortest path using given start, goal nodes indices, and weight for heuristic estimates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em weight} & of heuristic function in double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if shortest path can be found, false otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+53                                              \{
+54     \textcolor{keywordtype}{int} nStep = 0;
+55 
+56 
+57     \textcolor{comment}{// cout << "*** A Star Path Searching Algorithm ***" << endl;}
+58 
+59     \textcolor{comment}{// clear path vector}
+60     \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.clear();
+61 
+62     \textcolor{comment}{// start and goal cannot be less than index lower bound}
+63     \textcolor{keywordflow}{if} ((\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start} < 1) || (\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal} < 1)) \{
+64         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+65     \}
+66 
+67     \textcolor{comment}{// initialize start node's cost and heuristic cost to goal}
+68     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1].setCost(0);
+69     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1].setEstimateCost(weight * getHeuristicCost(&\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[
+      \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1],
+70                                    &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}-1]));
+71 
+72     \textcolor{comment}{// add start node to open set}
+73     openSet.emplace\_back(&\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1]);
+74 
+75 \textcolor{preprocessor}{#if 0}
+76 \textcolor{preprocessor}{}    \textcolor{keywordtype}{double} curXPos = 0;
+77     \textcolor{keywordtype}{double} curYPos = 0;
+78     std::tie(curXPos, curYPos) = openSet.front()->getPos();
+79     cout << openSet.front()->getIndex() << \textcolor{stringliteral}{" "} << curXPos << \textcolor{stringliteral}{" "}
+80          << curYPos << endl;
+81     cout << \textcolor{stringliteral}{"cost = "} << openSet.front()->getCost() << \textcolor{stringliteral}{" estimatedCost = "}
+82          << openSet.front()->getEstimateCost() << endl;
+83 \textcolor{preprocessor}{#endif}
+84 \textcolor{preprocessor}{}
+85     \textcolor{keywordflow}{while} (!openSet.empty()) \{
+86         openSet.sort(\hyperlink{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{compareCost});
+87 
+88         \textcolor{comment}{// current node in open set with lowest cost}
+89         \hyperlink{classNode}{Node} *curNode = openSet.front();
+90 
+91         \textcolor{comment}{// cout << "pop open front index: " << curNode->getIndex() << endl;}
+92 
+93         \textcolor{comment}{// check if current equals to goal}
+94         \textcolor{keywordflow}{if} (curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}() == \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}) \{
+95             nStep = closedSet.size();
+96             \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost} = curNode->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}();
+97             \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps} = nStep;
+98             \textcolor{comment}{// cout << "found goal in " << steps << " steps" << endl;}
+99             \textcolor{comment}{// cout << "cost is " << totalCost << endl;}
+100             \hyperlink{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}{reconstructPath}(curNode);
+101             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+102         \}
+103 
+104 
+105         \textcolor{keywordflow}{if} (curNode->\hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{getCost}() >= std::numeric\_limits<int>::max()) \{
+106             \textcolor{comment}{// if front node's cost is infinite}
+107             \textcolor{comment}{// path cannot be found}
+108             \textcolor{keywordflow}{break};
+109         \}
+110 
+111         \textcolor{comment}{// remove current from open set}
+112         openSet.pop\_front();
+113 
+114         \textcolor{comment}{// add current to closed set}
+115         closedSet.emplace\_back(curNode);
+116 
+117 \textcolor{preprocessor}{#if 0}
+118 \textcolor{preprocessor}{}        cout << \textcolor{stringliteral}{"Closed Set:"} << endl;
+119         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : closedSet) \{
+120             \textcolor{keywordtype}{double} xPos = 0;
+121             \textcolor{keywordtype}{double} yPos = 0;
+122             std::tie(xPos, yPos) = n->getPos();
+123             cout << n->getIndex() << \textcolor{stringliteral}{"("} << xPos << \textcolor{stringliteral}{","} << yPos << \textcolor{stringliteral}{")"};
+124             cout << \textcolor{stringliteral}{" ("} << n->getCost() << \textcolor{stringliteral}{","} << n->getEstimateCost()
+125                  << \textcolor{stringliteral}{")"} << endl;
+126         \}
+127 \textcolor{preprocessor}{#endif}
+128 \textcolor{preprocessor}{}        list<Node*> neighbors;
+129         findNeighbors(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}(), neighbors);
+130 
+131         \textcolor{comment}{// cout << "Neighbors:" << endl;}
+132 
+133         \textcolor{comment}{// for each neighbor of current}
+134         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : neighbors) \{
+135             \textcolor{comment}{// if neighbor in closed set, continue}
+136             \textcolor{keywordflow}{if} (\hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{checkList}(n->getIndex(), closedSet)) \{
+137                 \textcolor{comment}{// cout << "neighbor in closed set, continue" << endl;}
+138                 \textcolor{keywordflow}{continue};
+139             \}
+140 
+141             \textcolor{keywordtype}{double} tempCost = curNode->\hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{getCost}() +
+142                               getCostToNeighbor(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}(),
+143                                                 n->getIndex());
+144             \textcolor{comment}{// cout << "node = " << curNode->getIndex() << ", tempCost = "}
+145             \textcolor{comment}{//     << tempCost << endl;}
+146 
+147 
+148             \textcolor{keywordflow}{if} (!\hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{checkList}(n->getIndex(), openSet)) \{
+149                 \textcolor{comment}{// if neighbor not in open set, add}
+150                 openSet.emplace\_back(n);
+151             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tempCost >= n->getCost()) \{
+152                 \textcolor{comment}{// not a better path}
+153                 \textcolor{keywordflow}{continue};
+154             \}
+155 
+156             \textcolor{comment}{// update neighbor's parent to current}
+157             n->setParentIndex(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}());
+158 
+159             \textcolor{comment}{// update neighbor's cost (i.e. total cost to this node)}
+160             \textcolor{comment}{// to tempCost}
+161             n->setCost(tempCost);
+162 
+163             \textcolor{comment}{// update neighbor's goal cost (i.e. cost to goal) to}
+164             \textcolor{comment}{// tempCost + heuristic estimate}
+165             \textcolor{keywordtype}{double} heuristic = weight * getHeuristicCost(n, &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}-1]);
+166             n->setEstimateCost(tempCost + heuristic);
+167 \textcolor{preprocessor}{#if 0}
+168 \textcolor{preprocessor}{}            \textcolor{keywordtype}{double} xPos = 0;
+169             \textcolor{keywordtype}{double} yPos = 0;
+170             std::tie(xPos, yPos) = n->getPos();
+171             cout << n->getIndex() << \textcolor{stringliteral}{"("} << xPos << \textcolor{stringliteral}{","} << yPos << \textcolor{stringliteral}{")"};
+172             cout << \textcolor{stringliteral}{" ("} << n->getCost() << \textcolor{stringliteral}{","} << n->getEstimateCost() << \textcolor{stringliteral}{","}
+173                  << heuristic << \textcolor{stringliteral}{")"} << endl;
+174 \textcolor{preprocessor}{#endif}
+175 \textcolor{preprocessor}{}        \}
+176     \}
+177 
+178     \textcolor{comment}{// cout << "Fail to find path" << endl;}
+179     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+180 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{AStarAlgorithm_8hpp}{A\-Star\-Algorithm.\-hpp}\item 
+app/\hyperlink{AStarAlgorithm_8cpp}{A\-Star\-Algorithm.\-cpp}\end{DoxyCompactItemize}

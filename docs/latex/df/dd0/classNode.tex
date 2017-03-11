@@ -1,0 +1,289 @@
+\hypertarget{classNode}{\section{Node Class Reference}
+\label{classNode}\index{Node@{Node}}
+}
+
+
+Class that maintains node information in a map.  
+
+
+
+
+{\ttfamily \#include $<$Node.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNode_a19c49d23eaab8d8d514c758598bc8570}{Node} (int i, double x, double y)
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classNode}{Node} class. Cost and estimated cost are initialized to integer max. \end{DoxyCompactList}\item 
+\hyperlink{classNode_aa0840c3cb5c7159be6d992adecd2097c}{$\sim$\-Node} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor of \hyperlink{classNode}{Node} class. \end{DoxyCompactList}\item 
+int \hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{get\-Index} (void)
+\begin{DoxyCompactList}\small\item\em Get index of a node. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_aa7e882fae3b07f7add46f3315c9e7e1b}{set\-Parent\-Index} (int index)
+\begin{DoxyCompactList}\small\item\em Set parent index of a node. \end{DoxyCompactList}\item 
+int \hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{get\-Parent\-Index} (void)
+\begin{DoxyCompactList}\small\item\em Get parent index of node. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_a553b45299d2236bb8faadeaf3da47101}{set\-Cost} (double new\-Cost)
+\begin{DoxyCompactList}\small\item\em Set the cost from start to this node. \end{DoxyCompactList}\item 
+double \hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{get\-Cost} (void)
+\begin{DoxyCompactList}\small\item\em Get cost of start to this node. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_abded50520f1bc767b8ffb88289462e29}{set\-Estimate\-Cost} (double new\-Est\-Cost)
+\begin{DoxyCompactList}\small\item\em Set the estimated cost from this node to goal. \end{DoxyCompactList}\item 
+double \hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{get\-Estimate\-Cost} (void)
+\begin{DoxyCompactList}\small\item\em Get estimated cost of node to goal. \end{DoxyCompactList}\item 
+std\-::tuple$<$ double, double $>$ \hyperlink{classNode_a48751434693e836ed19f0cd8184ffdf9}{get\-Pos} (void)
+\begin{DoxyCompactList}\small\item\em Get x, y position of node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that maintains node information in a map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNode_a19c49d23eaab8d8d514c758598bc8570}{\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}Node\-::\-Node (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{double}]{x, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_a19c49d23eaab8d8d514c758598bc8570}
+
+
+Constructor of \hyperlink{classNode}{Node} class. Cost and estimated cost are initialized to integer max. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & of node in integer \\
+\hline
+{\em x} & position of node in double \\
+\hline
+{\em y} & position of node in double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+59          : index(i), parentIndex(0), xPos(x), yPos(y) \{
+60          \textcolor{comment}{// initialize cost, estimateCost to MAX integer}
+61          cost = std::numeric\_limits<int>::max();
+62          estimateCost = std::numeric\_limits<int>::max();
+63      \}
+\end{DoxyCode}
+\hypertarget{classNode_aa0840c3cb5c7159be6d992adecd2097c}{\index{Node@{Node}!$\sim$\-Node@{$\sim$\-Node}}
+\index{$\sim$\-Node@{$\sim$\-Node}!Node@{Node}}
+\subsubsection[{$\sim$\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Node\-::$\sim$\-Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_aa0840c3cb5c7159be6d992adecd2097c}
+
+
+Deconstructor of \hyperlink{classNode}{Node} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+71 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classNode_a06d6bc069a40309fb4d228af02dface4}{\index{Node@{Node}!get\-Cost@{get\-Cost}}
+\index{get\-Cost@{get\-Cost}!Node@{Node}}
+\subsubsection[{get\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Node\-::get\-Cost (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_a06d6bc069a40309fb4d228af02dface4}
+
+
+Get cost of start to this node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cost of start to this node in double 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+116 \{ \textcolor{keywordflow}{return} cost; \}
+\end{DoxyCode}
+\hypertarget{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{\index{Node@{Node}!get\-Estimate\-Cost@{get\-Estimate\-Cost}}
+\index{get\-Estimate\-Cost@{get\-Estimate\-Cost}!Node@{Node}}
+\subsubsection[{get\-Estimate\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Node\-::get\-Estimate\-Cost (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}
+
+
+Get estimated cost of node to goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+estimated cost of node to goal in double 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+134 \{ \textcolor{keywordflow}{return} estimateCost; \}
+\end{DoxyCode}
+\hypertarget{classNode_af157df6ef5c45d7ce978e9c7371c297e}{\index{Node@{Node}!get\-Index@{get\-Index}}
+\index{get\-Index@{get\-Index}!Node@{Node}}
+\subsubsection[{get\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Node\-::get\-Index (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_af157df6ef5c45d7ce978e9c7371c297e}
+
+
+Get index of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of a node in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+80 \{ \textcolor{keywordflow}{return} index; \}
+\end{DoxyCode}
+\hypertarget{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{\index{Node@{Node}!get\-Parent\-Index@{get\-Parent\-Index}}
+\index{get\-Parent\-Index@{get\-Parent\-Index}!Node@{Node}}
+\subsubsection[{get\-Parent\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Node\-::get\-Parent\-Index (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_a38525d55d0f15d4b6be0b3b8ed150441}
+
+
+Get parent index of node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+parent index of node in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+98 \{ \textcolor{keywordflow}{return} parentIndex; \}
+\end{DoxyCode}
+\hypertarget{classNode_a48751434693e836ed19f0cd8184ffdf9}{\index{Node@{Node}!get\-Pos@{get\-Pos}}
+\index{get\-Pos@{get\-Pos}!Node@{Node}}
+\subsubsection[{get\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}std\-::tuple$<$double, double$>$ Node\-::get\-Pos (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_a48751434693e836ed19f0cd8184ffdf9}
+
+
+Get x, y position of node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x, y position group by tuple in double 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+144          \{ \textcolor{keywordflow}{return} std::make\_tuple(xPos, yPos); \}
+\end{DoxyCode}
+\hypertarget{classNode_a553b45299d2236bb8faadeaf3da47101}{\index{Node@{Node}!set\-Cost@{set\-Cost}}
+\index{set\-Cost@{set\-Cost}!Node@{Node}}
+\subsubsection[{set\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}void Node\-::set\-Cost (
+\begin{DoxyParamCaption}
+\item[{double}]{new\-Cost}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_a553b45299d2236bb8faadeaf3da47101}
+
+
+Set the cost from start to this node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & of start to this node in double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+107 \{ cost = newCost; \}
+\end{DoxyCode}
+\hypertarget{classNode_abded50520f1bc767b8ffb88289462e29}{\index{Node@{Node}!set\-Estimate\-Cost@{set\-Estimate\-Cost}}
+\index{set\-Estimate\-Cost@{set\-Estimate\-Cost}!Node@{Node}}
+\subsubsection[{set\-Estimate\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}void Node\-::set\-Estimate\-Cost (
+\begin{DoxyParamCaption}
+\item[{double}]{new\-Est\-Cost}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_abded50520f1bc767b8ffb88289462e29}
+
+
+Set the estimated cost from this node to goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & of node to goal in double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+125 \{ estimateCost = newEstCost; \}
+\end{DoxyCode}
+\hypertarget{classNode_aa7e882fae3b07f7add46f3315c9e7e1b}{\index{Node@{Node}!set\-Parent\-Index@{set\-Parent\-Index}}
+\index{set\-Parent\-Index@{set\-Parent\-Index}!Node@{Node}}
+\subsubsection[{set\-Parent\-Index}]{\setlength{\rightskip}{0pt plus 5cm}void Node\-::set\-Parent\-Index (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classNode_aa7e882fae3b07f7add46f3315c9e7e1b}
+
+
+Set parent index of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & of parent node in integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+89 \{ parentIndex = index; \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Node_8hpp}{Node.\-hpp}\end{DoxyCompactItemize}

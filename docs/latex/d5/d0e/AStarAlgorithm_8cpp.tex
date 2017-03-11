@@ -1,0 +1,75 @@
+\hypertarget{AStarAlgorithm_8cpp}{\section{app/\-A\-Star\-Algorithm.cpp File Reference}
+\label{AStarAlgorithm_8cpp}\index{app/\-A\-Star\-Algorithm.\-cpp@{app/\-A\-Star\-Algorithm.\-cpp}}
+}
+
+
+Implementation of class \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} methods.  
+
+
+{\ttfamily \#include \char`\"{}A\-Star\-Algorithm.\-hpp\char`\"{}}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$limits$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{check\-List} (int index, list$<$ \hyperlink{classNode}{Node} $\ast$ $>$ const \&nodes)
+\item 
+bool \hyperlink{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{compare\-Cost} (\hyperlink{classNode}{Node} $\ast$first, \hyperlink{classNode}{Node} $\ast$second)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of class \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} methods. This file implements class \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} methods and its helper functions.
+
+\hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} derives from Path\-Find\-Algorithm class and implements virtual function Comput\-Path to compute shortest path using A star algorithm. The heuristic estimation used in A star algorithm here is implemented using Euclidean distance.
+
+\begin{DoxyAuthor}{Author}
+Huei Tzu Tsai 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+03/07/2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!check\-List@{check\-List}}
+\index{check\-List@{check\-List}!AStarAlgorithm.cpp@{A\-Star\-Algorithm.\-cpp}}
+\subsubsection[{check\-List}]{\setlength{\rightskip}{0pt plus 5cm}bool check\-List (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{list$<$ {\bf Node} $\ast$ $>$ const \&}]{nodes}
+\end{DoxyParamCaption}
+)}}\label{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}
+
+\begin{DoxyCode}
+227                                                     \{
+228     \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
+229 
+230     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : nodes) \{
+231         \textcolor{keywordflow}{if} (n->getIndex() == index) \{
+232             found = \textcolor{keyword}{true};
+233             \textcolor{keywordflow}{break};
+234         \}
+235     \}
+236 
+237     \textcolor{keywordflow}{return} found;
+238 \}
+\end{DoxyCode}
+\hypertarget{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!compare\-Cost@{compare\-Cost}}
+\index{compare\-Cost@{compare\-Cost}!AStarAlgorithm.cpp@{A\-Star\-Algorithm.\-cpp}}
+\subsubsection[{compare\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}bool compare\-Cost (
+\begin{DoxyParamCaption}
+\item[{{\bf Node} $\ast$}]{first, }
+\item[{{\bf Node} $\ast$}]{second}
+\end{DoxyParamCaption}
+)}}\label{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}
+
+\begin{DoxyCode}
+241                                             \{
+242     \textcolor{keywordflow}{if} (first->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}() < second->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}())
+243         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+244     \textcolor{keywordflow}{else}
+245         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+246 \}
+\end{DoxyCode}

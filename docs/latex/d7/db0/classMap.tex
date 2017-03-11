@@ -1,0 +1,521 @@
+\hypertarget{classMap}{\section{Map Class Reference}
+\label{classMap}\index{Map@{Map}}
+}
+
+
+Class definition of \hyperlink{classMap}{Map} used for keeping map information for path planning.  
+
+
+
+
+{\ttfamily \#include $<$Map.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMap_a0f5ad0fd4563497b4214038cbca8b582}{Map} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classMap}{Map} class. \end{DoxyCompactList}\item 
+\hyperlink{classMap_aa403fbe09394ccf39747588f5168e3b2}{$\sim$\-Map} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor of \hyperlink{classMap}{Map} class. \end{DoxyCompactList}\item 
+bool \hyperlink{classMap_a389e4f5c49c1a33e9c0e6c4b2f0605ed}{create\-Map} (std\-::string)
+\begin{DoxyCompactList}\small\item\em Read map info from csv file and store in map\-Array. \end{DoxyCompactList}\item 
+bool \hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{save\-Map} (std\-::string, std\-::vector$<$ int $>$ \&)
+\begin{DoxyCompactList}\small\item\em Output map including start, goal, and shortest path to a csv file. \end{DoxyCompactList}\item 
+bool \hyperlink{classMap_aa64162f950a1936e1eaf42609e091524}{set\-Start\-Goal} (int, int)
+\begin{DoxyCompactList}\small\item\em Set start and goal indices. \end{DoxyCompactList}\item 
+void \hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{display\-Path} (std\-::vector$<$ int $>$ \&)
+\begin{DoxyCompactList}\small\item\em Display path in map on screen. \end{DoxyCompactList}\item 
+void \hyperlink{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}{display\-Map} ()
+\begin{DoxyCompactList}\small\item\em Display map on screen. \end{DoxyCompactList}\item 
+int \hyperlink{classMap_a80e0ea134ccb9a22092ce4c520063cd2}{get\-Row} (void)
+\begin{DoxyCompactList}\small\item\em Get number of rows in map. \end{DoxyCompactList}\item 
+int \hyperlink{classMap_a88d24c08a4669040d7de6bd5f6272862}{get\-Col} (void)
+\begin{DoxyCompactList}\small\item\em Get number of columns in map. \end{DoxyCompactList}\item 
+int \hyperlink{classMap_a04501949c81ac8dd6a7aeaca908fe969}{get\-Num\-Dir} (void)
+\begin{DoxyCompactList}\small\item\em Get number of moving directions of a node. \end{DoxyCompactList}\item 
+std\-::vector$<$ int $>$ $\ast$ \hyperlink{classMap_ad5c4312f11909eafc091715686b6ceda}{get\-Map} (void)
+\begin{DoxyCompactList}\small\item\em Get map array. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classMap_a4f9142718a50c64152465aacc1033f26}{get\-Move\-Dir} (void)
+\begin{DoxyCompactList}\small\item\em Get moving direction array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class definition of \hyperlink{classMap}{Map} used for keeping map information for path planning. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMap_a0f5ad0fd4563497b4214038cbca8b582}{\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}Map\-::\-Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_a0f5ad0fd4563497b4214038cbca8b582}
+
+
+Constructor of \hyperlink{classMap}{Map} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+53            : startIdx(0), goalIdx(0),
+54              row(0), col(0), numDir(8) \{\}
+\end{DoxyCode}
+\hypertarget{classMap_aa403fbe09394ccf39747588f5168e3b2}{\index{Map@{Map}!$\sim$\-Map@{$\sim$\-Map}}
+\index{$\sim$\-Map@{$\sim$\-Map}!Map@{Map}}
+\subsubsection[{$\sim$\-Map}]{\setlength{\rightskip}{0pt plus 5cm}Map\-::$\sim$\-Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_aa403fbe09394ccf39747588f5168e3b2}
+
+
+Deconstructor of \hyperlink{classMap}{Map} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+63 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMap_a389e4f5c49c1a33e9c0e6c4b2f0605ed}{\index{Map@{Map}!create\-Map@{create\-Map}}
+\index{create\-Map@{create\-Map}!Map@{Map}}
+\subsubsection[{create\-Map}]{\setlength{\rightskip}{0pt plus 5cm}bool Map\-::create\-Map (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{}
+\end{DoxyParamCaption}
+)}}\label{classMap_a389e4f5c49c1a33e9c0e6c4b2f0605ed}
+
+
+Read map info from csv file and store in map\-Array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & file path in string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true is reading map is successful, false otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+61                                     \{
+62     ifstream inputFs;
+63     \textcolor{keywordtype}{string} line;
+64     \textcolor{keywordtype}{string} temp;
+65     \textcolor{keywordtype}{int} cnt = 0;
+66 
+67     \textcolor{comment}{// initialize param}
+68     mapArray.clear();
+69     row = 0;
+70     col = 0;
+71 
+72     \textcolor{comment}{// open graph file}
+73     inputFs.open(inputFile);
+74 
+75     \textcolor{keywordflow}{if} (inputFs.is\_open()) \{
+76         \textcolor{keywordflow}{while} (getline(inputFs, line)) \{
+77             std::istringstream linestream(line);
+78 
+79             \textcolor{keywordflow}{while} (getline(linestream, temp, \textcolor{charliteral}{','})) \{
+80                 ++cnt;
+81                 \textcolor{keywordflow}{if} ((temp == \textcolor{stringliteral}{"o"}) || (temp == \textcolor{stringliteral}{"O"})) \{
+82                     mapArray.emplace\_back(std::numeric\_limits<int>::max());
+83                 \} \textcolor{keywordflow}{else} \{
+84                     mapArray.emplace\_back(std::stoi(temp));
+85                 \}
+86             \}
+87 
+88             col = cnt;
+89             cnt = 0;
+90 
+91             ++row;
+92 
+93         \}
+94 
+95         \textcolor{comment}{// cout << "number of cols: " << col << endl;}
+96         \textcolor{comment}{// cout << "number of rows: " << row << endl;}
+97         \textcolor{comment}{// cout << "size of vector array: " << mapArray.size() << endl;}
+98         inputFs.close();
+99 
+100         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+101     \}
+102 
+103     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+104 \}
+\end{DoxyCode}
+\hypertarget{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}{\index{Map@{Map}!display\-Map@{display\-Map}}
+\index{display\-Map@{display\-Map}!Map@{Map}}
+\subsubsection[{display\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void Map\-::display\-Map (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}
+
+
+Display map on screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+222                          \{
+223     \textcolor{keywordtype}{int} x = 0;
+224     \textcolor{keywordtype}{int} y = 0;
+225     \textcolor{keywordtype}{int} index = 0;
+226 
+227 
+228     \textcolor{keywordtype}{int} displayRow = row * 2 + 1;
+229     \textcolor{keywordtype}{int} displayCol = col * 2 + 1;
+230 
+231     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < displayRow; ++i) \{
+232         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < displayCol; ++j) \{
+233             \textcolor{keywordflow}{if} (i % 2 == 0) \{
+234                 \textcolor{keywordflow}{if} (j % 2 == 0)
+235                     cout << \textcolor{stringliteral}{" "};
+236                 \textcolor{keywordflow}{else}
+237                     cout << \textcolor{stringliteral}{"---"};
+238             \} \textcolor{keywordflow}{else} \{
+239                 \textcolor{keywordflow}{if} (j % 2 == 0)
+240                     cout << \textcolor{stringliteral}{"|"};
+241                 \textcolor{keywordflow}{else} \{
+242                     x = i/2;
+243                     y = j/2;
+244 
+245                     index = (x * col + y + 1);
+246 
+247                     \textcolor{keywordflow}{if} (mapArray[index-1] == std::numeric\_limits<int>::max())
+248                         cout << \textcolor{stringliteral}{" O "};
+249                     \textcolor{keywordflow}{else}
+250                         cout << std::setw(3) << index;
+251                 \}
+252 
+253             \}
+254         \}
+255         cout << endl;
+256     \}
+257 
+258     \textcolor{keywordflow}{return};
+259 \}
+\end{DoxyCode}
+\hypertarget{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{\index{Map@{Map}!display\-Path@{display\-Path}}
+\index{display\-Path@{display\-Path}!Map@{Map}}
+\subsubsection[{display\-Path}]{\setlength{\rightskip}{0pt plus 5cm}void Map\-::display\-Path (
+\begin{DoxyParamCaption}
+\item[{std\-::vector$<$ int $>$ \&}]{}
+\end{DoxyParamCaption}
+)}}\label{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}
+
+
+Display path in map on screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reference} & to vector int of path indices \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+175                                        \{
+176     \textcolor{keywordtype}{int} x = 0;
+177     \textcolor{keywordtype}{int} y = 0;
+178     \textcolor{keywordtype}{int} index = 0;
+179 
+180     \textcolor{keywordtype}{int} displayRow = row * 2 + 1;
+181     \textcolor{keywordtype}{int} displayCol = col * 2 + 1;
+182 
+183     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < displayRow; ++i) \{
+184         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < displayCol; ++j) \{
+185             \textcolor{keywordflow}{if} (i % 2 == 0) \{
+186                 \textcolor{keywordflow}{if} (j % 2 == 0)
+187                     cout << \textcolor{stringliteral}{" "};
+188                 \textcolor{keywordflow}{else}
+189                     cout << \textcolor{stringliteral}{"---"};
+190             \} \textcolor{keywordflow}{else} \{
+191                 \textcolor{keywordflow}{if} (j % 2 == 0)
+192                     cout << \textcolor{stringliteral}{"|"};
+193                 \textcolor{keywordflow}{else} \{
+194                     x = i/2;
+195                     y = j/2;
+196 
+197                     index = (x * col + y + 1);
+198 
+199                     \textcolor{keywordflow}{if} ((index == startIdx) && (index == goalIdx))
+200                         cout << \textcolor{stringliteral}{"S/G"};
+201                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == startIdx)
+202                         cout << \textcolor{stringliteral}{" S "};
+203                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == goalIdx)
+204                         cout << \textcolor{stringliteral}{" G "};
+205                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isInPath(index, path))
+206                         cout << \textcolor{stringliteral}{" * "};
+207                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mapArray[index-1] == std::numeric\_limits<int>::max())
+208                         cout << \textcolor{stringliteral}{" O "};
+209                     \textcolor{keywordflow}{else}
+210                         cout << \textcolor{stringliteral}{" 1 "};
+211                 \}
+212 
+213             \}
+214         \}
+215         cout << endl;
+216     \}
+217 
+218     \textcolor{keywordflow}{return};
+219 \}
+\end{DoxyCode}
+\hypertarget{classMap_a88d24c08a4669040d7de6bd5f6272862}{\index{Map@{Map}!get\-Col@{get\-Col}}
+\index{get\-Col@{get\-Col}!Map@{Map}}
+\subsubsection[{get\-Col}]{\setlength{\rightskip}{0pt plus 5cm}int Map\-::get\-Col (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_a88d24c08a4669040d7de6bd5f6272862}
+
+
+Get number of columns in map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of columns in map in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+128 \{ \textcolor{keywordflow}{return} col; \}
+\end{DoxyCode}
+\hypertarget{classMap_ad5c4312f11909eafc091715686b6ceda}{\index{Map@{Map}!get\-Map@{get\-Map}}
+\index{get\-Map@{get\-Map}!Map@{Map}}
+\subsubsection[{get\-Map}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$$\ast$ Map\-::get\-Map (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_ad5c4312f11909eafc091715686b6ceda}
+
+
+Get map array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to vector int of map array 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+146 \{ \textcolor{keywordflow}{return} &mapArray; \}
+\end{DoxyCode}
+\hypertarget{classMap_a4f9142718a50c64152465aacc1033f26}{\index{Map@{Map}!get\-Move\-Dir@{get\-Move\-Dir}}
+\index{get\-Move\-Dir@{get\-Move\-Dir}!Map@{Map}}
+\subsubsection[{get\-Move\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ Map\-::get\-Move\-Dir (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_a4f9142718a50c64152465aacc1033f26}
+
+
+Get moving direction array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to int of moving direction array 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+155 \{ \textcolor{keywordflow}{return} moveDirection; \}
+\end{DoxyCode}
+\hypertarget{classMap_a04501949c81ac8dd6a7aeaca908fe969}{\index{Map@{Map}!get\-Num\-Dir@{get\-Num\-Dir}}
+\index{get\-Num\-Dir@{get\-Num\-Dir}!Map@{Map}}
+\subsubsection[{get\-Num\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}int Map\-::get\-Num\-Dir (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_a04501949c81ac8dd6a7aeaca908fe969}
+
+
+Get number of moving directions of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of moving directions of a node in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+137 \{ \textcolor{keywordflow}{return} numDir; \}
+\end{DoxyCode}
+\hypertarget{classMap_a80e0ea134ccb9a22092ce4c520063cd2}{\index{Map@{Map}!get\-Row@{get\-Row}}
+\index{get\-Row@{get\-Row}!Map@{Map}}
+\subsubsection[{get\-Row}]{\setlength{\rightskip}{0pt plus 5cm}int Map\-::get\-Row (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMap_a80e0ea134ccb9a22092ce4c520063cd2}
+
+
+Get number of rows in map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of rows in map in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+119 \{ \textcolor{keywordflow}{return} row; \}
+\end{DoxyCode}
+\hypertarget{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{\index{Map@{Map}!save\-Map@{save\-Map}}
+\index{save\-Map@{save\-Map}!Map@{Map}}
+\subsubsection[{save\-Map}]{\setlength{\rightskip}{0pt plus 5cm}bool Map\-::save\-Map (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{, }
+\item[{std\-::vector$<$ int $>$ \&}]{}
+\end{DoxyParamCaption}
+)}}\label{classMap_a43ce2c046c7908d95e06bd29182ac6bf}
+
+
+Output map including start, goal, and shortest path to a csv file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & file path in string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true is output map is successful, false otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+107                                                       \{
+108     ofstream outputFs;
+109     \textcolor{keywordtype}{int} i = 0;
+110     \textcolor{keywordtype}{int} j = 0;
+111     \textcolor{keywordtype}{int} index = 0;
+112 
+113     outputFs.open(outputFile);
+114 
+115     \textcolor{keywordflow}{if} (outputFs.is\_open()) \{
+116 
+117         \textcolor{keywordflow}{for} (i = 0; i < row; ++i) \{
+118             \textcolor{keywordflow}{for} (j = 0; j < col; ++j) \{
+119 
+120                 index = i * row + j + 1;
+121 
+122                 \textcolor{keywordflow}{if} (index == startIdx)
+123                     outputFs << \textcolor{stringliteral}{"S"};
+124                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == goalIdx)
+125                     outputFs << \textcolor{stringliteral}{"G"};
+126                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isInPath(index, path))
+127                     outputFs << \textcolor{stringliteral}{"*"};
+128                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mapArray[index-1] == std::numeric\_limits<int>::max())
+129                     outputFs << \textcolor{stringliteral}{"O"};
+130                 \textcolor{keywordflow}{else}
+131                     outputFs << \textcolor{stringliteral}{"1"};
+132 
+133 
+134                 \textcolor{keywordflow}{if} (j < col-1)
+135                     outputFs << \textcolor{stringliteral}{","};
+136             \}
+137             outputFs << endl;
+138         \}
+139 
+140         outputFs.close();
+141         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+142     \}
+143 
+144     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+145 \}
+\end{DoxyCode}
+\hypertarget{classMap_aa64162f950a1936e1eaf42609e091524}{\index{Map@{Map}!set\-Start\-Goal@{set\-Start\-Goal}}
+\index{set\-Start\-Goal@{set\-Start\-Goal}!Map@{Map}}
+\subsubsection[{set\-Start\-Goal}]{\setlength{\rightskip}{0pt plus 5cm}bool Map\-::set\-Start\-Goal (
+\begin{DoxyParamCaption}
+\item[{int}]{s, }
+\item[{int}]{g}
+\end{DoxyParamCaption}
+)}}\label{classMap_aa64162f950a1936e1eaf42609e091524}
+
+
+Set start and goal indices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & index in int \\
+\hline
+{\em goal} & index in int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if start, goal are within map range and are not obstacle nodes, false otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+148                                    \{
+149     \textcolor{keywordtype}{int} minIndex = 1;
+150     \textcolor{keywordtype}{int} maxIndex = row * col;
+151     \textcolor{keywordtype}{int} index = 0;
+152 
+153     \textcolor{keywordflow}{if} ((s < minIndex) || (s > maxIndex))
+154         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+155 
+156     \textcolor{keywordflow}{if} (g < minIndex || g > maxIndex)
+157         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+158 
+159     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& i : mapArray) \{
+160         \textcolor{keywordflow}{if} (i == std::numeric\_limits<int>::max()) \{
+161             index = &i - &mapArray[0] - 1;
+162             \textcolor{keywordflow}{if} ((s == index) || (g == index)) \{
+163                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+164             \}
+165         \}
+166     \}
+167 
+168     startIdx = s;
+169     goalIdx = g;
+170 
+171     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+172 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Map_8hpp}{Map.\-hpp}\item 
+app/\hyperlink{Map_8cpp}{Map.\-cpp}\end{DoxyCompactItemize}

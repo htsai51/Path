@@ -1,0 +1,319 @@
+\hypertarget{test_8cpp}{\section{test/test.cpp File Reference}
+\label{test_8cpp}\index{test/test.\-cpp@{test/test.\-cpp}}
+}
+
+
+Implementation of unit test for \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm}.  
+
+
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$gmock/gmock.\-h$>$}\\*
+{\ttfamily \#include $<$gtest/gtest.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}A\-Star\-Algorithm.\-hpp\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{test_8cpp_af7d3d238bc04a077bf8f22bed659bf80}{T\-E\-S\-T} (test\-Set\-Param1, handl\-Set\-Param)
+\begin{DoxyCompactList}\small\item\em Check set\-Param function by setting start, goal indices to return true for start and goal that are within map and not obstacle nodes. \end{DoxyCompactList}\item 
+\hyperlink{test_8cpp_a16e9590c9df2a12fed3d6cc29f770379}{T\-E\-S\-T} (test\-Set\-Param2, handle\-Error)
+\begin{DoxyCompactList}\small\item\em Check error handling of set\-Param by setting start, goal indices to out of bound or obstacle nodes. \end{DoxyCompactList}\item 
+\hyperlink{test_8cpp_aa8fb7a958f011d95126db7a96e34a694}{T\-E\-S\-T} (test\-Path1, compute\-Path\-Should\-Pass)
+\begin{DoxyCompactList}\small\item\em Check compute\-Path function returns true for a given start, goal nodes that has a feasible path. \end{DoxyCompactList}\item 
+\hyperlink{test_8cpp_a857f7974f32f03788927411610880968}{T\-E\-S\-T} (test\-Path2, compute\-Path\-Should\-Pass)
+\begin{DoxyCompactList}\small\item\em Check compute\-Path function can find path for setting start to goal node. \end{DoxyCompactList}\item 
+\hyperlink{test_8cpp_a1e276d36dac377668ac51f938026e200}{T\-E\-S\-T} (test\-Correctness, compute\-Path\-Should\-Match)
+\begin{DoxyCompactList}\small\item\em Check compute\-Path function computes shortest path by comparing path result to Dijkstra's result. \end{DoxyCompactList}\item 
+\hyperlink{test_8cpp_a35d61f20ba163b0ee3011ae63ba0f1b5}{T\-E\-S\-T} (test\-Completeness, handle\-Unreachable\-Goal)
+\begin{DoxyCompactList}\small\item\em Check compute\-Path returns fail for a given start and goal nodes which do not have a feasible path. \end{DoxyCompactList}\item 
+\hyperlink{test_8cpp_a0103614714bf9ba4b46cea60ec3c636f}{T\-E\-S\-T} (test\-Robostness, compute\-Path\-Should\-Be\-Robost)
+\begin{DoxyCompactList}\small\item\em Check compute\-Path consistently finds the same path for a given start, goal nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of unit test for \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm}. This file contains implementation of unit test for A\-Start\-Algorithm
+
+\begin{DoxyAuthor}{Author}
+Huei Tzu Tsai 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+03/10/2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{test_8cpp_af7d3d238bc04a077bf8f22bed659bf80}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Set\-Param1}]{, }
+\item[{handl\-Set\-Param}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_af7d3d238bc04a077bf8f22bed659bf80}
+
+
+Check set\-Param function by setting start, goal indices to return true for start and goal that are within map and not obstacle nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+52                                    \{
+53     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+54 
+55     aStar.PathFindingAlgorithm::init();
+56 
+57     \textcolor{comment}{// start, goal is acceptable}
+58     ASSERT\_TRUE(aStar.PathFindingAlgorithm::setParam(1, 36));
+59 
+60     \textcolor{comment}{// start, goal is acceptable}
+61     ASSERT\_TRUE(aStar.PathFindingAlgorithm::setParam(1, 1));
+62 \}
+\end{DoxyCode}
+\hypertarget{test_8cpp_a16e9590c9df2a12fed3d6cc29f770379}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Set\-Param2}]{, }
+\item[{handle\-Error}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_a16e9590c9df2a12fed3d6cc29f770379}
+
+
+Check error handling of set\-Param by setting start, goal indices to out of bound or obstacle nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+72                                  \{
+73     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+74 
+75     aStar.PathFindingAlgorithm::init();
+76 
+77     \textcolor{comment}{// start, goal out of map}
+78     ASSERT\_FALSE(aStar.PathFindingAlgorithm::setParam(0, 1000));
+79 
+80     \textcolor{comment}{// start, goal is obstacle}
+81     ASSERT\_FALSE(aStar.PathFindingAlgorithm::setParam(7, 10));
+82 \}
+\end{DoxyCode}
+\hypertarget{test_8cpp_aa8fb7a958f011d95126db7a96e34a694}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Path1}]{, }
+\item[{compute\-Path\-Should\-Pass}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_aa8fb7a958f011d95126db7a96e34a694}
+
+
+Check compute\-Path function returns true for a given start, goal nodes that has a feasible path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+93                                        \{
+94     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+95 
+96     aStar.PathFindingAlgorithm::init();
+97 
+98     aStar.PathFindingAlgorithm::setParam(1, 30);
+99 
+100     \textcolor{comment}{// set weight to 1.0 for A* algorithm}
+101     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+102 
+103     \textcolor{comment}{// expect path to be computed}
+104     ASSERT\_TRUE(aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0));
+105 \}
+\end{DoxyCode}
+\hypertarget{test_8cpp_a857f7974f32f03788927411610880968}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Path2}]{, }
+\item[{compute\-Path\-Should\-Pass}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_a857f7974f32f03788927411610880968}
+
+
+Check compute\-Path function can find path for setting start to goal node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+115                                        \{
+116     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+117 
+118     aStar.PathFindingAlgorithm::init();
+119 
+120     aStar.PathFindingAlgorithm::setParam(1, 1);
+121 
+122     \textcolor{comment}{// set weight to 1.0 for A* algorithm}
+123     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+124 
+125     \textcolor{comment}{// expect path to be computed}
+126     ASSERT\_TRUE(aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0));
+127 \}
+\end{DoxyCode}
+\hypertarget{test_8cpp_a1e276d36dac377668ac51f938026e200}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Correctness}]{, }
+\item[{compute\-Path\-Should\-Match}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_a1e276d36dac377668ac51f938026e200}
+
+
+Check compute\-Path function computes shortest path by comparing path result to Dijkstra's result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+138                                               \{
+139     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+140     vector<int> path1;
+141     vector<int> path2;
+142 
+143     aStar.PathFindingAlgorithm::init();
+144 
+145     aStar.PathFindingAlgorithm::setParam(1, 24);
+146 
+147     \textcolor{comment}{// set weight to 1.0 for A* algorithm}
+148     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+149     path1 = aStar.PathFindingAlgorithm::getPath();
+150 
+151     \textcolor{comment}{// set weight to 0.0 for Dijkstra's algorithm}
+152     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(0.0);
+153     path2 = aStar.PathFindingAlgorithm::getPath();
+154 
+155     \textcolor{comment}{// make sure path matches}
+156     EXPECT\_THAT(path1, ::testing::ContainerEq(path2));
+157 \}
+\end{DoxyCode}
+\hypertarget{test_8cpp_a35d61f20ba163b0ee3011ae63ba0f1b5}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Completeness}]{, }
+\item[{handle\-Unreachable\-Goal}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_a35d61f20ba163b0ee3011ae63ba0f1b5}
+
+
+Check compute\-Path returns fail for a given start and goal nodes which do not have a feasible path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+168                                               \{
+169     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+170 
+171     aStar.PathFindingAlgorithm::init();
+172 
+173     \textcolor{comment}{// set an unreachable goal}
+174     aStar.PathFindingAlgorithm::setParam(1, 15);
+175     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+176 
+177     \textcolor{comment}{// make sure test return fail}
+178     ASSERT\_FALSE(aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0));
+179 
+180 
+181     \textcolor{comment}{// set an unreachable goal}
+182     aStar.PathFindingAlgorithm::setParam(1, 23);
+183     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+184 
+185     \textcolor{comment}{// make sure test return fail}
+186     ASSERT\_FALSE(aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0));
+187 \}
+\end{DoxyCode}
+\hypertarget{test_8cpp_a0103614714bf9ba4b46cea60ec3c636f}{\index{test.\-cpp@{test.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test.cpp@{test.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{test\-Robostness}]{, }
+\item[{compute\-Path\-Should\-Be\-Robost}]{}
+\end{DoxyParamCaption}
+)}}\label{test_8cpp_a0103614714bf9ba4b46cea60ec3c636f}
+
+
+Check compute\-Path consistently finds the same path for a given start, goal nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+197                                                 \{
+198     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+199     vector<int> path1;
+200     vector<int> path2;
+201 
+202     aStar.PathFindingAlgorithm::init();
+203 
+204     \textcolor{comment}{// set start, goal, and compute using A*}
+205     aStar.PathFindingAlgorithm::setParam(1, 30);
+206     aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+207 
+208     \textcolor{comment}{// assert that path can be generated}
+209     ASSERT\_TRUE(aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0));
+210     path1 = aStar.PathFindingAlgorithm::getPath();
+211 
+212     \textcolor{comment}{// run compute path for same start & goal for 100 times}
+213     \textcolor{comment}{// and make sure results are consistent and no crash}
+214     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++) \{
+215         aStar.PathFindingAlgorithm::setParam(1, 30);
+216         aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0);
+217 
+218         ASSERT\_TRUE(aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(1.0));
+219         path2 = aStar.PathFindingAlgorithm::getPath();
+220         EXPECT\_THAT(path1, ::testing::ContainerEq(path2));
+221     \}
+222 \}
+\end{DoxyCode}

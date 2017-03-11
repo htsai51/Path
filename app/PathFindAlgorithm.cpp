@@ -1,32 +1,37 @@
 /********************************************************************
-MIT License
-
-Copyright (c) 2017 Huei-Tzu Tsai
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+ *   MIT License
+ *  
+ *   Copyright (c) 2017 Huei-Tzu Tsai
+ *  
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *  
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *  
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
  ********************************************************************/
 
 
 /** @file PathFindAlgorithm.cpp
  *  @brief Implementation of class PathFindAlgorithm methods
  *
- *  This file implements methods in base class of PathFindAlgorithm
+ *  This file implements methods in base class of PathFindAlgorithm.
+ *
+ *  PathFindAlgorithm is the base class for path finding algorithm.
+ *  It supports building map/graph into nodes, edges for computing
+ *  shortest path, reconstructing path from goal to start, and
+ *  displaying map with or without shortest path on screen.
  *
  *  @author Huei Tzu Tsai
  *  @date   03/07/2017
@@ -46,31 +51,17 @@ using std::list;
 using std::vector;
 
 
-/**
- *   @brief  Initialize map and graph
- *  
- *   @param  
- *   @param  
- *   @return none
-*/
-void PathFindingAlgorithm::Init(void) {
+void PathFindingAlgorithm::init(void) {
     nodes.clear();
     edges.clear();
     path.clear();
 
     map.createMap(DEFAUTL_INPUT_MAP);
-    BuildGraph();
+    buildGraph();
 }
 
 
-/**
- *   @brief  Build graph with nodes and edges for PathFindingAlgorithm
- *  
- *   @param  
- *   @param  
- *   @return none
-*/
-void PathFindingAlgorithm::BuildGraph(void) {
+void PathFindingAlgorithm::buildGraph(void) {
 
     vector<int>* mapArray = nullptr;
 
@@ -163,15 +154,7 @@ void PathFindingAlgorithm::BuildGraph(void) {
 }
 
 
-/*
- *   @brief  Reconstruct graph by traversing from goal to start via 
- *           parentIndex of nodes
- *  
- *   @param  
- *   @param  
- *   @return none
-*/
-void PathFindingAlgorithm::ReconstructPath(Node *node) {
+void PathFindingAlgorithm::reconstructPath(Node *node) {
     list<Node*> tempPath;
     Node *temp = node;
 
@@ -194,7 +177,7 @@ void PathFindingAlgorithm::ReconstructPath(Node *node) {
     // cout << "Shortest Path: ";
 
     // save into vector from start to goal
-    for (auto n : tempPath) {
+    for (auto& n : tempPath) {
         // cout << n->getIndex() << " ";
         path.emplace_back(n->getIndex());
     }
@@ -206,14 +189,6 @@ void PathFindingAlgorithm::ReconstructPath(Node *node) {
 }
 
 
-/*
- *   @brief  Set start and goal indices
- *  
- *   @param  start node index in int
- *   @param  goal node index in int
- *   @return true if start, goal are within map indices and
- *           are not obstacle nodes, false otherwise
-*/
 bool PathFindingAlgorithm::setParam(int s, int g) {
     // set start and goal indices
     if (map.setStartGoal(s, g)) {
@@ -226,21 +201,16 @@ bool PathFindingAlgorithm::setParam(int s, int g) {
 }
 
 
-/*
- *   @brief  Output result on screen or file or both
- *  
- *   @param  start node index in int
- *   @param  goal node index in int
- *   @return none
-*/
-void PathFindingAlgorithm::OutputPath(int option) {
+void PathFindingAlgorithm::outputPath(int option) {
 
     switch(option) {
-        case 0: ///< display map on screen
+         // display map on screen
+        case 0:
             map.displayPath(path);
             break;
 
-        case 1: ///< output to file
+        // output to file
+        case 1:
             map.saveMap(DEFAUTL_OUTPUT_MAP, path);
             break;
 
@@ -253,13 +223,7 @@ void PathFindingAlgorithm::OutputPath(int option) {
 }
 
 
-/*
- *   @brief  Output map on screen
- *  
- *   @param  none
- *   @return none
-*/
-void PathFindingAlgorithm::OutputMap() {
+void PathFindingAlgorithm::outputMap() {
 
     map.displayMap();
     return;

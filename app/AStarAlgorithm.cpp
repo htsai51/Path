@@ -1,33 +1,38 @@
 /********************************************************************
-MIT License
-
-Copyright (c) 2017 Huei-Tzu Tsai
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+ *   MIT License
+ *  
+ *   Copyright (c) 2017 Huei-Tzu Tsai
+ *  
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *  
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *  
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
  ********************************************************************/
-
 
 /** @file AStarAlgorithm.cpp
  *  @brief Implementation of class AStarAlgorithm methods
  *
  *  This file implements class AStarAlgorithm methods and
  *  its helper functions.
+ *
+ *  AStarAlgorithm derives from PathFindAlgorithm class and implements
+ *  virtual function ComputPath to compute shortest path using A star
+ *  algorithm.  The heuristic estimation used in A star algorithm
+ *  here is implemented using Euclidean distance.
+ *  
  *
  *  @author Huei Tzu Tsai
  *  @date   03/07/2017
@@ -45,134 +50,7 @@ using std::string;
 using std::list;
 
 
-
-/*
- *   @brief  Set parameters for AStar algorithm
- *  
- *   @param  start node index in int
- *   @param  end node index in int
- *   @return true if start, goal node is within map boundaries
- *           and it is not obstacle node, false otherwise
-*/
-bool AStarAlgorithm::setParam(int s, int g) {
-    // call parent function to update start, goal
-    // as well as map info
-    return PathFindingAlgorithm::setParam(s, g);
-}
-
-
-/*
- *   @brief  Compute heuristic cost between start and end nodes
- *           using euclidean distance
- *  
- *   @param  reference pointer to start node
- *   @param  reference pointer to end node
- *   @return heuristic cost estimation
-*/
-double AStarAlgorithm::getHeuristicCost(Node *start, Node *end) {
-    double xdiff = 0;
-    double ydiff = 0;
-
-    double startX = 0;
-    double startY = 0;
-    double endX = 0;
-    double endY = 0;
-
-    std::tie(startX, startY) = start->getPos();
-    std::tie(endX, endY) = end->getPos();
-
-    xdiff = startX - endX;
-    ydiff = startY - endY;
-
-    return sqrt((xdiff*xdiff) + (ydiff*ydiff));
-}
-
-
-/*
- *   @brief  Get the cost between two given indices
- *  
- *   @param  start node index in int
- *   @param  end node index in int
- *   @return edge cost between two indices in double
-*/
-double AStarAlgorithm::getCostToNeighbor(int startIndex, int endIndex) {
-    double cost = 0;
-
-    for (auto e : edges) {
-        if (e.getStartIndex() == startIndex && e.getEndIndex() == endIndex) {
-            cost = e.getCost();
-            break;
-        }
-    }
-
-    return cost;
-}
-
-
-/*
- *   @brief  Find the list of neighbors for given node index
- *  
- *   @param  node index in int
- *   @param  reference to the node neighbor list to return
- *   @return none
-*/
-void AStarAlgorithm::findNeighbors(int index, list<Node*> &neighbors) {
-    for (auto e : edges) {
-        if (e.getStartIndex() == index) {
-            neighbors.emplace_back(&nodes[e.getEndIndex()-1]);
-        }
-    }
-
-    return;
-}
-
-
-/*
- *   @brief  Helper function, check if node is in a given list
- *  
- *   @param  node index in int
- *   @param  reference to the node list to check
- *   @return true if node is in the list, false otherwise
-*/
-bool checkList(int index, list<Node*> const &nodes) {
-    bool found = false;
-
-    for (auto n : nodes) {
-        if (n->getIndex() == index) {
-            found = true;
-            break;
-        }
-    }
-
-    return found;
-}
-
-
-/*
- *   @brief  Helper function, compare estimated cost of two nodes
- *  
- *   @param  index of first node in int
- *   @param  index of second node in int
- *   @return true if estimated cost of first node is lower than second node
- *           false otherwise
-*/
-bool compareCost(Node *first, Node *second) {
-    if (first->getEstimateCost() < second->getEstimateCost())
-        return true;
-    else
-        return false;
-}
-
-
-/**
- *   @brief  Compute shortest path given start, goal nodes indices,
- *           and weight for heuristic estimates
- *  
- *   @param  none
- *   @return true if shortest path can be found
- *           false otherwise
-*/
-bool AStarAlgorithm::ComputPath(double weight) {
+bool AStarAlgorithm::computPath(double weight) {
     int nStep = 0;
 
 
@@ -219,7 +97,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
             steps = nStep;
             // cout << "found goal in " << steps << " steps" << endl;
             // cout << "cost is " << totalCost << endl;
-            ReconstructPath(curNode);
+            reconstructPath(curNode);
             return true;
         }
 
@@ -238,7 +116,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
 
 #if 0
         cout << "Closed Set:" << endl;
-        for (auto n : closedSet) {
+        for (auto& n : closedSet) {
             double xPos = 0;
             double yPos = 0;
             std::tie(xPos, yPos) = n->getPos();
@@ -253,7 +131,7 @@ bool AStarAlgorithm::ComputPath(double weight) {
         // cout << "Neighbors:" << endl;
 
         // for each neighbor of current
-        for (auto n : neighbors) {
+        for (auto& n : neighbors) {
             // if neighbor in closed set, continue
             if (checkList(n->getIndex(), closedSet)) {
                 // cout << "neighbor in closed set, continue" << endl;
@@ -299,6 +177,72 @@ bool AStarAlgorithm::ComputPath(double weight) {
 
     // cout << "Fail to find path" << endl;
     return false;
+}
+
+
+double AStarAlgorithm::getHeuristicCost(Node *start, Node *end) {
+    double xdiff = 0;
+    double ydiff = 0;
+
+    double startX = 0;
+    double startY = 0;
+    double endX = 0;
+    double endY = 0;
+
+    std::tie(startX, startY) = start->getPos();
+    std::tie(endX, endY) = end->getPos();
+
+    xdiff = startX - endX;
+    ydiff = startY - endY;
+
+    return sqrt((xdiff*xdiff) + (ydiff*ydiff));
+}
+
+
+double AStarAlgorithm::getCostToNeighbor(int startIndex, int endIndex) {
+    double cost = 0;
+
+    for (auto& e : edges) {
+        if (e.getStartIndex() == startIndex && e.getEndIndex() == endIndex) {
+            cost = e.getCost();
+            break;
+        }
+    }
+
+    return cost;
+}
+
+
+void AStarAlgorithm::findNeighbors(int index, list<Node*> &neighbors) {
+    for (auto& e : edges) {
+        if (e.getStartIndex() == index) {
+            neighbors.emplace_back(&nodes[e.getEndIndex()-1]);
+        }
+    }
+
+    return;
+}
+
+
+bool checkList(int index, list<Node*> const &nodes) {
+    bool found = false;
+
+    for (auto& n : nodes) {
+        if (n->getIndex() == index) {
+            found = true;
+            break;
+        }
+    }
+
+    return found;
+}
+
+
+bool compareCost(Node *first, Node *second) {
+    if (first->getEstimateCost() < second->getEstimateCost())
+        return true;
+    else
+        return false;
 }
 
 

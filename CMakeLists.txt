@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2.1)
-project (scratch)
+project (path)
 
 include(CMakeToolsHelpers OPTIONAL)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

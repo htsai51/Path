@@ -1,0 +1,160 @@
+\hypertarget{classEdge}{\section{Edge Class Reference}
+\label{classEdge}\index{Edge@{Edge}}
+}
+
+
+Class that maintains edge cost between two nodes in a map.  
+
+
+
+
+{\ttfamily \#include $<$Edge.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classEdge_a5374e98bee8b90e06da854f20f04fcd3}{Edge} (int s, int e, double c)
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classEdge}{Edge} class. \end{DoxyCompactList}\item 
+\hyperlink{classEdge_a2f37b72f044427961d6730943daf10e0}{$\sim$\-Edge} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor of \hyperlink{classEdge}{Edge} class. \end{DoxyCompactList}\item 
+int \hyperlink{classEdge_a348144efacdd4e840951e3563c8d6efa}{get\-Start\-Index} (void)
+\begin{DoxyCompactList}\small\item\em Get start index of an edge. \end{DoxyCompactList}\item 
+int \hyperlink{classEdge_a079b0d569e07f5588f6a6f75466e189c}{get\-End\-Index} (void)
+\begin{DoxyCompactList}\small\item\em Get end index of an edge. \end{DoxyCompactList}\item 
+double \hyperlink{classEdge_a4875fd6597dc34cdba634a73a7b5623b}{get\-Cost} (void)
+\begin{DoxyCompactList}\small\item\em Get edge cost between two nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that maintains edge cost between two nodes in a map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classEdge_a5374e98bee8b90e06da854f20f04fcd3}{\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\subsubsection[{Edge}]{\setlength{\rightskip}{0pt plus 5cm}Edge\-::\-Edge (
+\begin{DoxyParamCaption}
+\item[{int}]{s, }
+\item[{int}]{e, }
+\item[{double}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classEdge_a5374e98bee8b90e06da854f20f04fcd3}
+
+
+Constructor of \hyperlink{classEdge}{Edge} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & as start index in integer \\
+\hline
+{\em e} & as end index in integer \\
+\hline
+{\em c} & as cost in double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+55          : startIndex(s), endIndex(e), cost(c) \{\}
+\end{DoxyCode}
+\hypertarget{classEdge_a2f37b72f044427961d6730943daf10e0}{\index{Edge@{Edge}!$\sim$\-Edge@{$\sim$\-Edge}}
+\index{$\sim$\-Edge@{$\sim$\-Edge}!Edge@{Edge}}
+\subsubsection[{$\sim$\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}Edge\-::$\sim$\-Edge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classEdge_a2f37b72f044427961d6730943daf10e0}
+
+
+Deconstructor of \hyperlink{classEdge}{Edge} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+64 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classEdge_a4875fd6597dc34cdba634a73a7b5623b}{\index{Edge@{Edge}!get\-Cost@{get\-Cost}}
+\index{get\-Cost@{get\-Cost}!Edge@{Edge}}
+\subsubsection[{get\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Edge\-::get\-Cost (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classEdge_a4875fd6597dc34cdba634a73a7b5623b}
+
+
+Get edge cost between two nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+edge cost in double 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+91 \{ \textcolor{keywordflow}{return} cost; \}
+\end{DoxyCode}
+\hypertarget{classEdge_a079b0d569e07f5588f6a6f75466e189c}{\index{Edge@{Edge}!get\-End\-Index@{get\-End\-Index}}
+\index{get\-End\-Index@{get\-End\-Index}!Edge@{Edge}}
+\subsubsection[{get\-End\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Edge\-::get\-End\-Index (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classEdge_a079b0d569e07f5588f6a6f75466e189c}
+
+
+Get end index of an edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+end index in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+82 \{ \textcolor{keywordflow}{return} endIndex; \}
+\end{DoxyCode}
+\hypertarget{classEdge_a348144efacdd4e840951e3563c8d6efa}{\index{Edge@{Edge}!get\-Start\-Index@{get\-Start\-Index}}
+\index{get\-Start\-Index@{get\-Start\-Index}!Edge@{Edge}}
+\subsubsection[{get\-Start\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Edge\-::get\-Start\-Index (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classEdge_a348144efacdd4e840951e3563c8d6efa}
+
+
+Get start index of an edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+start index in integer 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+73 \{ \textcolor{keywordflow}{return} startIndex; \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Edge_8hpp}{Edge.\-hpp}\end{DoxyCompactItemize}

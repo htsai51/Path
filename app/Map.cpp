@@ -1,33 +1,37 @@
 /********************************************************************
-MIT License
-
-Copyright (c) 2017 Huei-Tzu Tsai
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+ *   MIT License
+ *  
+ *   Copyright (c) 2017 Huei-Tzu Tsai
+ *  
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *  
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *  
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
  ********************************************************************/
 
 
 /** @file Map.cpp
- *  @brief Implementation of class AStarAlgorithm methods
+ *  @brief Implementation of class Map and its methods to maintain
+ *         map info of a path finding algorithm
  *
- *  This file implements class AStarAlgorithm methods and
- *  its helper functions.
+ *  This file implements methods in class Map.
+ *
+ *  Map class supports creating map from csv file, saving map with
+ *  path from start to goal into csv file, and displaying map on
+ *  the screen.
  *
  *  @author Huei Tzu Tsai
  *  @date   03/07/2017
@@ -53,16 +57,7 @@ using std::ifstream;
 using std::ofstream;
 using std::getline;
 
-using std::shared_ptr;
 
-
-/*
- *   @brief  Read map info from csv file and store
- *           as map data
- *  
- *   @param  input file path in string
- *   @return true is read map is successful, false otherwise
-*/
 bool Map::createMap(string inputFile) {
     ifstream inputFs;
     string line;
@@ -109,13 +104,6 @@ bool Map::createMap(string inputFile) {
 }
 
 
-/*
- *   @brief  Output map including start, goal, and
- *           shortest path to csv file
- *  
- *   @param  output file path in string
- *   @return true is output map is successful, false otherwise
-*/
 bool Map::saveMap(string outputFile, vector<int> &path) {
     ofstream outputFs;
     int i = 0;
@@ -157,14 +145,6 @@ bool Map::saveMap(string outputFile, vector<int> &path) {
 }
 
 
-/*
- *   @brief  Set start and goal indices
- *  
- *   @param  start index in int
- *   @param  goal index in int
- *   @return true if start and goal are within map indices
- *           and are not obstacles, false otherwise
-*/
 bool Map::setStartGoal(int s, int g) {
     int minIndex = 1;
     int maxIndex = row * col;
@@ -192,31 +172,6 @@ bool Map::setStartGoal(int s, int g) {
 }
 
 
-/*
- *   @brief  Check if index is in shortest path
- *  
- *   @param  path index in int
- *   @param  vector of path indices in int
- *   @return true if index is in shortest path
- *           false otherwise
-*/
-bool Map::isInPath(int index, vector<int> &path) {
-
-    for (auto n : path) {
-        if (n == index)
-            return true;
-    }
-
-    return false;
-}
-
-
-/*
- *   @brief  Display path in map on screen
- *  
- *   @param  vector of path indices in int
- *   @return none
-*/
 void Map::displayPath(vector<int> &path) {
     int x = 0;
     int y = 0;
@@ -264,12 +219,6 @@ void Map::displayPath(vector<int> &path) {
 }
 
 
-/*
- *   @brief  Display map on screen
- *  
- *   @param  vector of path indices in int
- *   @return none
-*/
 void Map::displayMap(void) {
     int x = 0;
     int y = 0;
@@ -307,4 +256,15 @@ void Map::displayMap(void) {
     }
 
     return;
+}
+
+
+bool Map::isInPath(int index, vector<int> &path) {
+
+    for (auto& n : path) {
+        if (n == index)
+            return true;
+    }
+
+    return false;
 }

@@ -1,0 +1,572 @@
+\hypertarget{classPathFindingAlgorithm}{\section{Path\-Finding\-Algorithm Class Reference}
+\label{classPathFindingAlgorithm}\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}}
+}
+
+
+Class that implements the basic functions reqiured for path finding algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Path\-Find\-Algorithm.\-hpp$>$}
+
+Inheritance diagram for Path\-Finding\-Algorithm\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d7/df1/classPathFindingAlgorithm}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPathFindingAlgorithm_ad9af1fa0b8bb6dc6660219c0b21a3749}{Path\-Finding\-Algorithm} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} class. \end{DoxyCompactList}\item 
+\hyperlink{classPathFindingAlgorithm_a68fdd88d9348febf0e1814af9add5ca3}{$\sim$\-Path\-Finding\-Algorithm} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor of \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} class. \end{DoxyCompactList}\item 
+void \hyperlink{classPathFindingAlgorithm_a31b4a12fa7164f0f71649f0505c8031e}{init} ()
+\begin{DoxyCompactList}\small\item\em Initialize map and graph node, edges. \end{DoxyCompactList}\item 
+void \hyperlink{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}{build\-Graph} ()
+\begin{DoxyCompactList}\small\item\em Build graph by storing map info into nodes and edges for finding shortest path. \end{DoxyCompactList}\item 
+void \hyperlink{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}{reconstruct\-Path} (\hyperlink{classNode}{Node} $\ast$)
+\begin{DoxyCompactList}\small\item\em Reconstruct graph by traversing from goal to start via parent\-Index of nodes and store the path indices in member path which is a vector of integers. \end{DoxyCompactList}\item 
+bool \hyperlink{classPathFindingAlgorithm_a2b48e12615aecc6fd952efcb5d920864}{set\-Param} (int, int)
+\begin{DoxyCompactList}\small\item\em Set start and goal indices. \end{DoxyCompactList}\item 
+void \hyperlink{classPathFindingAlgorithm_a98a59e7a6797895ac08be283850ab534}{output\-Path} (int)
+\begin{DoxyCompactList}\small\item\em Output path in map. \end{DoxyCompactList}\item 
+void \hyperlink{classPathFindingAlgorithm_a836f5c7fd0ea0e2201ed954f55ca523b}{output\-Map} ()
+\begin{DoxyCompactList}\small\item\em Output map with indices on screen. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classPathFindingAlgorithm_adbd9dfe9d49577e9420669f59c290f55}{comput\-Path} ()
+\begin{DoxyCompactList}\small\item\em Virtual function of finding shortest path. \end{DoxyCompactList}\item 
+std\-::vector$<$ int $>$ \hyperlink{classPathFindingAlgorithm_a2c614eeead913e62288faa5499467529}{get\-Path} ()
+\begin{DoxyCompactList}\small\item\em Get shotest path indices from start to goal. \end{DoxyCompactList}\item 
+double \hyperlink{classPathFindingAlgorithm_a0c0eaaa84d7739a3c09ad012b37e8bd9}{get\-Total\-Cost} ()
+\begin{DoxyCompactList}\small\item\em Get total cost of shortest path. \end{DoxyCompactList}\item 
+int \hyperlink{classPathFindingAlgorithm_a6d2b42a027cd39039861f148cbf624f0}{get\-Steps} ()
+\begin{DoxyCompactList}\small\item\em Get steps taken to find the shortest path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\-::vector$<$ \hyperlink{classNode}{Node} $>$ \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}
+\begin{DoxyCompactList}\small\item\em vector of nodes \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classEdge}{Edge} $>$ \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}
+\begin{DoxyCompactList}\small\item\em vector of edges \end{DoxyCompactList}\item 
+int \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}
+\begin{DoxyCompactList}\small\item\em start index \end{DoxyCompactList}\item 
+int \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}
+\begin{DoxyCompactList}\small\item\em goal index \end{DoxyCompactList}\item 
+double \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{total\-Cost}
+\begin{DoxyCompactList}\small\item\em cost of shortest path \end{DoxyCompactList}\item 
+int \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps}
+\begin{DoxyCompactList}\small\item\em steps to find shortest path \end{DoxyCompactList}\item 
+std\-::vector$<$ int $>$ \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}
+\begin{DoxyCompactList}\small\item\em indices of shortest path \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that implements the basic functions reqiured for path finding algorithm. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPathFindingAlgorithm_ad9af1fa0b8bb6dc6660219c0b21a3749}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}}
+\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{Path\-Finding\-Algorithm}]{\setlength{\rightskip}{0pt plus 5cm}Path\-Finding\-Algorithm\-::\-Path\-Finding\-Algorithm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPathFindingAlgorithm_ad9af1fa0b8bb6dc6660219c0b21a3749}
+
+
+Constructor of \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+60 \{\}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a68fdd88d9348febf0e1814af9add5ca3}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!$\sim$\-Path\-Finding\-Algorithm@{$\sim$\-Path\-Finding\-Algorithm}}
+\index{$\sim$\-Path\-Finding\-Algorithm@{$\sim$\-Path\-Finding\-Algorithm}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{$\sim$\-Path\-Finding\-Algorithm}]{\setlength{\rightskip}{0pt plus 5cm}Path\-Finding\-Algorithm\-::$\sim$\-Path\-Finding\-Algorithm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPathFindingAlgorithm_a68fdd88d9348febf0e1814af9add5ca3}
+
+
+Deconstructor of \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+69 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!build\-Graph@{build\-Graph}}
+\index{build\-Graph@{build\-Graph}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{build\-Graph}]{\setlength{\rightskip}{0pt plus 5cm}void Path\-Finding\-Algorithm\-::build\-Graph (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}
+
+
+Build graph by storing map info into nodes and edges for finding shortest path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+64                                           \{
+65 
+66     vector<int>* mapArray = \textcolor{keyword}{nullptr};
+67 
+68     \textcolor{keywordtype}{int}* dir = \textcolor{keyword}{nullptr};
+69     \textcolor{keywordtype}{int} i = 0;
+70     \textcolor{keywordtype}{int} j = 0;
+71     \textcolor{keywordtype}{int} k = 0;
+72     \textcolor{keywordtype}{int} index = 1;
+73     
+74     \textcolor{comment}{// cout << endl << "PathFindingAlgorithm::BuildGraph" << endl;}
+75     
+76     mapArray = map.\hyperlink{classMap_ad5c4312f11909eafc091715686b6ceda}{getMap}();
+77     \textcolor{keywordflow}{if} (mapArray == \textcolor{keyword}{nullptr})
+78         \textcolor{keywordflow}{return};
+79 
+80     dir = map.\hyperlink{classMap_a4f9142718a50c64152465aacc1033f26}{getMoveDir}();
+81     \textcolor{keywordflow}{if} (dir == \textcolor{keyword}{nullptr})
+82         \textcolor{keywordflow}{return};
+83 
+84     \textcolor{comment}{// cout << "Generating nodes" << endl;}
+85 
+86 
+87     \textcolor{keywordtype}{int} n = map.\hyperlink{classMap_a80e0ea134ccb9a22092ce4c520063cd2}{getRow}();
+88     \textcolor{keywordtype}{int} m = map.\hyperlink{classMap_a88d24c08a4669040d7de6bd5f6272862}{getCol}();
+89 
+90 
+91     \textcolor{comment}{// cout << "map row " << n << endl;}
+92     \textcolor{comment}{// cout << "map column " << m << endl;}
+93 
+94     \textcolor{comment}{// generate nodes}
+95     \textcolor{keywordflow}{for} (i = 0, index = 1; i < n; ++i) \{ \textcolor{comment}{// row, y}
+96         \textcolor{keywordflow}{for} (j = 0; j < m; ++j) \{ \textcolor{comment}{// column, x}
+97             \textcolor{comment}{// create a node and add to node vector}
+98 
+99             \textcolor{comment}{// cout << index << " (" << i << ", " << j << ")" << endl;}
+100         
+101             \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}.emplace\_back(index, i, j);
+102             ++index;
+103         \}
+104     \}
+105 
+106     \textcolor{comment}{// cout << endl << "Generating edges" << endl;}
+107 
+108     \textcolor{comment}{// generate edges}
+109     \textcolor{keywordflow}{for} (i = 0; i < n; ++i) \{ \textcolor{comment}{// row, y}
+110         \textcolor{keywordflow}{for} (j = 0; j < m; ++j) \{ \textcolor{comment}{// column, x}
+111 
+112             \textcolor{keywordtype}{int} numDir = map.\hyperlink{classMap_a04501949c81ac8dd6a7aeaca908fe969}{getNumDir}();
+113             \textcolor{keywordtype}{int} neighborX = 0;
+114             \textcolor{keywordtype}{int} neighborY = 0;
+115             \textcolor{keywordtype}{int} startIdx = 0;
+116             \textcolor{keywordtype}{int} endIdx = 0;
+117             \textcolor{keywordtype}{double} cost = 0;
+118             \textcolor{keywordtype}{double} diagCost = 0;
+119     
+120             \textcolor{keywordflow}{for} (k = 0; k < numDir; ++k) \{
+121                 neighborX = j + *(dir+k*2);
+122                 neighborY = i + *(dir+k*2+1);
+123 
+124                 \textcolor{comment}{// cout << "(" << i << "," << j << ") (" << neighborX}
+125                 \textcolor{comment}{// << "," << neighborY << ")" << endl;}
+126 
+127                 \textcolor{keywordflow}{if} ((neighborX >= 0) && (neighborY >= 0) &&
+128                       (neighborX < m) && (neighborY < n)) \{
+129                     \textcolor{comment}{// add node to edge list}
+130                     startIdx = i * m + j + 1;
+131                     endIdx = neighborY * m + neighborX + 1;
+132 
+133                     \textcolor{comment}{// set cost for moving between nodes}
+134                     cost = (*mapArray)[endIdx-1];
+135 
+136                     \textcolor{comment}{// setting cost to 1.5x for diagonal movement}
+137                     \textcolor{keywordflow}{if} ((k==0) || (k==2) || (k==5) || (k==7))
+138                        diagCost = 1.5;
+139                     \textcolor{keywordflow}{else}
+140                        diagCost = 1.0;
+141 
+142                     \textcolor{keywordflow}{if} (cost < std::numeric\_limits<int>::max())
+143                         cost = cost * diagCost;
+144 
+145                     \textcolor{comment}{// cout << k << " (" << startIdx << "," << endIdx << ") " << cost << endl;}
+146 
+147                     \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}.emplace\_back(startIdx, endIdx, cost);
+148                 \}
+149             \}
+150         \}
+151     \}
+152 
+153     \textcolor{keywordflow}{return};
+154 \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_adbd9dfe9d49577e9420669f59c290f55}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!comput\-Path@{comput\-Path}}
+\index{comput\-Path@{comput\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{comput\-Path}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Path\-Finding\-Algorithm\-::comput\-Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classPathFindingAlgorithm_adbd9dfe9d49577e9420669f59c290f55}
+
+
+Virtual function of finding shortest path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+139 \{\}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a2c614eeead913e62288faa5499467529}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!get\-Path@{get\-Path}}
+\index{get\-Path@{get\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{get\-Path}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$ Path\-Finding\-Algorithm\-::get\-Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPathFindingAlgorithm_a2c614eeead913e62288faa5499467529}
+
+
+Get shotest path indices from start to goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+shortest path indices from start to goal in vector int 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+149                            \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}; \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a6d2b42a027cd39039861f148cbf624f0}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!get\-Steps@{get\-Steps}}
+\index{get\-Steps@{get\-Steps}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{get\-Steps}]{\setlength{\rightskip}{0pt plus 5cm}int Path\-Finding\-Algorithm\-::get\-Steps (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPathFindingAlgorithm_a6d2b42a027cd39039861f148cbf624f0}
+
+
+Get steps taken to find the shortest path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+steps taken to find shortest path in int 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+167 \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps}; \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a0c0eaaa84d7739a3c09ad012b37e8bd9}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!get\-Total\-Cost@{get\-Total\-Cost}}
+\index{get\-Total\-Cost@{get\-Total\-Cost}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{get\-Total\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Path\-Finding\-Algorithm\-::get\-Total\-Cost (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPathFindingAlgorithm_a0c0eaaa84d7739a3c09ad012b37e8bd9}
+
+
+Get total cost of shortest path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+total cost from start to goal in double 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+159                 \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost}; \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a31b4a12fa7164f0f71649f0505c8031e}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!init@{init}}
+\index{init@{init}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Path\-Finding\-Algorithm\-::init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classPathFindingAlgorithm_a31b4a12fa7164f0f71649f0505c8031e}
+
+
+Initialize map and graph node, edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+54                                     \{
+55     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}.clear();
+56     \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}.clear();
+57     \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.clear();
+58 
+59     map.\hyperlink{classMap_a389e4f5c49c1a33e9c0e6c4b2f0605ed}{createMap}(\hyperlink{PathFindAlgorithm_8hpp_a766bf3e65d7bed0d203a77d49e17d66b}{DEFAUTL\_INPUT\_MAP});
+60     \hyperlink{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}{buildGraph}();
+61 \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a836f5c7fd0ea0e2201ed954f55ca523b}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!output\-Map@{output\-Map}}
+\index{output\-Map@{output\-Map}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{output\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void Path\-Finding\-Algorithm\-::output\-Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPathFindingAlgorithm_a836f5c7fd0ea0e2201ed954f55ca523b}
+
+
+Output map with indices on screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+226                                      \{
+227 
+228     map.\hyperlink{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}{displayMap}();
+229     \textcolor{keywordflow}{return};
+230 \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a98a59e7a6797895ac08be283850ab534}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!output\-Path@{output\-Path}}
+\index{output\-Path@{output\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{output\-Path}]{\setlength{\rightskip}{0pt plus 5cm}void Path\-Finding\-Algorithm\-::output\-Path (
+\begin{DoxyParamCaption}
+\item[{int}]{option}
+\end{DoxyParamCaption}
+)}}\label{classPathFindingAlgorithm_a98a59e7a6797895ac08be283850ab534}
+
+
+Output path in map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em option} & to output path in int \par
+ 0\-: display path in map on screen \par
+ 1\-: output path in map to file \par
+ 2\-: both display path in map on screen and save to file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+204                                                 \{
+205 
+206     \textcolor{keywordflow}{switch}(option) \{
+207          \textcolor{comment}{// display map on screen}
+208         \textcolor{keywordflow}{case} 0:
+209             map.\hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{displayPath}(\hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
+210             \textcolor{keywordflow}{break};
+211 
+212         \textcolor{comment}{// output to file}
+213         \textcolor{keywordflow}{case} 1:
+214             map.\hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{saveMap}(\hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP}, \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
+215             \textcolor{keywordflow}{break};
+216 
+217         \textcolor{keywordflow}{case} 2:
+218         \textcolor{keywordflow}{default}:
+219             map.\hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{displayPath}(\hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
+220             map.\hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{saveMap}(\hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP}, \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
+221             \textcolor{keywordflow}{break};
+222     \}
+223 \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!reconstruct\-Path@{reconstruct\-Path}}
+\index{reconstruct\-Path@{reconstruct\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{reconstruct\-Path}]{\setlength{\rightskip}{0pt plus 5cm}void Path\-Finding\-Algorithm\-::reconstruct\-Path (
+\begin{DoxyParamCaption}
+\item[{{\bf Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}}\label{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}
+
+
+Reconstruct graph by traversing from goal to start via parent\-Index of nodes and store the path indices in member path which is a vector of integers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classNode}{Node}} & pointer of goal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+157                                                      \{
+158     list<Node*> tempPath;
+159     \hyperlink{classNode}{Node} *temp = node;
+160 
+161     \textcolor{keywordflow}{if} (temp == \textcolor{keyword}{nullptr})
+162         \textcolor{keywordflow}{return};
+163 
+164     \textcolor{comment}{// reconstruct path using node's parent pointer}
+165     \textcolor{keywordflow}{while} (temp != \textcolor{keyword}{nullptr}) \{
+166         \textcolor{comment}{// add the start node and break}
+167         \textcolor{keywordflow}{if} (temp->\hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{getParentIndex}() == 0) \{
+168             tempPath.emplace\_front(temp);
+169             \textcolor{keywordflow}{break};
+170         \}
+171 
+172         tempPath.emplace\_front(temp);
+173         temp = &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[temp->\hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{getParentIndex}()-1];
+174     \}
+175 
+176 
+177     \textcolor{comment}{// cout << "Shortest Path: ";}
+178 
+179     \textcolor{comment}{// save into vector from start to goal}
+180     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : tempPath) \{
+181         \textcolor{comment}{// cout << n->getIndex() << " ";}
+182         \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.emplace\_back(n->getIndex());
+183     \}
+184 
+185     \textcolor{comment}{// cout << endl;}
+186 
+187 
+188     \textcolor{keywordflow}{return};
+189 \}
+\end{DoxyCode}
+\hypertarget{classPathFindingAlgorithm_a2b48e12615aecc6fd952efcb5d920864}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!set\-Param@{set\-Param}}
+\index{set\-Param@{set\-Param}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{set\-Param}]{\setlength{\rightskip}{0pt plus 5cm}bool Path\-Finding\-Algorithm\-::set\-Param (
+\begin{DoxyParamCaption}
+\item[{int}]{s, }
+\item[{int}]{g}
+\end{DoxyParamCaption}
+)}}\label{classPathFindingAlgorithm_a2b48e12615aecc6fd952efcb5d920864}
+
+
+Set start and goal indices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & node index in int \\
+\hline
+{\em goal} & node index in int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if start, goal are within map range and are not obstacle nodes, false otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+192                                                 \{
+193     \textcolor{comment}{// set start and goal indices}
+194     \textcolor{keywordflow}{if} (map.\hyperlink{classMap_aa64162f950a1936e1eaf42609e091524}{setStartGoal}(s, g)) \{
+195         \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start} = s;
+196         \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal} = g;
+197         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+198     \} \textcolor{keywordflow}{else} \{
+199         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+200     \}
+201 \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!edges@{edges}}
+\index{edges@{edges}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{edges}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Edge}$>$ Path\-Finding\-Algorithm\-::edges\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}
+
+
+vector of edges 
+
+\hypertarget{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!goal@{goal}}
+\index{goal@{goal}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{goal}]{\setlength{\rightskip}{0pt plus 5cm}int Path\-Finding\-Algorithm\-::goal\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}
+
+
+goal index 
+
+\hypertarget{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!nodes@{nodes}}
+\index{nodes@{nodes}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf Node}$>$ Path\-Finding\-Algorithm\-::nodes\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}
+
+
+vector of nodes 
+
+\hypertarget{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!path@{path}}
+\index{path@{path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$ Path\-Finding\-Algorithm\-::path\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}
+
+
+indices of shortest path 
+
+\hypertarget{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!start@{start}}
+\index{start@{start}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}int Path\-Finding\-Algorithm\-::start\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}
+
+
+start index 
+
+\hypertarget{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!steps@{steps}}
+\index{steps@{steps}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{steps}]{\setlength{\rightskip}{0pt plus 5cm}int Path\-Finding\-Algorithm\-::steps\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}
+
+
+steps to find shortest path 
+
+\hypertarget{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!total\-Cost@{total\-Cost}}
+\index{total\-Cost@{total\-Cost}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
+\subsubsection[{total\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}double Path\-Finding\-Algorithm\-::total\-Cost\hspace{0.3cm}{\ttfamily [protected]}}}\label{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}
+
+
+cost of shortest path 
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{PathFindAlgorithm_8hpp}{Path\-Find\-Algorithm.\-hpp}\item 
+app/\hyperlink{PathFindAlgorithm_8cpp}{Path\-Find\-Algorithm.\-cpp}\end{DoxyCompactItemize}
