@@ -33,14 +33,13 @@ using std::list;
  *  
  *   @param  start node index in int
  *   @param  end node index in int
- *   @param  weight for heuristic estimation in double
- *   @return none
+ *   @return true if start, goal node is within map boundaries
+ *           and it is not obstacle node, false otherwise
 */
-void AStarAlgorithm::setParam(int s, int g) {
+bool AStarAlgorithm::setParam(int s, int g) {
     // call parent function to update start, goal
     // as well as map info
-    PathFindingAlgorithm::setParam(s, g);
-    return;
+    return PathFindingAlgorithm::setParam(s, g);
 }
 
 
@@ -161,6 +160,13 @@ bool AStarAlgorithm::ComputPath(double weight) {
 
     cout << "*** A Star Path Searching Algorithm ***" << endl;
 
+    // clear path vector
+    path.clear();
+
+    // start and goal cannot be less than index lower bound
+    if ((start < 1) || (goal < 1)) {
+        return false;
+    }
 
     // initialize start node's cost and heuristic cost to goal
     nodes[start-1].setCost(0);

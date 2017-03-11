@@ -18,9 +18,12 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
+#include <sstream>
 #include <memory>
 #include <limits>
 #include <string.h>
+
 #include "Map.hpp"
 
 
@@ -47,6 +50,11 @@ bool Map::createMap(string inputFile) {
     string line;
     string temp;
     int cnt = 0;
+
+    // initialize param
+    mapArray.clear();
+    row = 0;
+    col = 0;
 
     // open graph file
     inputFs.open(inputFile);
@@ -136,13 +144,33 @@ bool Map::saveMap(string outputFile, vector<int> &path) {
  *  
  *   @param  start index in int
  *   @param  goal index in int
- *   @return none
+ *   @return true if start and goal are within map indices
+ *           and are not obstacles, false otherwise
 */
-void Map::setStartGoal(int s, int g) {
+bool Map::setStartGoal(int s, int g) {
+    int minIndex = 1;
+    int maxIndex = row * col;
+    int index = 0;
+
+    if ((s < minIndex) || (s > maxIndex))
+        return false;
+
+    if (g < minIndex || g > maxIndex)
+        return false;
+
+    for (auto& i : mapArray) {
+        if (i == std::numeric_limits<int>::max()) {
+            index = &i - &mapArray[0] - 1;
+            if ((s == index) || (g == index)) {
+                return false;
+            }
+        }
+    }
+
     startIdx = s;
     goalIdx = g;
 
-    return;
+    return true;
 }
 
 

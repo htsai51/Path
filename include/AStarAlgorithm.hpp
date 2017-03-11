@@ -31,7 +31,7 @@ class AStarAlgorithm : public PathFindingAlgorithm {
      AStarAlgorithm() {}                         ///< constructor
      ~AStarAlgorithm() {}                        ///< deconstructor
 
-     void setParam(int, int);                    ///< set parameters
+     bool setParam(int, int);                    ///< set parameters
      bool ComputPath(double);                    ///< compute shortest path
 
  private:

@@ -36,6 +36,10 @@ using std::vector;
  *   @return none
 */
 void PathFindingAlgorithm::Init(void) {
+    nodes.clear();
+    edges.clear();
+    path.clear();
+
     map.createMap(DEFAUTL_INPUT_MAP);
     BuildGraph();
 }
@@ -157,14 +161,14 @@ void PathFindingAlgorithm::ReconstructPath(Node *node) {
 
     // reconstruct path using node's parent pointer
     while (temp != nullptr) {
-        tempPath.emplace_front(temp);
-        temp = &nodes[temp->getParentIndex()-1];
-
         // add the start node and break
         if (temp->getParentIndex() == 0) {
             tempPath.emplace_front(temp);
             break;
         }
+
+        tempPath.emplace_front(temp);
+        temp = &nodes[temp->getParentIndex()-1];
     }
 
 
@@ -188,14 +192,18 @@ void PathFindingAlgorithm::ReconstructPath(Node *node) {
  *  
  *   @param  start node index in int
  *   @param  goal node index in int
- *   @return none
+ *   @return true if start, goal are within map indices and
+ *           are not obstacle nodes, false otherwise
 */
-void PathFindingAlgorithm::setParam(int s, int g) {
-    start = s;
-    goal = g;
-
-    // update map info for display
-    map.setStartGoal(start, goal);
+bool PathFindingAlgorithm::setParam(int s, int g) {
+    // set start and goal indices
+    if (map.setStartGoal(s, g)) {
+        start = s;
+        goal = g;
+        return true;
+    } else {
+        return false;
+    }
 }
 
 

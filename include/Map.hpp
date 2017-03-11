@@ -32,7 +32,7 @@ class Map {
 
      bool createMap(std::string);                       ///< create map from file
      bool saveMap(std::string, std::vector<int>&);      ///< save map to file
-     void setStartGoal(int, int);                       ///< set start & goal
+     bool setStartGoal(int, int);                       ///< set start & goal
      int getRow(void) { return row; }                   ///< get rows of map
      int getCol(void) { return col; }                   ///< get cols of map
      int getNumDir(void) { return numDir; }             ///< get num of dir

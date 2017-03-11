@@ -101,7 +101,7 @@ class PathFindingAlgorithm {
 
      void BuildGraph();                     ///< build map by reading in map
 
-     void setParam(int, int);               ///< set start and goal indices
+     bool setParam(int, int);               ///< set start and goal indices
 
      void ReconstructPath(Node*);           ///< build shortest path
 
@@ -110,6 +110,8 @@ class PathFindingAlgorithm {
      virtual void ComputPath() {}           ///< virtual function to find
                                             ///< shortest path
 
+     std::vector<int>& getPath()            ///< get path vectors
+                           { return path; }
  protected:
      std::vector<Node> nodes;               ///< vector of nodes
      std::vector<Edge> edges;               ///< vector of edges
