@@ -46,7 +46,7 @@ TEST(testSetParam2, handlCorrectStartGoal) {
     ASSERT_TRUE(aStar.setParam(1, 36));
 
     // start, goal is acceptable
-    ASSERT_TRUE(aStar.setParam(1, 15));
+    ASSERT_TRUE(aStar.setParam(1, 16));
 
 }
 
