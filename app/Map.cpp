@@ -80,7 +80,7 @@ bool Map::createMap(string inputFile) {
                 if ((temp == "o") || (temp == "O")) {
                     mapArray.emplace_back(numeric_limits<int>::max());
                 } else {
-                    mapArray.emplace_back(std::stoi(temp));
+                    mapArray.emplace_back(1);
                 }
             }
 
@@ -110,7 +110,7 @@ bool Map::saveMap(string outputFile, vector<int> &path) {
     if (outputFs.is_open()) {
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < col; ++j) {
-                int index = i * row + j + 1;
+                int index = i * col + j + 1;
 
                 if (index == startIdx)
                     outputFs << "S";
@@ -121,7 +121,7 @@ bool Map::saveMap(string outputFile, vector<int> &path) {
                 else if (mapArray[index-1] == numeric_limits<int>::max())
                     outputFs << "O";
                 else
-                    outputFs << "1";
+                    outputFs << " ";
 
 
                 if (j < col-1)
@@ -143,16 +143,19 @@ bool Map::setStartGoal(int s, int g) {
     int maxIndex = row * col;
     int index = 0;
 
+
     if ((s < minIndex) || (s > maxIndex))
         return false;
+
 
     if (g < minIndex || g > maxIndex)
         return false;
 
     for (auto& i : mapArray) {
         if (i == numeric_limits<int>::max()) {
-            index = &i - &mapArray[0] - 1;
-            if ((s == index) || (g == index)) {
+            index = &i - &mapArray[0];
+
+            if ((s == (index + 1)) || (g == (index + 1))) {
                 return false;
             }
         }
@@ -200,7 +203,7 @@ void Map::displayPath(vector<int> &path) {
                     else if (mapArray[index-1] == numeric_limits<int>::max())
                         cout << " O ";
                     else
-                        cout << " 1 ";
+                        cout << "   ";
                 }
             }
         }
@@ -237,7 +240,7 @@ void Map::displayMap(void) {
                     index = (x * col + y + 1);
 
                     if (mapArray[index-1] == numeric_limits<int>::max())
-                        cout << " O ";
+                        cout << "   ";
                     else
                         cout << std::setw(3) << index;
                 }

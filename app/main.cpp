@@ -53,21 +53,38 @@ using std::vector;
  *   @brief  path demo program entrypoint
  *  
  *   @param  void
- *   @return integer 0 upon exit success
+ *   @return integer 0 upon exit success \n
+             integer -1 upon exit failure
 */
 int main(void) {
+    string mapFile;
     int start = 1;
     int goal = 2;
+    int option = 0;
+    double weight = 0.0;
     vector<int> path;
     AStarAlgorithm aStar;
 
-    aStar.PathFindingAlgorithm::init();
+    cout << "Please enter map path (or ctl+d to use default):" << endl;
+
+    cin >> mapFile;
+    cin.clear();
+
+    if (mapFile.empty())
+        mapFile = DEFAUTL_DEFAULT_MAP;
+
+    if (!aStar.PathFindingAlgorithm::init(mapFile)) {
+        cout << "Fail to read map.  Please try again or use default map."
+             << endl;
+        return -1;
+    }
 
     aStar.PathFindingAlgorithm::outputMap();
 
     cout << "Please enter start, goal indices" << endl;
 
     cin >> start >> goal;
+    cin.clear();
 
     cout << "start is " << start << endl;
     cout << "goal is " << goal << endl;
@@ -75,32 +92,67 @@ int main(void) {
     if (aStar.PathFindingAlgorithm::setParam(start, goal) == false) {
         cout << "Start or goal is out of map or obstacle, please try again."
              << endl;
-    } else {
-        double weight = 1.0;
-
-        if (aStar.computPath(weight)) {
-            path = aStar.PathFindingAlgorithm::getPath();
-
-            cout << "Shortest Path: ";
-
-            // save into vector from start to goal
-            for (auto& n : path) {
-                cout <<  " " << n;
-            }
-
-            cout << endl;
-
-            cout << "Total cost is "
-                 << aStar.PathFindingAlgorithm::getTotalCost() << endl;
-
-            cout << "Total step is " << aStar.PathFindingAlgorithm::getSteps()
-                 << endl;
-
-            aStar.PathFindingAlgorithm::outputPath(2);
-        } else {
-            cout << "Fail to find path" << endl;
-        }
+        return -1;
     }
+
+    weight = 0.0;
+
+    if (!aStar.computPath(weight)) {
+        cout << "Fail to find path" << endl;
+        return -1;
+    }
+
+    path = aStar.PathFindingAlgorithm::getPath();
+    cout << "Dijkstra's Shortest Path:";
+
+    // save into vector from start to goal
+    for (auto& n : path) {
+        cout <<  " " << n;
+    }
+    cout << endl;
+
+    cout << "Dijkstra's total cost is "
+         << aStar.PathFindingAlgorithm::getTotalCost() << endl;
+
+    cout << "Dijkstra's total step is "
+         << aStar.PathFindingAlgorithm::getSteps() << endl;
+
+    // Init again to clear variables
+    aStar.PathFindingAlgorithm::init(mapFile);
+    path.clear();
+
+    // Compute using A star
+    weight = 1.0;
+    if (!aStar.computPath(weight)) {
+        cout << "Fail to find path" << endl;
+        return -1;
+    }
+
+    path = aStar.PathFindingAlgorithm::getPath();
+    cout << "A Star Shortest Path:";
+
+    // save into vector from start to goal
+    for (auto& n : path) {
+        cout <<  " " << n;
+    }
+    cout << endl;
+
+    cout << "A Star total cost is "
+         << aStar.PathFindingAlgorithm::getTotalCost() << endl;
+
+    cout << "A Star total step is " << aStar.PathFindingAlgorithm::getSteps()
+         << endl;
+
+    cout << "Output A Star Path Option:" << endl;
+    cout << "0: path in map on screen" << endl;
+    cout << "1: path output to " << DEFAUTL_OUTPUT_PATH << endl;
+    cout << "   map output to " << DEFAUTL_OUTPUT_MAP << endl;
+    cout << "2: both" << endl;
+
+    cin >> option;
+    cin.clear();
+
+    aStar.PathFindingAlgorithm::outputPath(option);
 
     return 0;
 }

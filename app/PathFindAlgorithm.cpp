@@ -38,6 +38,7 @@
 */
 
 #include <iostream>
+#include <fstream>
 #include <list>
 #include <limits>
 #include "PathFindAlgorithm.hpp"
@@ -49,15 +50,23 @@ using std::endl;
 using std::string;
 using std::list;
 using std::vector;
+using std::ofstream;
 
 
-void PathFindingAlgorithm::init(void) {
-    nodes.clear();
-    edges.clear();
-    path.clear();
+bool PathFindingAlgorithm::init(string input) {
+    if (map.createMap(input)) {
+        nodes.clear();
+        edges.clear();
+        path.clear();
 
-    map.createMap(DEFAUTL_INPUT_MAP);
-    buildGraph();
+        totalCost = 0;
+        steps = 0;
+
+        buildGraph();
+        return true;
+    }
+
+    return false;
 }
 
 
@@ -199,6 +208,8 @@ bool PathFindingAlgorithm::setParam(int s, int g) {
 
 
 void PathFindingAlgorithm::outputPath(int option) {
+    ofstream outputFs;
+
     switch (option) {
          // display map on screen
         case 0:
@@ -208,6 +219,15 @@ void PathFindingAlgorithm::outputPath(int option) {
         // output to file
         case 1:
             map.saveMap(DEFAUTL_OUTPUT_MAP, path);
+
+            outputFs.open(DEFAUTL_OUTPUT_PATH);
+
+            if (outputFs.is_open()) {
+                for (auto& n : path) {
+                    outputFs << n << endl;
+                }
+                outputFs.close();
+            }
             break;
 
         case 2:

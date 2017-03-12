@@ -56,8 +56,10 @@ bool AStarAlgorithm::computPath(double weight) {
 
     // cout << "*** A Star Path Searching Algorithm ***" << endl;
 
-    // clear path vector
+    // initialize
     path.clear();
+    openSet.clear();
+    closedSet.clear();
 
     // start and goal cannot be less than index lower bound
     if ((start < 1) || (goal < 1)) {

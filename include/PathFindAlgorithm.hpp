@@ -36,14 +36,16 @@
 #define INCLUDE_PATHFINDALGORITHM_HPP_
 
 #include <vector>
+#include <string>
 #include "Node.hpp"
 #include "Edge.hpp"
 #include "Map.hpp"
 
 
-#define DEFAUTL_INPUT_MAP    "../data/test.csv"
-#define DEFAUTL_OUTPUT_MAP   "../data/testout.csv"
-
+#define DEFAUTL_TEST_MAP     "../data/test.csv"
+#define DEFAUTL_DEFAULT_MAP  "../data/default.csv"
+#define DEFAUTL_OUTPUT_MAP   "../data/out.csv"
+#define DEFAUTL_OUTPUT_PATH  "../data/path.txt"
 
 /**
  *  @brief Class that implements the basic functions
@@ -71,10 +73,10 @@ class PathFindingAlgorithm {
      /**
       *   @brief  Initialize map and graph node, edges
       *
-      *   @param  none
-      *   @return none
+      *   @param  input map file path
+      *   @return true if init is successful, false otherwise
      */
-     void init();
+     bool init(std::string);
 
 
      /**
