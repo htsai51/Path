@@ -7,6 +7,7 @@ Definition of class Path\-Find\-Algorithm.
 
 
 {\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
 {\ttfamily \#include \char`\"{}Node.\-hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Edge.\-hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Map.\-hpp\char`\"{}}\\*
@@ -18,9 +19,13 @@ class \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{PathFindAlgorithm_8hpp_a766bf3e65d7bed0d203a77d49e17d66b}{D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P}~\char`\"{}../data/test.\-csv\char`\"{}
+\#define \hyperlink{PathFindAlgorithm_8hpp_a756134fa7d22682cd49c982fc9f7d574}{D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P}~\char`\"{}../data/test.\-csv\char`\"{}
 \item 
-\#define \hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P}~\char`\"{}../data/testout.\-csv\char`\"{}
+\#define \hyperlink{PathFindAlgorithm_8hpp_a3fc18846efd2be281ed37ed05956a6de}{D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P}~\char`\"{}../data/default.\-csv\char`\"{}
+\item 
+\#define \hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P}~\char`\"{}../data/out.\-csv\char`\"{}
+\item 
+\#define \hyperlink{PathFindAlgorithm_8hpp_a2fa4f0a512b2d876f34e9aec1765d791}{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H}~\char`\"{}../data/path.\-txt\char`\"{}
 \end{DoxyCompactItemize}
 
 
@@ -36,9 +41,15 @@ Huei Tzu Tsai
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{PathFindAlgorithm_8hpp_a766bf3e65d7bed0d203a77d49e17d66b}{\index{Path\-Find\-Algorithm.\-hpp@{Path\-Find\-Algorithm.\-hpp}!D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P}}
-\index{D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P}!PathFindAlgorithm.hpp@{Path\-Find\-Algorithm.\-hpp}}
-\subsubsection[{D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-T\-L\-\_\-\-I\-N\-P\-U\-T\-\_\-\-M\-A\-P~\char`\"{}../data/test.\-csv\char`\"{}}}\label{PathFindAlgorithm_8hpp_a766bf3e65d7bed0d203a77d49e17d66b}
+\hypertarget{PathFindAlgorithm_8hpp_a3fc18846efd2be281ed37ed05956a6de}{\index{Path\-Find\-Algorithm.\-hpp@{Path\-Find\-Algorithm.\-hpp}!D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P}}
+\index{D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P}!PathFindAlgorithm.hpp@{Path\-Find\-Algorithm.\-hpp}}
+\subsubsection[{D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-T\-L\-\_\-\-D\-E\-F\-A\-U\-L\-T\-\_\-\-M\-A\-P~\char`\"{}../data/default.\-csv\char`\"{}}}\label{PathFindAlgorithm_8hpp_a3fc18846efd2be281ed37ed05956a6de}
 \hypertarget{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{\index{Path\-Find\-Algorithm.\-hpp@{Path\-Find\-Algorithm.\-hpp}!D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P}}
 \index{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P}!PathFindAlgorithm.hpp@{Path\-Find\-Algorithm.\-hpp}}
-\subsubsection[{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P~\char`\"{}../data/testout.\-csv\char`\"{}}}\label{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}
+\subsubsection[{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-M\-A\-P~\char`\"{}../data/out.\-csv\char`\"{}}}\label{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}
+\hypertarget{PathFindAlgorithm_8hpp_a2fa4f0a512b2d876f34e9aec1765d791}{\index{Path\-Find\-Algorithm.\-hpp@{Path\-Find\-Algorithm.\-hpp}!D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H@{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H}}
+\index{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H@{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H}!PathFindAlgorithm.hpp@{Path\-Find\-Algorithm.\-hpp}}
+\subsubsection[{D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-T\-L\-\_\-\-O\-U\-T\-P\-U\-T\-\_\-\-P\-A\-T\-H~\char`\"{}../data/path.\-txt\char`\"{}}}\label{PathFindAlgorithm_8hpp_a2fa4f0a512b2d876f34e9aec1765d791}
+\hypertarget{PathFindAlgorithm_8hpp_a756134fa7d22682cd49c982fc9f7d574}{\index{Path\-Find\-Algorithm.\-hpp@{Path\-Find\-Algorithm.\-hpp}!D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P}}
+\index{D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P@{D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P}!PathFindAlgorithm.hpp@{Path\-Find\-Algorithm.\-hpp}}
+\subsubsection[{D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-T\-L\-\_\-\-T\-E\-S\-T\-\_\-\-M\-A\-P~\char`\"{}../data/test.\-csv\char`\"{}}}\label{PathFindAlgorithm_8hpp_a756134fa7d22682cd49c982fc9f7d574}

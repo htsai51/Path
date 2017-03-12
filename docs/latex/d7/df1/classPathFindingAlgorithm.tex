@@ -23,7 +23,7 @@ Inheritance diagram for Path\-Finding\-Algorithm\-:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} class. \end{DoxyCompactList}\item 
 \hyperlink{classPathFindingAlgorithm_a68fdd88d9348febf0e1814af9add5ca3}{$\sim$\-Path\-Finding\-Algorithm} ()
 \begin{DoxyCompactList}\small\item\em Deconstructor of \hyperlink{classPathFindingAlgorithm}{Path\-Finding\-Algorithm} class. \end{DoxyCompactList}\item 
-void \hyperlink{classPathFindingAlgorithm_a31b4a12fa7164f0f71649f0505c8031e}{init} ()
+bool \hyperlink{classPathFindingAlgorithm_a02dabb2f15ac242896b502d0eedf5537}{init} (std\-::string)
 \begin{DoxyCompactList}\small\item\em Initialize map and graph node, edges. \end{DoxyCompactList}\item 
 void \hyperlink{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}{build\-Graph} ()
 \begin{DoxyCompactList}\small\item\em Build graph by storing map info into nodes and edges for finding shortest path. \end{DoxyCompactList}\item 
@@ -87,7 +87,7 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-60 \{\}
+62 : \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}(0), \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}(0), \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost}(0), \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps}(0) \{\}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a68fdd88d9348febf0e1814af9add5ca3}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!$\sim$\-Path\-Finding\-Algorithm@{$\sim$\-Path\-Finding\-Algorithm}}
 \index{$\sim$\-Path\-Finding\-Algorithm@{$\sim$\-Path\-Finding\-Algorithm}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -110,7 +110,7 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-69 \{\}
+71 \{\}
 \end{DoxyCode}
 
 
@@ -136,97 +136,94 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-64                                           \{
-65 
-66     vector<int>* mapArray = \textcolor{keyword}{nullptr};
-67 
-68     \textcolor{keywordtype}{int}* dir = \textcolor{keyword}{nullptr};
-69     \textcolor{keywordtype}{int} i = 0;
-70     \textcolor{keywordtype}{int} j = 0;
-71     \textcolor{keywordtype}{int} k = 0;
-72     \textcolor{keywordtype}{int} index = 1;
-73     
-74     \textcolor{comment}{// cout << endl << "PathFindingAlgorithm::BuildGraph" << endl;}
-75     
-76     mapArray = map.\hyperlink{classMap_ad5c4312f11909eafc091715686b6ceda}{getMap}();
-77     \textcolor{keywordflow}{if} (mapArray == \textcolor{keyword}{nullptr})
-78         \textcolor{keywordflow}{return};
-79 
-80     dir = map.\hyperlink{classMap_a4f9142718a50c64152465aacc1033f26}{getMoveDir}();
-81     \textcolor{keywordflow}{if} (dir == \textcolor{keyword}{nullptr})
-82         \textcolor{keywordflow}{return};
+73                                           \{
+74     vector<int>* mapArray = \textcolor{keyword}{nullptr};
+75 
+76     \textcolor{keywordtype}{int}* dir = \textcolor{keyword}{nullptr};
+77     \textcolor{keywordtype}{int} i = 0;
+78     \textcolor{keywordtype}{int} j = 0;
+79     \textcolor{keywordtype}{int} k = 0;
+80     \textcolor{keywordtype}{int} index = 1;
+81 
+82     \textcolor{comment}{// cout << endl << "PathFindingAlgorithm::BuildGraph" << endl;}
 83 
-84     \textcolor{comment}{// cout << "Generating nodes" << endl;}
-85 
-86 
-87     \textcolor{keywordtype}{int} n = map.\hyperlink{classMap_a80e0ea134ccb9a22092ce4c520063cd2}{getRow}();
-88     \textcolor{keywordtype}{int} m = map.\hyperlink{classMap_a88d24c08a4669040d7de6bd5f6272862}{getCol}();
-89 
-90 
-91     \textcolor{comment}{// cout << "map row " << n << endl;}
-92     \textcolor{comment}{// cout << "map column " << m << endl;}
+84     mapArray = map.\hyperlink{classMap_ad5c4312f11909eafc091715686b6ceda}{getMap}();
+85     \textcolor{keywordflow}{if} (mapArray == \textcolor{keyword}{nullptr})
+86         \textcolor{keywordflow}{return};
+87 
+88     dir = map.\hyperlink{classMap_a4f9142718a50c64152465aacc1033f26}{getMoveDir}();
+89     \textcolor{keywordflow}{if} (dir == \textcolor{keyword}{nullptr})
+90         \textcolor{keywordflow}{return};
+91 
+92     \textcolor{comment}{// cout << "Generating nodes" << endl;}
 93 
-94     \textcolor{comment}{// generate nodes}
-95     \textcolor{keywordflow}{for} (i = 0, index = 1; i < n; ++i) \{ \textcolor{comment}{// row, y}
-96         \textcolor{keywordflow}{for} (j = 0; j < m; ++j) \{ \textcolor{comment}{// column, x}
-97             \textcolor{comment}{// create a node and add to node vector}
+94 
+95     \textcolor{keywordtype}{int} n = map.\hyperlink{classMap_a80e0ea134ccb9a22092ce4c520063cd2}{getRow}();
+96     \textcolor{keywordtype}{int} m = map.\hyperlink{classMap_a88d24c08a4669040d7de6bd5f6272862}{getCol}();
+97 
 98 
-99             \textcolor{comment}{// cout << index << " (" << i << ", " << j << ")" << endl;}
-100         
-101             \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}.emplace\_back(index, i, j);
-102             ++index;
-103         \}
-104     \}
-105 
-106     \textcolor{comment}{// cout << endl << "Generating edges" << endl;}
-107 
-108     \textcolor{comment}{// generate edges}
-109     \textcolor{keywordflow}{for} (i = 0; i < n; ++i) \{ \textcolor{comment}{// row, y}
-110         \textcolor{keywordflow}{for} (j = 0; j < m; ++j) \{ \textcolor{comment}{// column, x}
-111 
-112             \textcolor{keywordtype}{int} numDir = map.\hyperlink{classMap_a04501949c81ac8dd6a7aeaca908fe969}{getNumDir}();
-113             \textcolor{keywordtype}{int} neighborX = 0;
-114             \textcolor{keywordtype}{int} neighborY = 0;
-115             \textcolor{keywordtype}{int} startIdx = 0;
-116             \textcolor{keywordtype}{int} endIdx = 0;
-117             \textcolor{keywordtype}{double} cost = 0;
-118             \textcolor{keywordtype}{double} diagCost = 0;
-119     
-120             \textcolor{keywordflow}{for} (k = 0; k < numDir; ++k) \{
-121                 neighborX = j + *(dir+k*2);
-122                 neighborY = i + *(dir+k*2+1);
-123 
-124                 \textcolor{comment}{// cout << "(" << i << "," << j << ") (" << neighborX}
-125                 \textcolor{comment}{// << "," << neighborY << ")" << endl;}
-126 
-127                 \textcolor{keywordflow}{if} ((neighborX >= 0) && (neighborY >= 0) &&
-128                       (neighborX < m) && (neighborY < n)) \{
-129                     \textcolor{comment}{// add node to edge list}
-130                     startIdx = i * m + j + 1;
-131                     endIdx = neighborY * m + neighborX + 1;
-132 
-133                     \textcolor{comment}{// set cost for moving between nodes}
-134                     cost = (*mapArray)[endIdx-1];
-135 
-136                     \textcolor{comment}{// setting cost to 1.5x for diagonal movement}
-137                     \textcolor{keywordflow}{if} ((k==0) || (k==2) || (k==5) || (k==7))
-138                        diagCost = 1.5;
-139                     \textcolor{keywordflow}{else}
-140                        diagCost = 1.0;
-141 
-142                     \textcolor{keywordflow}{if} (cost < std::numeric\_limits<int>::max())
-143                         cost = cost * diagCost;
-144 
-145                     \textcolor{comment}{// cout << k << " (" << startIdx << "," << endIdx << ") " << cost << endl;}
+99     \textcolor{comment}{// cout << "map row " << n << endl;}
+100     \textcolor{comment}{// cout << "map column " << m << endl;}
+101 
+102     \textcolor{comment}{// generate nodes}
+103     \textcolor{keywordflow}{for} (i = 0, index = 1; i < n; ++i) \{  \textcolor{comment}{// row, y}
+104         \textcolor{keywordflow}{for} (j = 0; j < m; ++j) \{  \textcolor{comment}{// column, x}
+105             \textcolor{comment}{// create a node and add to node vector}
+106 
+107             \textcolor{comment}{// cout << index << " (" << i << ", " << j << ")" << endl;}
+108 
+109             \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}.emplace\_back(index, i, j);
+110             ++index;
+111         \}
+112     \}
+113 
+114     \textcolor{comment}{// cout << endl << "Generating edges" << endl;}
+115 
+116     \textcolor{comment}{// generate edges}
+117     \textcolor{keywordflow}{for} (i = 0; i < n; ++i) \{  \textcolor{comment}{// row, y}
+118         \textcolor{keywordflow}{for} (j = 0; j < m; ++j) \{  \textcolor{comment}{// column, x}
+119             \textcolor{keywordtype}{int} numDir = map.\hyperlink{classMap_a04501949c81ac8dd6a7aeaca908fe969}{getNumDir}();
+120             \textcolor{keywordtype}{int} startIdx = 0;
+121             \textcolor{keywordtype}{int} endIdx = 0;
+122             \textcolor{keywordtype}{double} cost = 0;
+123             \textcolor{keywordtype}{double} diagCost = 0;
+124 
+125             \textcolor{keywordflow}{for} (k = 0; k < numDir; ++k) \{
+126                 \textcolor{keywordtype}{int} neighborX = j + *(dir+k*2);
+127                 \textcolor{keywordtype}{int} neighborY = i + *(dir+k*2+1);
+128 
+129                 \textcolor{comment}{// cout << "(" << i << "," << j << ") (" << neighborX}
+130                 \textcolor{comment}{// << "," << neighborY << ")" << endl;}
+131 
+132                 \textcolor{keywordflow}{if} ((neighborX >= 0) && (neighborY >= 0) &&
+133                     (neighborX < m) && (neighborY < n)) \{
+134                     \textcolor{comment}{// add node to edge list}
+135                     startIdx = i * m + j + 1;
+136                     endIdx = neighborY * m + neighborX + 1;
+137 
+138                     \textcolor{comment}{// set cost for moving between nodes}
+139                     cost = (*mapArray)[endIdx-1];
+140 
+141                     \textcolor{comment}{// setting cost to 1.5x for diagonal movement}
+142                     \textcolor{keywordflow}{if} ((k == 0) || (k == 2) || (k == 5) || (k == 7))
+143                        diagCost = 1.5;
+144                     \textcolor{keywordflow}{else}
+145                        diagCost = 1.0;
 146 
-147                     \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}.emplace\_back(startIdx, endIdx, cost);
-148                 \}
-149             \}
-150         \}
-151     \}
+147                     \textcolor{keywordflow}{if} (cost < std::numeric\_limits<int>::max())
+148                         cost = cost * diagCost;
+149 
+150                     \textcolor{comment}{// cout << k << " (" << startIdx << "," << endIdx << ") "}
+151                     \textcolor{comment}{//      << cost << endl;}
 152 
-153     \textcolor{keywordflow}{return};
-154 \}
+153                     \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}.emplace\_back(startIdx, endIdx, cost);
+154                 \}
+155             \}
+156         \}
+157     \}
+158 
+159     \textcolor{keywordflow}{return};
+160 \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_adbd9dfe9d49577e9420669f59c290f55}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!comput\-Path@{comput\-Path}}
 \index{comput\-Path@{comput\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -249,7 +246,7 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-139 \{\}
+141 \{\}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a2c614eeead913e62288faa5499467529}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!get\-Path@{get\-Path}}
 \index{get\-Path@{get\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -272,7 +269,7 @@ shortest path indices from start to goal in vector int
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-149                            \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}; \}
+151                            \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}; \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a6d2b42a027cd39039861f148cbf624f0}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!get\-Steps@{get\-Steps}}
 \index{get\-Steps@{get\-Steps}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -295,7 +292,7 @@ steps taken to find shortest path in int
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-167 \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps}; \}
+169 \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps}; \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a0c0eaaa84d7739a3c09ad012b37e8bd9}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!get\-Total\-Cost@{get\-Total\-Cost}}
 \index{get\-Total\-Cost@{get\-Total\-Cost}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -318,37 +315,44 @@ total cost from start to goal in double
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-159                 \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost}; \}
+161                 \{ \textcolor{keywordflow}{return} \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost}; \}
 \end{DoxyCode}
-\hypertarget{classPathFindingAlgorithm_a31b4a12fa7164f0f71649f0505c8031e}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!init@{init}}
+\hypertarget{classPathFindingAlgorithm_a02dabb2f15ac242896b502d0eedf5537}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!init@{init}}
 \index{init@{init}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
-\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Path\-Finding\-Algorithm\-::init (
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}bool Path\-Finding\-Algorithm\-::init (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{std\-::string}]{}
 \end{DoxyParamCaption}
-)}}\label{classPathFindingAlgorithm_a31b4a12fa7164f0f71649f0505c8031e}
+)}}\label{classPathFindingAlgorithm_a02dabb2f15ac242896b502d0eedf5537}
 
 
 Initialize map and graph node, edges. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em none} & \\
+{\em input} & map file path \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-none 
+true if init is successful, false otherwise 
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-54                                     \{
-55     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}.clear();
-56     \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}.clear();
-57     \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.clear();
-58 
-59     map.\hyperlink{classMap_a389e4f5c49c1a33e9c0e6c4b2f0605ed}{createMap}(\hyperlink{PathFindAlgorithm_8hpp_a766bf3e65d7bed0d203a77d49e17d66b}{DEFAUTL\_INPUT\_MAP});
-60     \hyperlink{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}{buildGraph}();
-61 \}
+56                                             \{
+57     \textcolor{keywordflow}{if} (map.\hyperlink{classMap_a389e4f5c49c1a33e9c0e6c4b2f0605ed}{createMap}(input)) \{
+58         \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}.clear();
+59         \hyperlink{classPathFindingAlgorithm_ae535e0897714e84f5ab40d5dc5d654ec}{edges}.clear();
+60         \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.clear();
+61 
+62         \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost} = 0;
+63         \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps} = 0;
+64 
+65         \hyperlink{classPathFindingAlgorithm_a71b876665f35f458137ff9f2347fcc54}{buildGraph}();
+66         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+67     \}
+68 
+69     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+70 \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a836f5c7fd0ea0e2201ed954f55ca523b}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!output\-Map@{output\-Map}}
 \index{output\-Map@{output\-Map}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -371,11 +375,10 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-226                                      \{
-227 
-228     map.\hyperlink{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}{displayMap}();
-229     \textcolor{keywordflow}{return};
-230 \}
+242                                      \{
+243     map.\hyperlink{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}{displayMap}();
+244     \textcolor{keywordflow}{return};
+245 \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a98a59e7a6797895ac08be283850ab534}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!output\-Path@{output\-Path}}
 \index{output\-Path@{output\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -401,26 +404,36 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-204                                                 \{
-205 
-206     \textcolor{keywordflow}{switch}(option) \{
-207          \textcolor{comment}{// display map on screen}
-208         \textcolor{keywordflow}{case} 0:
-209             map.\hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{displayPath}(\hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
-210             \textcolor{keywordflow}{break};
-211 
-212         \textcolor{comment}{// output to file}
-213         \textcolor{keywordflow}{case} 1:
-214             map.\hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{saveMap}(\hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP}, \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
-215             \textcolor{keywordflow}{break};
-216 
-217         \textcolor{keywordflow}{case} 2:
-218         \textcolor{keywordflow}{default}:
-219             map.\hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{displayPath}(\hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
-220             map.\hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{saveMap}(\hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP}, \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
-221             \textcolor{keywordflow}{break};
-222     \}
-223 \}
+210                                                 \{
+211     ofstream outputFs;
+212 
+213     \textcolor{keywordflow}{switch} (option) \{
+214          \textcolor{comment}{// display map on screen}
+215         \textcolor{keywordflow}{case} 0:
+216             map.\hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{displayPath}(\hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
+217             \textcolor{keywordflow}{break};
+218 
+219         \textcolor{comment}{// output to file}
+220         \textcolor{keywordflow}{case} 1:
+221             map.\hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{saveMap}(\hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP}, \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path});
+222 
+223             outputFs.open(\hyperlink{PathFindAlgorithm_8hpp_a2fa4f0a512b2d876f34e9aec1765d791}{DEFAUTL\_OUTPUT\_PATH});
+224 
+225             \textcolor{keywordflow}{if} (outputFs.is\_open()) \{
+226                 \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}) \{
+227                     outputFs << n << endl;
+228                 \}
+229                 outputFs.close();
+230             \}
+231             \textcolor{keywordflow}{break};
+232 
+233         \textcolor{keywordflow}{case} 2:
+234         \textcolor{keywordflow}{default}:
+235             map.\hyperlink{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{displayPath}(path);
+236             map.\hyperlink{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{saveMap}(\hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP}, path);
+237             \textcolor{keywordflow}{break};
+238     \}
+239 \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!reconstruct\-Path@{reconstruct\-Path}}
 \index{reconstruct\-Path@{reconstruct\-Path}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -443,39 +456,39 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-157                                                      \{
-158     list<Node*> tempPath;
-159     \hyperlink{classNode}{Node} *temp = node;
-160 
-161     \textcolor{keywordflow}{if} (temp == \textcolor{keyword}{nullptr})
-162         \textcolor{keywordflow}{return};
-163 
-164     \textcolor{comment}{// reconstruct path using node's parent pointer}
-165     \textcolor{keywordflow}{while} (temp != \textcolor{keyword}{nullptr}) \{
-166         \textcolor{comment}{// add the start node and break}
-167         \textcolor{keywordflow}{if} (temp->\hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{getParentIndex}() == 0) \{
-168             tempPath.emplace\_front(temp);
-169             \textcolor{keywordflow}{break};
-170         \}
-171 
-172         tempPath.emplace\_front(temp);
-173         temp = &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[temp->\hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{getParentIndex}()-1];
-174     \}
-175 
-176 
-177     \textcolor{comment}{// cout << "Shortest Path: ";}
-178 
-179     \textcolor{comment}{// save into vector from start to goal}
-180     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : tempPath) \{
-181         \textcolor{comment}{// cout << n->getIndex() << " ";}
-182         \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.emplace\_back(n->getIndex());
-183     \}
+163                                                      \{
+164     list<Node*> tempPath;
+165     \hyperlink{classNode}{Node} *temp = node;
+166 
+167     \textcolor{keywordflow}{if} (temp == \textcolor{keyword}{nullptr})
+168         \textcolor{keywordflow}{return};
+169 
+170     \textcolor{comment}{// reconstruct path using node's parent pointer}
+171     \textcolor{keywordflow}{while} (temp != \textcolor{keyword}{nullptr}) \{
+172         \textcolor{comment}{// add the start node and break}
+173         \textcolor{keywordflow}{if} (temp->\hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{getParentIndex}() == 0) \{
+174             tempPath.emplace\_front(temp);
+175             \textcolor{keywordflow}{break};
+176         \}
+177 
+178         tempPath.emplace\_front(temp);
+179         temp = &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[temp->\hyperlink{classNode_a38525d55d0f15d4b6be0b3b8ed150441}{getParentIndex}()-1];
+180     \}
+181 
+182 
+183     \textcolor{comment}{// cout << "Shortest Path: ";}
 184 
-185     \textcolor{comment}{// cout << endl;}
-186 
-187 
-188     \textcolor{keywordflow}{return};
-189 \}
+185     \textcolor{comment}{// save into vector from start to goal}
+186     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : tempPath) \{
+187         \textcolor{comment}{// cout << n->getIndex() << " ";}
+188         \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.emplace\_back(n->getIndex());
+189     \}
+190 
+191     \textcolor{comment}{// cout << endl;}
+192 
+193 
+194     \textcolor{keywordflow}{return};
+195 \}
 \end{DoxyCode}
 \hypertarget{classPathFindingAlgorithm_a2b48e12615aecc6fd952efcb5d920864}{\index{Path\-Finding\-Algorithm@{Path\-Finding\-Algorithm}!set\-Param@{set\-Param}}
 \index{set\-Param@{set\-Param}!PathFindingAlgorithm@{Path\-Finding\-Algorithm}}
@@ -501,16 +514,16 @@ true if start, goal are within map range and are not obstacle nodes, false other
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-192                                                 \{
-193     \textcolor{comment}{// set start and goal indices}
-194     \textcolor{keywordflow}{if} (map.\hyperlink{classMap_aa64162f950a1936e1eaf42609e091524}{setStartGoal}(s, g)) \{
-195         \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start} = s;
-196         \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal} = g;
-197         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-198     \} \textcolor{keywordflow}{else} \{
-199         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-200     \}
-201 \}
+198                                                 \{
+199     \textcolor{comment}{// set start and goal indices}
+200     \textcolor{keywordflow}{if} (map.\hyperlink{classMap_aa64162f950a1936e1eaf42609e091524}{setStartGoal}(s, g)) \{
+201         \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start} = s;
+202         \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal} = g;
+203         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+204     \} \textcolor{keywordflow}{else} \{
+205         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+206     \}
+207 \}
 \end{DoxyCode}
 
 

@@ -123,82 +123,82 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d7/db0/classMap.html">Map</a> {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a0f5ad0fd4563497b4214038cbca8b582">   53</a></span>&#160;     <a class="code" href="../../d7/db0/classMap.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a>() : startIdx(0), goalIdx(0),</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;             row(0), col(0), numDir(8) {}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#aa403fbe09394ccf39747588f5168e3b2">   63</a></span>&#160;     <a class="code" href="../../d7/db0/classMap.html#aa403fbe09394ccf39747588f5168e3b2">~Map</a>() {}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;             row(0), col(0), numDir(8),</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;             moveDirection {-1, -1,              </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                             0, -1,              </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                             1, -1,              </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                            -1,  0,              </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                             1,  0,              </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                            -1,  1,              </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                             0,  1,              </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                             1,  1               </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                           } {}</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;     <span class="keywordtype">bool</span> <a class="code" href="../../d7/db0/classMap.html#a389e4f5c49c1a33e9c0e6c4b2f0605ed">createMap</a>(std::string);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#aa403fbe09394ccf39747588f5168e3b2">   72</a></span>&#160;     <a class="code" href="../../d7/db0/classMap.html#aa403fbe09394ccf39747588f5168e3b2">~Map</a>() {}</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;     <span class="keywordtype">bool</span> <a class="code" href="../../d7/db0/classMap.html#a43ce2c046c7908d95e06bd29182ac6bf">saveMap</a>(std::string, std::vector&lt;int&gt;&amp;);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;     <span class="keywordtype">bool</span> <a class="code" href="../../d7/db0/classMap.html#a389e4f5c49c1a33e9c0e6c4b2f0605ed">createMap</a>(std::string);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;     <span class="keywordtype">bool</span> <a class="code" href="../../d7/db0/classMap.html#aa64162f950a1936e1eaf42609e091524">setStartGoal</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="../../d7/db0/classMap.html#a4358aea9eb9f207aae23fc8d9a40b97a">displayPath</a>(std::vector&lt;int&gt;&amp;);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;     <span class="keywordtype">bool</span> <a class="code" href="../../d7/db0/classMap.html#a43ce2c046c7908d95e06bd29182ac6bf">saveMap</a>(std::string, std::vector&lt;int&gt;&amp;);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;     <span class="keywordtype">bool</span> <a class="code" href="../../d7/db0/classMap.html#aa64162f950a1936e1eaf42609e091524">setStartGoal</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="../../d7/db0/classMap.html#ac5af28a5fed55d9ca5d1dab5cb9f3f9c">displayMap</a>();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="../../d7/db0/classMap.html#a4358aea9eb9f207aae23fc8d9a40b97a">displayPath</a>(std::vector&lt;int&gt;&amp;);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2">  119</a></span>&#160;     <span class="keywordtype">int</span> <a class="code" href="../../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2">getRow</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> row; }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="../../d7/db0/classMap.html#ac5af28a5fed55d9ca5d1dab5cb9f3f9c">displayMap</a>();</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a88d24c08a4669040d7de6bd5f6272862">  128</a></span>&#160;     <span class="keywordtype">int</span> <a class="code" href="../../d7/db0/classMap.html#a88d24c08a4669040d7de6bd5f6272862">getCol</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> col; }</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2">  128</a></span>&#160;     <span class="keywordtype">int</span> <a class="code" href="../../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2">getRow</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> row; }</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a04501949c81ac8dd6a7aeaca908fe969">  137</a></span>&#160;     <span class="keywordtype">int</span> <a class="code" href="../../d7/db0/classMap.html#a04501949c81ac8dd6a7aeaca908fe969">getNumDir</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> numDir; }</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a88d24c08a4669040d7de6bd5f6272862">  137</a></span>&#160;     <span class="keywordtype">int</span> <a class="code" href="../../d7/db0/classMap.html#a88d24c08a4669040d7de6bd5f6272862">getCol</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> col; }</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#ad5c4312f11909eafc091715686b6ceda">  146</a></span>&#160;     std::vector&lt;int&gt;* <a class="code" href="../../d7/db0/classMap.html#ad5c4312f11909eafc091715686b6ceda">getMap</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> &amp;mapArray; }</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a04501949c81ac8dd6a7aeaca908fe969">  146</a></span>&#160;     <span class="keywordtype">int</span> <a class="code" href="../../d7/db0/classMap.html#a04501949c81ac8dd6a7aeaca908fe969">getNumDir</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> numDir; }</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a4f9142718a50c64152465aacc1033f26">  155</a></span>&#160;     <span class="keywordtype">int</span>* <a class="code" href="../../d7/db0/classMap.html#a4f9142718a50c64152465aacc1033f26">getMoveDir</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> moveDirection; }</div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#ad5c4312f11909eafc091715686b6ceda">  155</a></span>&#160;     std::vector&lt;int&gt;* <a class="code" href="../../d7/db0/classMap.html#ad5c4312f11909eafc091715686b6ceda">getMap</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> &amp;mapArray; }</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;     <span class="keywordtype">int</span> startIdx;                                 </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;     <span class="keywordtype">int</span> goalIdx;                                  </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;     <span class="keywordtype">int</span> row;                                      </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;     <span class="keywordtype">int</span> col;                                      </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;     <span class="keywordtype">int</span> numDir;                                   </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;     std::vector&lt;int&gt; mapArray;                    </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;     <span class="keywordtype">int</span> moveDirection[16] =                       </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                             {-1, -1,              </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                               0, -1,              </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                               1, -1,              </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                              -1,  0,              </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                               1,  0,              </div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                              -1,  1,              </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                               0,  1,              </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                               1,  1               </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                             };</div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="../../d7/db0/classMap.html#a4f9142718a50c64152465aacc1033f26">  164</a></span>&#160;     <span class="keywordtype">int</span>* <a class="code" href="../../d7/db0/classMap.html#a4f9142718a50c64152465aacc1033f26">getMoveDir</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> moveDirection; }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;     <span class="keywordtype">int</span> startIdx;                                 </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;     <span class="keywordtype">int</span> goalIdx;                                  </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;     <span class="keywordtype">int</span> row;                                      </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;     <span class="keywordtype">int</span> col;                                      </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;     <span class="keywordtype">int</span> numDir;                                   </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;     std::vector&lt;int&gt; mapArray;                    </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;     <span class="keywordtype">int</span> moveDirection[16];                        </div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;     <span class="keywordtype">bool</span> isInPath(<span class="keywordtype">int</span>, std::vector&lt;int&gt;&amp;);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;};</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">#endif  // INCLUDE_MAP_HPP_</span></div>
-<div class="ttc" id="classMap_html_a4358aea9eb9f207aae23fc8d9a40b97a"><div class="ttname"><a href="../../d7/db0/classMap.html#a4358aea9eb9f207aae23fc8d9a40b97a">Map::displayPath</a></div><div class="ttdeci">void displayPath(std::vector&lt; int &gt; &amp;)</div><div class="ttdoc">Display path in map on screen. </div><div class="ttdef"><b>Definition:</b> Map.cpp:175</div></div>
-<div class="ttc" id="classMap_html_ad5c4312f11909eafc091715686b6ceda"><div class="ttname"><a href="../../d7/db0/classMap.html#ad5c4312f11909eafc091715686b6ceda">Map::getMap</a></div><div class="ttdeci">std::vector&lt; int &gt; * getMap(void)</div><div class="ttdoc">Get map array. </div><div class="ttdef"><b>Definition:</b> Map.hpp:146</div></div>
-<div class="ttc" id="classMap_html_a80e0ea134ccb9a22092ce4c520063cd2"><div class="ttname"><a href="../../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2">Map::getRow</a></div><div class="ttdeci">int getRow(void)</div><div class="ttdoc">Get number of rows in map. </div><div class="ttdef"><b>Definition:</b> Map.hpp:119</div></div>
-<div class="ttc" id="classMap_html_a88d24c08a4669040d7de6bd5f6272862"><div class="ttname"><a href="../../d7/db0/classMap.html#a88d24c08a4669040d7de6bd5f6272862">Map::getCol</a></div><div class="ttdeci">int getCol(void)</div><div class="ttdoc">Get number of columns in map. </div><div class="ttdef"><b>Definition:</b> Map.hpp:128</div></div>
-<div class="ttc" id="classMap_html_aa403fbe09394ccf39747588f5168e3b2"><div class="ttname"><a href="../../d7/db0/classMap.html#aa403fbe09394ccf39747588f5168e3b2">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdoc">Deconstructor of Map class. </div><div class="ttdef"><b>Definition:</b> Map.hpp:63</div></div>
-<div class="ttc" id="classMap_html_a389e4f5c49c1a33e9c0e6c4b2f0605ed"><div class="ttname"><a href="../../d7/db0/classMap.html#a389e4f5c49c1a33e9c0e6c4b2f0605ed">Map::createMap</a></div><div class="ttdeci">bool createMap(std::string)</div><div class="ttdoc">Read map info from csv file and store in mapArray. </div><div class="ttdef"><b>Definition:</b> Map.cpp:61</div></div>
-<div class="ttc" id="classMap_html_ac5af28a5fed55d9ca5d1dab5cb9f3f9c"><div class="ttname"><a href="../../d7/db0/classMap.html#ac5af28a5fed55d9ca5d1dab5cb9f3f9c">Map::displayMap</a></div><div class="ttdeci">void displayMap()</div><div class="ttdoc">Display map on screen. </div><div class="ttdef"><b>Definition:</b> Map.cpp:222</div></div>
-<div class="ttc" id="classMap_html_a43ce2c046c7908d95e06bd29182ac6bf"><div class="ttname"><a href="../../d7/db0/classMap.html#a43ce2c046c7908d95e06bd29182ac6bf">Map::saveMap</a></div><div class="ttdeci">bool saveMap(std::string, std::vector&lt; int &gt; &amp;)</div><div class="ttdoc">Output map including start, goal, and shortest path to a csv file. </div><div class="ttdef"><b>Definition:</b> Map.cpp:107</div></div>
+<div class="ttc" id="classMap_html_a4358aea9eb9f207aae23fc8d9a40b97a"><div class="ttname"><a href="../../d7/db0/classMap.html#a4358aea9eb9f207aae23fc8d9a40b97a">Map::displayPath</a></div><div class="ttdeci">void displayPath(std::vector&lt; int &gt; &amp;)</div><div class="ttdoc">Display path in map on screen. </div><div class="ttdef"><b>Definition:</b> Map.cpp:171</div></div>
+<div class="ttc" id="classMap_html_ad5c4312f11909eafc091715686b6ceda"><div class="ttname"><a href="../../d7/db0/classMap.html#ad5c4312f11909eafc091715686b6ceda">Map::getMap</a></div><div class="ttdeci">std::vector&lt; int &gt; * getMap(void)</div><div class="ttdoc">Get map array. </div><div class="ttdef"><b>Definition:</b> Map.hpp:155</div></div>
+<div class="ttc" id="classMap_html_a80e0ea134ccb9a22092ce4c520063cd2"><div class="ttname"><a href="../../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2">Map::getRow</a></div><div class="ttdeci">int getRow(void)</div><div class="ttdoc">Get number of rows in map. </div><div class="ttdef"><b>Definition:</b> Map.hpp:128</div></div>
+<div class="ttc" id="classMap_html_a88d24c08a4669040d7de6bd5f6272862"><div class="ttname"><a href="../../d7/db0/classMap.html#a88d24c08a4669040d7de6bd5f6272862">Map::getCol</a></div><div class="ttdeci">int getCol(void)</div><div class="ttdoc">Get number of columns in map. </div><div class="ttdef"><b>Definition:</b> Map.hpp:137</div></div>
+<div class="ttc" id="classMap_html_aa403fbe09394ccf39747588f5168e3b2"><div class="ttname"><a href="../../d7/db0/classMap.html#aa403fbe09394ccf39747588f5168e3b2">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdoc">Deconstructor of Map class. </div><div class="ttdef"><b>Definition:</b> Map.hpp:72</div></div>
+<div class="ttc" id="classMap_html_a389e4f5c49c1a33e9c0e6c4b2f0605ed"><div class="ttname"><a href="../../d7/db0/classMap.html#a389e4f5c49c1a33e9c0e6c4b2f0605ed">Map::createMap</a></div><div class="ttdeci">bool createMap(std::string)</div><div class="ttdoc">Read map info from csv file and store in mapArray. </div><div class="ttdef"><b>Definition:</b> Map.cpp:60</div></div>
+<div class="ttc" id="classMap_html_ac5af28a5fed55d9ca5d1dab5cb9f3f9c"><div class="ttname"><a href="../../d7/db0/classMap.html#ac5af28a5fed55d9ca5d1dab5cb9f3f9c">Map::displayMap</a></div><div class="ttdeci">void displayMap()</div><div class="ttdoc">Display map on screen. </div><div class="ttdef"><b>Definition:</b> Map.cpp:217</div></div>
+<div class="ttc" id="classMap_html_a43ce2c046c7908d95e06bd29182ac6bf"><div class="ttname"><a href="../../d7/db0/classMap.html#a43ce2c046c7908d95e06bd29182ac6bf">Map::saveMap</a></div><div class="ttdeci">bool saveMap(std::string, std::vector&lt; int &gt; &amp;)</div><div class="ttdoc">Output map including start, goal, and shortest path to a csv file. </div><div class="ttdef"><b>Definition:</b> Map.cpp:105</div></div>
 <div class="ttc" id="classMap_html"><div class="ttname"><a href="../../d7/db0/classMap.html">Map</a></div><div class="ttdoc">Class definition of Map used for keeping map information for path planning. </div><div class="ttdef"><b>Definition:</b> Map.hpp:45</div></div>
-<div class="ttc" id="classMap_html_aa64162f950a1936e1eaf42609e091524"><div class="ttname"><a href="../../d7/db0/classMap.html#aa64162f950a1936e1eaf42609e091524">Map::setStartGoal</a></div><div class="ttdeci">bool setStartGoal(int, int)</div><div class="ttdoc">Set start and goal indices. </div><div class="ttdef"><b>Definition:</b> Map.cpp:148</div></div>
+<div class="ttc" id="classMap_html_aa64162f950a1936e1eaf42609e091524"><div class="ttname"><a href="../../d7/db0/classMap.html#aa64162f950a1936e1eaf42609e091524">Map::setStartGoal</a></div><div class="ttdeci">bool setStartGoal(int, int)</div><div class="ttdoc">Set start and goal indices. </div><div class="ttdef"><b>Definition:</b> Map.cpp:141</div></div>
 <div class="ttc" id="classMap_html_a0f5ad0fd4563497b4214038cbca8b582"><div class="ttname"><a href="../../d7/db0/classMap.html#a0f5ad0fd4563497b4214038cbca8b582">Map::Map</a></div><div class="ttdeci">Map()</div><div class="ttdoc">Constructor of Map class. </div><div class="ttdef"><b>Definition:</b> Map.hpp:53</div></div>
-<div class="ttc" id="classMap_html_a04501949c81ac8dd6a7aeaca908fe969"><div class="ttname"><a href="../../d7/db0/classMap.html#a04501949c81ac8dd6a7aeaca908fe969">Map::getNumDir</a></div><div class="ttdeci">int getNumDir(void)</div><div class="ttdoc">Get number of moving directions of a node. </div><div class="ttdef"><b>Definition:</b> Map.hpp:137</div></div>
-<div class="ttc" id="classMap_html_a4f9142718a50c64152465aacc1033f26"><div class="ttname"><a href="../../d7/db0/classMap.html#a4f9142718a50c64152465aacc1033f26">Map::getMoveDir</a></div><div class="ttdeci">int * getMoveDir(void)</div><div class="ttdoc">Get moving direction array. </div><div class="ttdef"><b>Definition:</b> Map.hpp:155</div></div>
+<div class="ttc" id="classMap_html_a04501949c81ac8dd6a7aeaca908fe969"><div class="ttname"><a href="../../d7/db0/classMap.html#a04501949c81ac8dd6a7aeaca908fe969">Map::getNumDir</a></div><div class="ttdeci">int getNumDir(void)</div><div class="ttdoc">Get number of moving directions of a node. </div><div class="ttdef"><b>Definition:</b> Map.hpp:146</div></div>
+<div class="ttc" id="classMap_html_a4f9142718a50c64152465aacc1033f26"><div class="ttname"><a href="../../d7/db0/classMap.html#a4f9142718a50c64152465aacc1033f26">Map::getMoveDir</a></div><div class="ttdeci">int * getMoveDir(void)</div><div class="ttdoc">Get moving direction array. </div><div class="ttdef"><b>Definition:</b> Map.hpp:164</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 11 2017 17:40:32 for Path Finding Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 12 2017 01:38:35 for Path Finding Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -108,129 +108,131 @@ true if shortest path can be found, false otherwise
 56 
 57     \textcolor{comment}{// cout << "*** A Star Path Searching Algorithm ***" << endl;}
 58 
-59     \textcolor{comment}{// clear path vector}
+59     \textcolor{comment}{// initialize}
 60     \hyperlink{classPathFindingAlgorithm_ab177b2276cdf28fb77361bff19745b17}{path}.clear();
-61 
-62     \textcolor{comment}{// start and goal cannot be less than index lower bound}
-63     \textcolor{keywordflow}{if} ((\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start} < 1) || (\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal} < 1)) \{
-64         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-65     \}
-66 
-67     \textcolor{comment}{// initialize start node's cost and heuristic cost to goal}
-68     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1].setCost(0);
-69     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1].setEstimateCost(weight * getHeuristicCost(&\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[
+61     openSet.clear();
+62     closedSet.clear();
+63 
+64     \textcolor{comment}{// start and goal cannot be less than index lower bound}
+65     \textcolor{keywordflow}{if} ((\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start} < 1) || (\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal} < 1)) \{
+66         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+67     \}
+68 
+69     \textcolor{comment}{// initialize start node's cost and heuristic cost to goal}
+70     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1].setCost(0);
+71     \hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1].setEstimateCost(weight * getHeuristicCost(&\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[
       \hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1],
-70                                    &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}-1]));
-71 
-72     \textcolor{comment}{// add start node to open set}
-73     openSet.emplace\_back(&\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1]);
-74 
-75 \textcolor{preprocessor}{#if 0}
-76 \textcolor{preprocessor}{}    \textcolor{keywordtype}{double} curXPos = 0;
-77     \textcolor{keywordtype}{double} curYPos = 0;
-78     std::tie(curXPos, curYPos) = openSet.front()->getPos();
-79     cout << openSet.front()->getIndex() << \textcolor{stringliteral}{" "} << curXPos << \textcolor{stringliteral}{" "}
-80          << curYPos << endl;
-81     cout << \textcolor{stringliteral}{"cost = "} << openSet.front()->getCost() << \textcolor{stringliteral}{" estimatedCost = "}
-82          << openSet.front()->getEstimateCost() << endl;
-83 \textcolor{preprocessor}{#endif}
-84 \textcolor{preprocessor}{}
-85     \textcolor{keywordflow}{while} (!openSet.empty()) \{
-86         openSet.sort(\hyperlink{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{compareCost});
-87 
-88         \textcolor{comment}{// current node in open set with lowest cost}
-89         \hyperlink{classNode}{Node} *curNode = openSet.front();
-90 
-91         \textcolor{comment}{// cout << "pop open front index: " << curNode->getIndex() << endl;}
+72                                    &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}-1]));
+73 
+74     \textcolor{comment}{// add start node to open set}
+75     openSet.emplace\_back(&\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_a1c31bd6b8c57459c32ada19cf9bf412a}{start}-1]);
+76 
+77 \textcolor{preprocessor}{#if 0}
+78 \textcolor{preprocessor}{}    \textcolor{keywordtype}{double} curXPos = 0;
+79     \textcolor{keywordtype}{double} curYPos = 0;
+80     std::tie(curXPos, curYPos) = openSet.front()->getPos();
+81     cout << openSet.front()->getIndex() << \textcolor{stringliteral}{" "} << curXPos << \textcolor{stringliteral}{" "}
+82          << curYPos << endl;
+83     cout << \textcolor{stringliteral}{"cost = "} << openSet.front()->getCost() << \textcolor{stringliteral}{" estimatedCost = "}
+84          << openSet.front()->getEstimateCost() << endl;
+85 \textcolor{preprocessor}{#endif}
+86 \textcolor{preprocessor}{}
+87     \textcolor{keywordflow}{while} (!openSet.empty()) \{
+88         openSet.sort(\hyperlink{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{compareCost});
+89 
+90         \textcolor{comment}{// current node in open set with lowest cost}
+91         \hyperlink{classNode}{Node} *curNode = openSet.front();
 92 
-93         \textcolor{comment}{// check if current equals to goal}
-94         \textcolor{keywordflow}{if} (curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}() == \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}) \{
-95             nStep = closedSet.size();
-96             \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost} = curNode->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}();
-97             \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps} = nStep;
-98             \textcolor{comment}{// cout << "found goal in " << steps << " steps" << endl;}
-99             \textcolor{comment}{// cout << "cost is " << totalCost << endl;}
-100             \hyperlink{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}{reconstructPath}(curNode);
-101             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-102         \}
-103 
-104 
-105         \textcolor{keywordflow}{if} (curNode->\hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{getCost}() >= std::numeric\_limits<int>::max()) \{
-106             \textcolor{comment}{// if front node's cost is infinite}
-107             \textcolor{comment}{// path cannot be found}
-108             \textcolor{keywordflow}{break};
-109         \}
-110 
-111         \textcolor{comment}{// remove current from open set}
-112         openSet.pop\_front();
-113 
-114         \textcolor{comment}{// add current to closed set}
-115         closedSet.emplace\_back(curNode);
-116 
-117 \textcolor{preprocessor}{#if 0}
-118 \textcolor{preprocessor}{}        cout << \textcolor{stringliteral}{"Closed Set:"} << endl;
-119         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : closedSet) \{
-120             \textcolor{keywordtype}{double} xPos = 0;
-121             \textcolor{keywordtype}{double} yPos = 0;
-122             std::tie(xPos, yPos) = n->getPos();
-123             cout << n->getIndex() << \textcolor{stringliteral}{"("} << xPos << \textcolor{stringliteral}{","} << yPos << \textcolor{stringliteral}{")"};
-124             cout << \textcolor{stringliteral}{" ("} << n->getCost() << \textcolor{stringliteral}{","} << n->getEstimateCost()
-125                  << \textcolor{stringliteral}{")"} << endl;
-126         \}
-127 \textcolor{preprocessor}{#endif}
-128 \textcolor{preprocessor}{}        list<Node*> neighbors;
-129         findNeighbors(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}(), neighbors);
-130 
-131         \textcolor{comment}{// cout << "Neighbors:" << endl;}
+93         \textcolor{comment}{// cout << "pop open front index: " << curNode->getIndex() << endl;}
+94 
+95         \textcolor{comment}{// check if current equals to goal}
+96         \textcolor{keywordflow}{if} (curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}() == \hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}) \{
+97             nStep = closedSet.size();
+98             \hyperlink{classPathFindingAlgorithm_ad6a91f82618d6a7a95900b5c63337837}{totalCost} = curNode->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}();
+99             \hyperlink{classPathFindingAlgorithm_aa4d442ba7d2499f61e81b8c0fabc55a5}{steps} = nStep;
+100             \textcolor{comment}{// cout << "found goal in " << steps << " steps" << endl;}
+101             \textcolor{comment}{// cout << "cost is " << totalCost << endl;}
+102             \hyperlink{classPathFindingAlgorithm_a334c5cfc5b40a1e8458eb960ff5f541c}{reconstructPath}(curNode);
+103             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+104         \}
+105 
+106 
+107         \textcolor{keywordflow}{if} (curNode->\hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{getCost}() >= std::numeric\_limits<int>::max()) \{
+108             \textcolor{comment}{// if front node's cost is infinite}
+109             \textcolor{comment}{// path cannot be found}
+110             \textcolor{keywordflow}{break};
+111         \}
+112 
+113         \textcolor{comment}{// remove current from open set}
+114         openSet.pop\_front();
+115 
+116         \textcolor{comment}{// add current to closed set}
+117         closedSet.emplace\_back(curNode);
+118 
+119 \textcolor{preprocessor}{#if 0}
+120 \textcolor{preprocessor}{}        cout << \textcolor{stringliteral}{"Closed Set:"} << endl;
+121         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : closedSet) \{
+122             \textcolor{keywordtype}{double} xPos = 0;
+123             \textcolor{keywordtype}{double} yPos = 0;
+124             std::tie(xPos, yPos) = n->getPos();
+125             cout << n->getIndex() << \textcolor{stringliteral}{"("} << xPos << \textcolor{stringliteral}{","} << yPos << \textcolor{stringliteral}{")"};
+126             cout << \textcolor{stringliteral}{" ("} << n->getCost() << \textcolor{stringliteral}{","} << n->getEstimateCost()
+127                  << \textcolor{stringliteral}{")"} << endl;
+128         \}
+129 \textcolor{preprocessor}{#endif}
+130 \textcolor{preprocessor}{}        list<Node*> neighbors;
+131         findNeighbors(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}(), neighbors);
 132 
-133         \textcolor{comment}{// for each neighbor of current}
-134         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : neighbors) \{
-135             \textcolor{comment}{// if neighbor in closed set, continue}
-136             \textcolor{keywordflow}{if} (\hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{checkList}(n->getIndex(), closedSet)) \{
-137                 \textcolor{comment}{// cout << "neighbor in closed set, continue" << endl;}
-138                 \textcolor{keywordflow}{continue};
-139             \}
-140 
-141             \textcolor{keywordtype}{double} tempCost = curNode->\hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{getCost}() +
-142                               getCostToNeighbor(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}(),
-143                                                 n->getIndex());
-144             \textcolor{comment}{// cout << "node = " << curNode->getIndex() << ", tempCost = "}
-145             \textcolor{comment}{//     << tempCost << endl;}
-146 
-147 
-148             \textcolor{keywordflow}{if} (!\hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{checkList}(n->getIndex(), openSet)) \{
-149                 \textcolor{comment}{// if neighbor not in open set, add}
-150                 openSet.emplace\_back(n);
-151             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tempCost >= n->getCost()) \{
-152                 \textcolor{comment}{// not a better path}
-153                 \textcolor{keywordflow}{continue};
-154             \}
-155 
-156             \textcolor{comment}{// update neighbor's parent to current}
-157             n->setParentIndex(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}());
-158 
-159             \textcolor{comment}{// update neighbor's cost (i.e. total cost to this node)}
-160             \textcolor{comment}{// to tempCost}
-161             n->setCost(tempCost);
-162 
-163             \textcolor{comment}{// update neighbor's goal cost (i.e. cost to goal) to}
-164             \textcolor{comment}{// tempCost + heuristic estimate}
-165             \textcolor{keywordtype}{double} heuristic = weight * getHeuristicCost(n, &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}-1]);
-166             n->setEstimateCost(tempCost + heuristic);
-167 \textcolor{preprocessor}{#if 0}
-168 \textcolor{preprocessor}{}            \textcolor{keywordtype}{double} xPos = 0;
-169             \textcolor{keywordtype}{double} yPos = 0;
-170             std::tie(xPos, yPos) = n->getPos();
-171             cout << n->getIndex() << \textcolor{stringliteral}{"("} << xPos << \textcolor{stringliteral}{","} << yPos << \textcolor{stringliteral}{")"};
-172             cout << \textcolor{stringliteral}{" ("} << n->getCost() << \textcolor{stringliteral}{","} << n->getEstimateCost() << \textcolor{stringliteral}{","}
-173                  << heuristic << \textcolor{stringliteral}{")"} << endl;
-174 \textcolor{preprocessor}{#endif}
-175 \textcolor{preprocessor}{}        \}
-176     \}
-177 
-178     \textcolor{comment}{// cout << "Fail to find path" << endl;}
-179     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-180 \}
+133         \textcolor{comment}{// cout << "Neighbors:" << endl;}
+134 
+135         \textcolor{comment}{// for each neighbor of current}
+136         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : neighbors) \{
+137             \textcolor{comment}{// if neighbor in closed set, continue}
+138             \textcolor{keywordflow}{if} (\hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{checkList}(n->getIndex(), closedSet)) \{
+139                 \textcolor{comment}{// cout << "neighbor in closed set, continue" << endl;}
+140                 \textcolor{keywordflow}{continue};
+141             \}
+142 
+143             \textcolor{keywordtype}{double} tempCost = curNode->\hyperlink{classNode_a06d6bc069a40309fb4d228af02dface4}{getCost}() +
+144                               getCostToNeighbor(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}(),
+145                                                 n->getIndex());
+146             \textcolor{comment}{// cout << "node = " << curNode->getIndex() << ", tempCost = "}
+147             \textcolor{comment}{//     << tempCost << endl;}
+148 
+149 
+150             \textcolor{keywordflow}{if} (!\hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{checkList}(n->getIndex(), openSet)) \{
+151                 \textcolor{comment}{// if neighbor not in open set, add}
+152                 openSet.emplace\_back(n);
+153             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tempCost >= n->getCost()) \{
+154                 \textcolor{comment}{// not a better path}
+155                 \textcolor{keywordflow}{continue};
+156             \}
+157 
+158             \textcolor{comment}{// update neighbor's parent to current}
+159             n->setParentIndex(curNode->\hyperlink{classNode_af157df6ef5c45d7ce978e9c7371c297e}{getIndex}());
+160 
+161             \textcolor{comment}{// update neighbor's cost (i.e. total cost to this node)}
+162             \textcolor{comment}{// to tempCost}
+163             n->setCost(tempCost);
+164 
+165             \textcolor{comment}{// update neighbor's goal cost (i.e. cost to goal) to}
+166             \textcolor{comment}{// tempCost + heuristic estimate}
+167             \textcolor{keywordtype}{double} heuristic = weight * getHeuristicCost(n, &\hyperlink{classPathFindingAlgorithm_a3405321350d5fb10ba367c47944a7b77}{nodes}[\hyperlink{classPathFindingAlgorithm_ae8acf41f92ba72a969a44640c99fb8a4}{goal}-1]);
+168             n->setEstimateCost(tempCost + heuristic);
+169 \textcolor{preprocessor}{#if 0}
+170 \textcolor{preprocessor}{}            \textcolor{keywordtype}{double} xPos = 0;
+171             \textcolor{keywordtype}{double} yPos = 0;
+172             std::tie(xPos, yPos) = n->getPos();
+173             cout << n->getIndex() << \textcolor{stringliteral}{"("} << xPos << \textcolor{stringliteral}{","} << yPos << \textcolor{stringliteral}{")"};
+174             cout << \textcolor{stringliteral}{" ("} << n->getCost() << \textcolor{stringliteral}{","} << n->getEstimateCost() << \textcolor{stringliteral}{","}
+175                  << heuristic << \textcolor{stringliteral}{")"} << endl;
+176 \textcolor{preprocessor}{#endif}
+177 \textcolor{preprocessor}{}        \}
+178     \}
+179 
+180     \textcolor{comment}{// cout << "Fail to find path" << endl;}
+181     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+182 \}
 \end{DoxyCode}
 
 

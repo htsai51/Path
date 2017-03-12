@@ -43,18 +43,18 @@ Huei Tzu Tsai
 )}}\label{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}
 
 \begin{DoxyCode}
-227                                                     \{
-228     \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
-229 
-230     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : nodes) \{
-231         \textcolor{keywordflow}{if} (n->getIndex() == index) \{
-232             found = \textcolor{keyword}{true};
-233             \textcolor{keywordflow}{break};
-234         \}
-235     \}
-236 
-237     \textcolor{keywordflow}{return} found;
-238 \}
+229                                                     \{
+230     \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
+231 
+232     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : nodes) \{
+233         \textcolor{keywordflow}{if} (n->getIndex() == index) \{
+234             found = \textcolor{keyword}{true};
+235             \textcolor{keywordflow}{break};
+236         \}
+237     \}
+238 
+239     \textcolor{keywordflow}{return} found;
+240 \}
 \end{DoxyCode}
 \hypertarget{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!compare\-Cost@{compare\-Cost}}
 \index{compare\-Cost@{compare\-Cost}!AStarAlgorithm.cpp@{A\-Star\-Algorithm.\-cpp}}
@@ -66,10 +66,10 @@ Huei Tzu Tsai
 )}}\label{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}
 
 \begin{DoxyCode}
-241                                             \{
-242     \textcolor{keywordflow}{if} (first->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}() < second->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}())
-243         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-244     \textcolor{keywordflow}{else}
-245         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-246 \}
+243                                             \{
+244     \textcolor{keywordflow}{if} (first->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}() < second->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}())
+245         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+246     \textcolor{keywordflow}{else}
+247         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+248 \}
 \end{DoxyCode}

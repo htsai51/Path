@@ -65,7 +65,16 @@ none
 
 \begin{DoxyCode}
 53            : startIdx(0), goalIdx(0),
-54              row(0), col(0), numDir(8) \{\}
+54              row(0), col(0), numDir(8),
+55              moveDirection \{-1, -1,              
+56                              0, -1,              
+57                              1, -1,              
+58                             -1,  0,              
+59                              1,  0,              
+60                             -1,  1,              
+61                              0,  1,              
+62                              1,  1               
+63                            \} \{\}
 \end{DoxyCode}
 \hypertarget{classMap_aa403fbe09394ccf39747588f5168e3b2}{\index{Map@{Map}!$\sim$\-Map@{$\sim$\-Map}}
 \index{$\sim$\-Map@{$\sim$\-Map}!Map@{Map}}
@@ -88,7 +97,7 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-63 \{\}
+72 \{\}
 \end{DoxyCode}
 
 
@@ -114,50 +123,49 @@ true is reading map is successful, false otherwise
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-61                                     \{
-62     ifstream inputFs;
-63     \textcolor{keywordtype}{string} line;
-64     \textcolor{keywordtype}{string} temp;
-65     \textcolor{keywordtype}{int} cnt = 0;
-66 
-67     \textcolor{comment}{// initialize param}
-68     mapArray.clear();
-69     row = 0;
-70     col = 0;
-71 
-72     \textcolor{comment}{// open graph file}
-73     inputFs.open(inputFile);
-74 
-75     \textcolor{keywordflow}{if} (inputFs.is\_open()) \{
-76         \textcolor{keywordflow}{while} (getline(inputFs, line)) \{
-77             std::istringstream linestream(line);
-78 
-79             \textcolor{keywordflow}{while} (getline(linestream, temp, \textcolor{charliteral}{','})) \{
-80                 ++cnt;
-81                 \textcolor{keywordflow}{if} ((temp == \textcolor{stringliteral}{"o"}) || (temp == \textcolor{stringliteral}{"O"})) \{
-82                     mapArray.emplace\_back(std::numeric\_limits<int>::max());
-83                 \} \textcolor{keywordflow}{else} \{
-84                     mapArray.emplace\_back(std::stoi(temp));
-85                 \}
-86             \}
-87 
-88             col = cnt;
-89             cnt = 0;
-90 
-91             ++row;
+60                                     \{
+61     ifstream inputFs;
+62     \textcolor{keywordtype}{string} line;
+63     \textcolor{keywordtype}{string} temp;
+64 
+65     \textcolor{comment}{// initialize param}
+66     mapArray.clear();
+67     row = 0;
+68     col = 0;
+69 
+70     \textcolor{comment}{// open graph file}
+71     inputFs.open(inputFile);
+72 
+73     \textcolor{keywordflow}{if} (inputFs.is\_open()) \{
+74         \textcolor{keywordflow}{while} (getline(inputFs, line)) \{
+75             \textcolor{keywordtype}{int} cnt = 0;
+76             std::istringstream linestream(line);
+77 
+78             \textcolor{keywordflow}{while} (getline(linestream, temp, \textcolor{charliteral}{','})) \{
+79                 ++cnt;
+80                 \textcolor{keywordflow}{if} ((temp == \textcolor{stringliteral}{"o"}) || (temp == \textcolor{stringliteral}{"O"})) \{
+81                     mapArray.emplace\_back(numeric\_limits<int>::max());
+82                 \} \textcolor{keywordflow}{else} \{
+83                     mapArray.emplace\_back(1);
+84                 \}
+85             \}
+86 
+87             col = cnt;
+88             cnt = 0;
+89 
+90             ++row;
+91         \}
 92 
-93         \}
-94 
-95         \textcolor{comment}{// cout << "number of cols: " << col << endl;}
-96         \textcolor{comment}{// cout << "number of rows: " << row << endl;}
-97         \textcolor{comment}{// cout << "size of vector array: " << mapArray.size() << endl;}
-98         inputFs.close();
-99 
-100         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-101     \}
-102 
-103     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-104 \}
+93         \textcolor{comment}{// cout << "number of cols: " << col << endl;}
+94         \textcolor{comment}{// cout << "number of rows: " << row << endl;}
+95         \textcolor{comment}{// cout << "size of vector array: " << mapArray.size() << endl;}
+96         inputFs.close();
+97 
+98         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+99     \}
+100 
+101     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+102 \}
 \end{DoxyCode}
 \hypertarget{classMap_ac5af28a5fed55d9ca5d1dab5cb9f3f9c}{\index{Map@{Map}!display\-Map@{display\-Map}}
 \index{display\-Map@{display\-Map}!Map@{Map}}
@@ -180,44 +188,43 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-222                          \{
-223     \textcolor{keywordtype}{int} x = 0;
-224     \textcolor{keywordtype}{int} y = 0;
-225     \textcolor{keywordtype}{int} index = 0;
-226 
-227 
-228     \textcolor{keywordtype}{int} displayRow = row * 2 + 1;
-229     \textcolor{keywordtype}{int} displayCol = col * 2 + 1;
-230 
-231     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < displayRow; ++i) \{
-232         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < displayCol; ++j) \{
-233             \textcolor{keywordflow}{if} (i % 2 == 0) \{
-234                 \textcolor{keywordflow}{if} (j % 2 == 0)
-235                     cout << \textcolor{stringliteral}{" "};
-236                 \textcolor{keywordflow}{else}
-237                     cout << \textcolor{stringliteral}{"---"};
-238             \} \textcolor{keywordflow}{else} \{
-239                 \textcolor{keywordflow}{if} (j % 2 == 0)
-240                     cout << \textcolor{stringliteral}{"|"};
-241                 \textcolor{keywordflow}{else} \{
-242                     x = i/2;
-243                     y = j/2;
-244 
-245                     index = (x * col + y + 1);
-246 
-247                     \textcolor{keywordflow}{if} (mapArray[index-1] == std::numeric\_limits<int>::max())
-248                         cout << \textcolor{stringliteral}{" O "};
-249                     \textcolor{keywordflow}{else}
-250                         cout << std::setw(3) << index;
-251                 \}
-252 
-253             \}
-254         \}
-255         cout << endl;
-256     \}
-257 
-258     \textcolor{keywordflow}{return};
-259 \}
+217                          \{
+218     \textcolor{keywordtype}{int} x = 0;
+219     \textcolor{keywordtype}{int} y = 0;
+220     \textcolor{keywordtype}{int} index = 0;
+221 
+222 
+223     \textcolor{keywordtype}{int} displayRow = row * 2 + 1;
+224     \textcolor{keywordtype}{int} displayCol = col * 2 + 1;
+225 
+226     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < displayRow; ++i) \{
+227         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < displayCol; ++j) \{
+228             \textcolor{keywordflow}{if} (i % 2 == 0) \{
+229                 \textcolor{keywordflow}{if} (j % 2 == 0)
+230                     cout << \textcolor{stringliteral}{" "};
+231                 \textcolor{keywordflow}{else}
+232                     cout << \textcolor{stringliteral}{"---"};
+233             \} \textcolor{keywordflow}{else} \{
+234                 \textcolor{keywordflow}{if} (j % 2 == 0) \{
+235                     cout << \textcolor{stringliteral}{"|"};
+236                 \} \textcolor{keywordflow}{else} \{
+237                     x = i/2;
+238                     y = j/2;
+239 
+240                     index = (x * col + y + 1);
+241 
+242                     \textcolor{keywordflow}{if} (mapArray[index-1] == numeric\_limits<int>::max())
+243                         cout << \textcolor{stringliteral}{"   "};
+244                     \textcolor{keywordflow}{else}
+245                         cout << std::setw(3) << index;
+246                 \}
+247             \}
+248         \}
+249         cout << endl;
+250     \}
+251 
+252     \textcolor{keywordflow}{return};
+253 \}
 \end{DoxyCode}
 \hypertarget{classMap_a4358aea9eb9f207aae23fc8d9a40b97a}{\index{Map@{Map}!display\-Path@{display\-Path}}
 \index{display\-Path@{display\-Path}!Map@{Map}}
@@ -240,51 +247,50 @@ none
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-175                                        \{
-176     \textcolor{keywordtype}{int} x = 0;
-177     \textcolor{keywordtype}{int} y = 0;
-178     \textcolor{keywordtype}{int} index = 0;
-179 
-180     \textcolor{keywordtype}{int} displayRow = row * 2 + 1;
-181     \textcolor{keywordtype}{int} displayCol = col * 2 + 1;
-182 
-183     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < displayRow; ++i) \{
-184         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < displayCol; ++j) \{
-185             \textcolor{keywordflow}{if} (i % 2 == 0) \{
-186                 \textcolor{keywordflow}{if} (j % 2 == 0)
-187                     cout << \textcolor{stringliteral}{" "};
-188                 \textcolor{keywordflow}{else}
-189                     cout << \textcolor{stringliteral}{"---"};
-190             \} \textcolor{keywordflow}{else} \{
-191                 \textcolor{keywordflow}{if} (j % 2 == 0)
-192                     cout << \textcolor{stringliteral}{"|"};
-193                 \textcolor{keywordflow}{else} \{
-194                     x = i/2;
-195                     y = j/2;
-196 
-197                     index = (x * col + y + 1);
-198 
-199                     \textcolor{keywordflow}{if} ((index == startIdx) && (index == goalIdx))
-200                         cout << \textcolor{stringliteral}{"S/G"};
-201                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == startIdx)
-202                         cout << \textcolor{stringliteral}{" S "};
-203                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == goalIdx)
-204                         cout << \textcolor{stringliteral}{" G "};
-205                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isInPath(index, path))
-206                         cout << \textcolor{stringliteral}{" * "};
-207                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mapArray[index-1] == std::numeric\_limits<int>::max())
-208                         cout << \textcolor{stringliteral}{" O "};
-209                     \textcolor{keywordflow}{else}
-210                         cout << \textcolor{stringliteral}{" 1 "};
-211                 \}
+171                                        \{
+172     \textcolor{keywordtype}{int} x = 0;
+173     \textcolor{keywordtype}{int} y = 0;
+174     \textcolor{keywordtype}{int} index = 0;
+175 
+176     \textcolor{keywordtype}{int} displayRow = row * 2 + 1;
+177     \textcolor{keywordtype}{int} displayCol = col * 2 + 1;
+178 
+179     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < displayRow; ++i) \{
+180         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < displayCol; ++j) \{
+181             \textcolor{keywordflow}{if} (i % 2 == 0) \{
+182                 \textcolor{keywordflow}{if} (j % 2 == 0)
+183                     cout << \textcolor{stringliteral}{" "};
+184                 \textcolor{keywordflow}{else}
+185                     cout << \textcolor{stringliteral}{"---"};
+186             \} \textcolor{keywordflow}{else} \{
+187                 \textcolor{keywordflow}{if} (j % 2 == 0) \{
+188                     cout << \textcolor{stringliteral}{"|"};
+189                 \} \textcolor{keywordflow}{else} \{
+190                     x = i/2;
+191                     y = j/2;
+192 
+193                     index = (x * col + y + 1);
+194 
+195                     \textcolor{keywordflow}{if} ((index == startIdx) && (index == goalIdx))
+196                         cout << \textcolor{stringliteral}{"S/G"};
+197                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == startIdx)
+198                         cout << \textcolor{stringliteral}{" S "};
+199                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == goalIdx)
+200                         cout << \textcolor{stringliteral}{" G "};
+201                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isInPath(index, path))
+202                         cout << \textcolor{stringliteral}{" * "};
+203                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mapArray[index-1] == numeric\_limits<int>::max())
+204                         cout << \textcolor{stringliteral}{" O "};
+205                     \textcolor{keywordflow}{else}
+206                         cout << \textcolor{stringliteral}{"   "};
+207                 \}
+208             \}
+209         \}
+210         cout << endl;
+211     \}
 212 
-213             \}
-214         \}
-215         cout << endl;
-216     \}
-217 
-218     \textcolor{keywordflow}{return};
-219 \}
+213     \textcolor{keywordflow}{return};
+214 \}
 \end{DoxyCode}
 \hypertarget{classMap_a88d24c08a4669040d7de6bd5f6272862}{\index{Map@{Map}!get\-Col@{get\-Col}}
 \index{get\-Col@{get\-Col}!Map@{Map}}
@@ -307,7 +313,7 @@ number of columns in map in integer
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-128 \{ \textcolor{keywordflow}{return} col; \}
+137 \{ \textcolor{keywordflow}{return} col; \}
 \end{DoxyCode}
 \hypertarget{classMap_ad5c4312f11909eafc091715686b6ceda}{\index{Map@{Map}!get\-Map@{get\-Map}}
 \index{get\-Map@{get\-Map}!Map@{Map}}
@@ -330,7 +336,7 @@ pointer to vector int of map array
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-146 \{ \textcolor{keywordflow}{return} &mapArray; \}
+155 \{ \textcolor{keywordflow}{return} &mapArray; \}
 \end{DoxyCode}
 \hypertarget{classMap_a4f9142718a50c64152465aacc1033f26}{\index{Map@{Map}!get\-Move\-Dir@{get\-Move\-Dir}}
 \index{get\-Move\-Dir@{get\-Move\-Dir}!Map@{Map}}
@@ -353,7 +359,7 @@ pointer to int of moving direction array
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-155 \{ \textcolor{keywordflow}{return} moveDirection; \}
+164 \{ \textcolor{keywordflow}{return} moveDirection; \}
 \end{DoxyCode}
 \hypertarget{classMap_a04501949c81ac8dd6a7aeaca908fe969}{\index{Map@{Map}!get\-Num\-Dir@{get\-Num\-Dir}}
 \index{get\-Num\-Dir@{get\-Num\-Dir}!Map@{Map}}
@@ -376,7 +382,7 @@ number of moving directions of a node in integer
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-137 \{ \textcolor{keywordflow}{return} numDir; \}
+146 \{ \textcolor{keywordflow}{return} numDir; \}
 \end{DoxyCode}
 \hypertarget{classMap_a80e0ea134ccb9a22092ce4c520063cd2}{\index{Map@{Map}!get\-Row@{get\-Row}}
 \index{get\-Row@{get\-Row}!Map@{Map}}
@@ -399,7 +405,7 @@ number of rows in map in integer
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-119 \{ \textcolor{keywordflow}{return} row; \}
+128 \{ \textcolor{keywordflow}{return} row; \}
 \end{DoxyCode}
 \hypertarget{classMap_a43ce2c046c7908d95e06bd29182ac6bf}{\index{Map@{Map}!save\-Map@{save\-Map}}
 \index{save\-Map@{save\-Map}!Map@{Map}}
@@ -423,45 +429,40 @@ true is output map is successful, false otherwise
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-107                                                       \{
-108     ofstream outputFs;
-109     \textcolor{keywordtype}{int} i = 0;
-110     \textcolor{keywordtype}{int} j = 0;
-111     \textcolor{keywordtype}{int} index = 0;
-112 
-113     outputFs.open(outputFile);
+105                                                       \{
+106     ofstream outputFs;
+107 
+108     outputFs.open(outputFile);
+109 
+110     \textcolor{keywordflow}{if} (outputFs.is\_open()) \{
+111         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < row; ++i) \{
+112             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < col; ++j) \{
+113                 \textcolor{keywordtype}{int} index = i * col + j + 1;
 114 
-115     \textcolor{keywordflow}{if} (outputFs.is\_open()) \{
-116 
-117         \textcolor{keywordflow}{for} (i = 0; i < row; ++i) \{
-118             \textcolor{keywordflow}{for} (j = 0; j < col; ++j) \{
-119 
-120                 index = i * row + j + 1;
-121 
-122                 \textcolor{keywordflow}{if} (index == startIdx)
-123                     outputFs << \textcolor{stringliteral}{"S"};
-124                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == goalIdx)
-125                     outputFs << \textcolor{stringliteral}{"G"};
-126                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isInPath(index, path))
-127                     outputFs << \textcolor{stringliteral}{"*"};
-128                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mapArray[index-1] == std::numeric\_limits<int>::max())
-129                     outputFs << \textcolor{stringliteral}{"O"};
-130                 \textcolor{keywordflow}{else}
-131                     outputFs << \textcolor{stringliteral}{"1"};
+115                 \textcolor{keywordflow}{if} (index == startIdx)
+116                     outputFs << \textcolor{stringliteral}{"S"};
+117                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (index == goalIdx)
+118                     outputFs << \textcolor{stringliteral}{"G"};
+119                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (isInPath(index, path))
+120                     outputFs << \textcolor{stringliteral}{"*"};
+121                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mapArray[index-1] == numeric\_limits<int>::max())
+122                     outputFs << \textcolor{stringliteral}{"O"};
+123                 \textcolor{keywordflow}{else}
+124                     outputFs << \textcolor{stringliteral}{" "};
+125 
+126 
+127                 \textcolor{keywordflow}{if} (j < col-1)
+128                     outputFs << \textcolor{stringliteral}{","};
+129             \}
+130             outputFs << endl;
+131         \}
 132 
-133 
-134                 \textcolor{keywordflow}{if} (j < col-1)
-135                     outputFs << \textcolor{stringliteral}{","};
-136             \}
-137             outputFs << endl;
-138         \}
-139 
-140         outputFs.close();
-141         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-142     \}
-143 
-144     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-145 \}
+133         outputFs.close();
+134         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+135     \}
+136 
+137     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+138 \}
 \end{DoxyCode}
 \hypertarget{classMap_aa64162f950a1936e1eaf42609e091524}{\index{Map@{Map}!set\-Start\-Goal@{set\-Start\-Goal}}
 \index{set\-Start\-Goal@{set\-Start\-Goal}!Map@{Map}}
@@ -487,31 +488,34 @@ true if start, goal are within map range and are not obstacle nodes, false other
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-148                                    \{
-149     \textcolor{keywordtype}{int} minIndex = 1;
-150     \textcolor{keywordtype}{int} maxIndex = row * col;
-151     \textcolor{keywordtype}{int} index = 0;
-152 
-153     \textcolor{keywordflow}{if} ((s < minIndex) || (s > maxIndex))
-154         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-155 
-156     \textcolor{keywordflow}{if} (g < minIndex || g > maxIndex)
-157         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-158 
-159     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& i : mapArray) \{
-160         \textcolor{keywordflow}{if} (i == std::numeric\_limits<int>::max()) \{
-161             index = &i - &mapArray[0] - 1;
-162             \textcolor{keywordflow}{if} ((s == index) || (g == index)) \{
-163                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-164             \}
-165         \}
-166     \}
-167 
-168     startIdx = s;
-169     goalIdx = g;
-170 
-171     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-172 \}
+141                                    \{
+142     \textcolor{keywordtype}{int} minIndex = 1;
+143     \textcolor{keywordtype}{int} maxIndex = row * col;
+144     \textcolor{keywordtype}{int} index = 0;
+145 
+146 
+147     \textcolor{keywordflow}{if} ((s < minIndex) || (s > maxIndex))
+148         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+149 
+150 
+151     \textcolor{keywordflow}{if} (g < minIndex || g > maxIndex)
+152         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+153 
+154     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& i : mapArray) \{
+155         \textcolor{keywordflow}{if} (i == numeric\_limits<int>::max()) \{
+156             index = &i - &mapArray[0];
+157 
+158             \textcolor{keywordflow}{if} ((s == (index + 1)) || (g == (index + 1))) \{
+159                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+160             \}
+161         \}
+162     \}
+163 
+164     startIdx = s;
+165     goalIdx = g;
+166 
+167     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+168 \}
 \end{DoxyCode}
 
 

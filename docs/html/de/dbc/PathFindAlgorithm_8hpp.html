@@ -96,6 +96,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <p>Definition of class PathFindAlgorithm.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;vector&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
 <code>#include &quot;<a class="el" href="../../d7/dc6/Node_8hpp_source.html">Node.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../dc/d91/Edge_8hpp_source.html">Edge.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="../../dc/dbe/Map_8hpp_source.html">Map.hpp</a>&quot;</code><br/>
@@ -110,10 +111,14 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a766bf3e65d7bed0d203a77d49e17d66b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dbc/PathFindAlgorithm_8hpp.html#a766bf3e65d7bed0d203a77d49e17d66b">DEFAUTL_INPUT_MAP</a>&#160;&#160;&#160;&quot;../data/test.csv&quot;</td></tr>
-<tr class="separator:a766bf3e65d7bed0d203a77d49e17d66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaac5b5627661fef63e64ce61808f30f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dbc/PathFindAlgorithm_8hpp.html#aaac5b5627661fef63e64ce61808f30f8">DEFAUTL_OUTPUT_MAP</a>&#160;&#160;&#160;&quot;../data/testout.csv&quot;</td></tr>
+<tr class="memitem:a756134fa7d22682cd49c982fc9f7d574"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dbc/PathFindAlgorithm_8hpp.html#a756134fa7d22682cd49c982fc9f7d574">DEFAUTL_TEST_MAP</a>&#160;&#160;&#160;&quot;../data/test.csv&quot;</td></tr>
+<tr class="separator:a756134fa7d22682cd49c982fc9f7d574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc18846efd2be281ed37ed05956a6de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dbc/PathFindAlgorithm_8hpp.html#a3fc18846efd2be281ed37ed05956a6de">DEFAUTL_DEFAULT_MAP</a>&#160;&#160;&#160;&quot;../data/default.csv&quot;</td></tr>
+<tr class="separator:a3fc18846efd2be281ed37ed05956a6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaac5b5627661fef63e64ce61808f30f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dbc/PathFindAlgorithm_8hpp.html#aaac5b5627661fef63e64ce61808f30f8">DEFAUTL_OUTPUT_MAP</a>&#160;&#160;&#160;&quot;../data/out.csv&quot;</td></tr>
 <tr class="separator:aaac5b5627661fef63e64ce61808f30f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa4f0a512b2d876f34e9aec1765d791"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dbc/PathFindAlgorithm_8hpp.html#a2fa4f0a512b2d876f34e9aec1765d791">DEFAUTL_OUTPUT_PATH</a>&#160;&#160;&#160;&quot;../data/path.txt&quot;</td></tr>
+<tr class="separator:a2fa4f0a512b2d876f34e9aec1765d791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Definition of class PathFindAlgorithm. </p>
@@ -121,12 +126,12 @@ Macros</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Huei Tzu Tsai </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>03/07/2017 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a766bf3e65d7bed0d203a77d49e17d66b"></a>
+<a class="anchor" id="a3fc18846efd2be281ed37ed05956a6de"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEFAUTL_INPUT_MAP&#160;&#160;&#160;&quot;../data/test.csv&quot;</td>
+          <td class="memname">#define DEFAUTL_DEFAULT_MAP&#160;&#160;&#160;&quot;../data/default.csv&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -138,7 +143,31 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEFAUTL_OUTPUT_MAP&#160;&#160;&#160;&quot;../data/testout.csv&quot;</td>
+          <td class="memname">#define DEFAUTL_OUTPUT_MAP&#160;&#160;&#160;&quot;../data/out.csv&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2fa4f0a512b2d876f34e9aec1765d791"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAUTL_OUTPUT_PATH&#160;&#160;&#160;&quot;../data/path.txt&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a756134fa7d22682cd49c982fc9f7d574"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAUTL_TEST_MAP&#160;&#160;&#160;&quot;../data/test.csv&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -148,7 +177,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 11 2017 17:40:33 for Path Finding Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 12 2017 01:38:35 for Path Finding Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
