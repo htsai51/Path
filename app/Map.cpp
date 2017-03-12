@@ -37,17 +37,16 @@
  *  @date   03/07/2017
 */
 
+
+#include <string.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <sstream>
 #include <memory>
 #include <limits>
-#include <string.h>
 
 #include "Map.hpp"
-
 
 using std::cout;
 using std::endl;
@@ -56,13 +55,12 @@ using std::vector;
 using std::ifstream;
 using std::ofstream;
 using std::getline;
-
+using std::numeric_limits;
 
 bool Map::createMap(string inputFile) {
     ifstream inputFs;
     string line;
     string temp;
-    int cnt = 0;
 
     // initialize param
     mapArray.clear();
@@ -74,12 +72,13 @@ bool Map::createMap(string inputFile) {
 
     if (inputFs.is_open()) {
         while (getline(inputFs, line)) {
+            int cnt = 0;
             std::istringstream linestream(line);
 
             while (getline(linestream, temp, ',')) {
                 ++cnt;
                 if ((temp == "o") || (temp == "O")) {
-                    mapArray.emplace_back(std::numeric_limits<int>::max());
+                    mapArray.emplace_back(numeric_limits<int>::max());
                 } else {
                     mapArray.emplace_back(std::stoi(temp));
                 }
@@ -89,7 +88,6 @@ bool Map::createMap(string inputFile) {
             cnt = 0;
 
             ++row;
-
         }
 
         // cout << "number of cols: " << col << endl;
@@ -106,18 +104,13 @@ bool Map::createMap(string inputFile) {
 
 bool Map::saveMap(string outputFile, vector<int> &path) {
     ofstream outputFs;
-    int i = 0;
-    int j = 0;
-    int index = 0;
 
     outputFs.open(outputFile);
 
     if (outputFs.is_open()) {
-
-        for (i = 0; i < row; ++i) {
-            for (j = 0; j < col; ++j) {
-
-                index = i * row + j + 1;
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                int index = i * row + j + 1;
 
                 if (index == startIdx)
                     outputFs << "S";
@@ -125,7 +118,7 @@ bool Map::saveMap(string outputFile, vector<int> &path) {
                     outputFs << "G";
                 else if (isInPath(index, path))
                     outputFs << "*";
-                else if (mapArray[index-1] == std::numeric_limits<int>::max())
+                else if (mapArray[index-1] == numeric_limits<int>::max())
                     outputFs << "O";
                 else
                     outputFs << "1";
@@ -157,7 +150,7 @@ bool Map::setStartGoal(int s, int g) {
         return false;
 
     for (auto& i : mapArray) {
-        if (i == std::numeric_limits<int>::max()) {
+        if (i == numeric_limits<int>::max()) {
             index = &i - &mapArray[0] - 1;
             if ((s == index) || (g == index)) {
                 return false;
@@ -188,9 +181,9 @@ void Map::displayPath(vector<int> &path) {
                 else
                     cout << "---";
             } else {
-                if (j % 2 == 0)
+                if (j % 2 == 0) {
                     cout << "|";
-                else {
+                } else {
                     x = i/2;
                     y = j/2;
 
@@ -204,12 +197,11 @@ void Map::displayPath(vector<int> &path) {
                         cout << " G ";
                     else if (isInPath(index, path))
                         cout << " * ";
-                    else if (mapArray[index-1] == std::numeric_limits<int>::max())
+                    else if (mapArray[index-1] == numeric_limits<int>::max())
                         cout << " O ";
                     else
                         cout << " 1 ";
                 }
-
             }
         }
         cout << endl;
@@ -236,20 +228,19 @@ void Map::displayMap(void) {
                 else
                     cout << "---";
             } else {
-                if (j % 2 == 0)
+                if (j % 2 == 0) {
                     cout << "|";
-                else {
+                } else {
                     x = i/2;
                     y = j/2;
 
                     index = (x * col + y + 1);
 
-                    if (mapArray[index-1] == std::numeric_limits<int>::max())
+                    if (mapArray[index-1] == numeric_limits<int>::max())
                         cout << " O ";
                     else
                         cout << std::setw(3) << index;
                 }
-
             }
         }
         cout << endl;
@@ -260,7 +251,6 @@ void Map::displayMap(void) {
 
 
 bool Map::isInPath(int index, vector<int> &path) {
-
     for (auto& n : path) {
         if (n == index)
             return true;

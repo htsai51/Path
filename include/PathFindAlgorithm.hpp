@@ -57,7 +57,7 @@ class PathFindingAlgorithm {
       *   @param  none
       *   @return none
      */
-     PathFindingAlgorithm() {}
+     PathFindingAlgorithm() : start(0), goal(0), totalCost(0), steps(0) {}
 
 
      /**

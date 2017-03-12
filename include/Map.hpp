@@ -51,7 +51,16 @@ class Map {
       *   @return none
      */
      Map() : startIdx(0), goalIdx(0),
-             row(0), col(0), numDir(8) {}
+             row(0), col(0), numDir(8),
+             moveDirection {-1, -1,              ///< top left
+                             0, -1,              ///< up
+                             1, -1,              ///< top right
+                            -1,  0,              ///< left
+                             1,  0,              ///< right
+                            -1,  1,              ///< bottom left
+                             0,  1,              ///< down
+                             1,  1               ///< bottom right
+                           } {}
 
 
      /**
@@ -165,16 +174,7 @@ class Map {
 
      std::vector<int> mapArray;                    ///< 2D map array
 
-     int moveDirection[16] =                       ///< moving direction
-                             {-1, -1,              ///< top left
-                               0, -1,              ///< up
-                               1, -1,              ///< top right
-                              -1,  0,              ///< left
-                               1,  0,              ///< right
-                              -1,  1,              ///< bottom left
-                               0,  1,              ///< down
-                               1,  1               ///< bottom right
-                             };
+     int moveDirection[16];                        ///< moving direction
 
      /**
       *   @brief  Check if index is in shortest path

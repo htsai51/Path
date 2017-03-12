@@ -31,12 +31,12 @@
  *  @date   03/10/2017
 */
 
-#include <iostream>
-#include <vector>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include "AStarAlgorithm.hpp"
+#include <iostream>
+#include <vector>
 
+#include "AStarAlgorithm.hpp"
 
 using std::vector;
 

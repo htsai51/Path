@@ -58,10 +58,8 @@ using std::vector;
 int main(void) {
     int start = 1;
     int goal = 2;
-    double weight = 1.0;
     vector<int> path;
     AStarAlgorithm aStar;
-    
 
     aStar.PathFindingAlgorithm::init();
 
@@ -75,8 +73,11 @@ int main(void) {
     cout << "goal is " << goal << endl;
 
     if (aStar.PathFindingAlgorithm::setParam(start, goal) == false) {
-        cout << "Start or goal is out of map or obstacle, please try again." << endl;
+        cout << "Start or goal is out of map or obstacle, please try again."
+             << endl;
     } else {
+        double weight = 1.0;
+
         if (aStar.computPath(weight)) {
             path = aStar.PathFindingAlgorithm::getPath();
 
@@ -89,8 +90,8 @@ int main(void) {
 
             cout << endl;
 
-            cout << "Total cost is " << aStar.PathFindingAlgorithm::getTotalCost()
-                 << endl;
+            cout << "Total cost is "
+                 << aStar.PathFindingAlgorithm::getTotalCost() << endl;
 
             cout << "Total step is " << aStar.PathFindingAlgorithm::getSteps()
                  << endl;
