@@ -51,9 +51,6 @@ using std::list;
 
 
 bool AStarAlgorithm::computPath(double weight) {
-    int nStep = 0;
-
-
     // cout << "*** A Star Path Searching Algorithm ***" << endl;
 
     // initialize
@@ -94,10 +91,7 @@ bool AStarAlgorithm::computPath(double weight) {
 
         // check if current equals to goal
         if (curNode->getIndex() == goal) {
-            nStep = closedSet.size();
             totalCost = curNode->getEstimateCost();
-            steps = nStep;
-            // cout << "found goal in " << steps << " steps" << endl;
             // cout << "cost is " << totalCost << endl;
             reconstructPath(curNode);
             return true;

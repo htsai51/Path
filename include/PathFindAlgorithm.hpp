@@ -59,7 +59,7 @@ class PathFindingAlgorithm {
       *   @param  none
       *   @return none
      */
-     PathFindingAlgorithm() : start(0), goal(0), totalCost(0), steps(0) {}
+     PathFindingAlgorithm() : start(0), goal(0), totalCost(0) {}
 
 
      /**
@@ -160,14 +160,6 @@ class PathFindingAlgorithm {
      double getTotalCost()
                 { return totalCost; }
 
-     /**
-      *   @brief  Get steps taken to find the shortest path
-      *
-      *   @param  none
-      *   @return steps taken to find shortest path in int
-     */
-     int getSteps() { return steps; }
-
 
  protected:
      std::vector<Node> nodes;               ///< vector of nodes
@@ -175,7 +167,6 @@ class PathFindingAlgorithm {
      int start;                             ///< start index
      int goal;                              ///< goal index
      double totalCost;                      ///< cost of shortest path
-     int steps;                             ///< steps to find shortest path
      std::vector<int> path;                 ///< indices of shortest path
 
  private:

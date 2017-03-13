@@ -5,51 +5,63 @@
 
 ## Overview
 
-This is a simple global planner C++ project.  It assumes completely known environment 
-and implements A Star algorithm to compute the shortest path using euclidean distance as 
-heuristic estimation function.  It is designed so it could be modified/integrated to work in 
-a robotic system to plan path under known environment (e.g. a warehouse).
+This is a simple global planner C++ project.  
 
-Features:
+
+The purpose of this project is to design a path planning module that can be integrated to work in 
+a robotic system to navigate autonomously in a known environment (e.g. a warehouse).  A completely 
+known environment is assumed in this project and A Star algorithm is implemented to compute the 
+shortest path using euclidean distance as heuristic estimation function.  
+
+
+Feature:
 * Shortest path finding using A Star algorithm
-* Output shortest path on screen or to a file
 
 
-This project chooses to implement A Star algorithm for path planning in a known environment due to its
+This project chose to implement A Star algorithm for path planning in a known environment due to its
 efficiency and correctness.  Comparing to Dijkstra's algorithm which guarantees to find shortest path, 
 A Star algorithm uses a heuristic estimation to searh for shortest path and is much faster than Dijkstra's 
-algorithm.  Here is an example using the demo application:
+algorithm.  Here is an example of performance comparison of A Star and Dijkstra's algorithm:
 
 - Running demo with default map.
-- Select start node a 1 and goal node as 338.
-- A Star computes the same cost (32) of shortest path as Dijkstra's algorithm but less steps are used (111 v.s. 254).
+- Select start node a 144 and goal node as 316.
+- A Star computed the same cost (16) of shortest path as Dijkstra's algorithm but used significantly less time.
 
 ```bash
-start is 1
-goal is 338
-Dijkstra's Shortest Path: 1 2 3 4 5 6 7 8 9 10 37 64 91 117 144 171 197 224 251 278 305 306 307 308 309 310 311 338
-Dijkstra's total cost is 32
-Dijkstra's total step is 254
-A Star Shortest Path: 1 2 3 4 5 6 33 34 35 36 63 64 91 118 145 172 199 226 252 278 305 306 307 308 309 310 311 338
-A Star total cost is 32
-A Star total step is 111
+Please enter start, goal indices
+144
+316
+
+Dijkstra's Shortest Path: 144 171 197 222 221 246 271 296 295 294 293 292 291 316
+Dijkstra's total cost is 16
+Dijkstra's search time is 0.023648 seconds
+
+A Star Shortest Path: 144 171 197 222 221 246 271 296 295 294 293 292 291 316
+A Star total cost is 16
+A Star search time is 0.00816 seconds
 ```
+
 
 This project also implements a simple unit test program which utilize googletest framework to 
 perform tests on module function.  Test covers setting module parameters, computing shortest path,
 correctiness of shortest path, and robustness of computing shortest path.
 
+
 Finally, the implementation process of this project follows SIP model in software enginering.  Product backlog 
 is cateogorized into three parts.  Each iteration is sub-tasked and each task is recorded with time 
-or code change size (if applicable).
+or code commit size (if applicable).
 
 1. Implementation of Main Path Finding Algorithms
 2. Implementation of Test Map, Demo, and Unit Tests
 3. Code Optimization & Program Wrapup
 
+(To include estimation time v.s. total cost time)??
+
 Backlogs (product backlog, iteration logs, time logs) can be found at [BackLogs][reference-id-for-backlogs].
 
 [reference-id-for-backlogs]: https://docs.google.com/a/terpmail.umd.edu/spreadsheets/d/11Ztb9IavDcHXACZNydmyZ2S24rh_3yXYII_1yvCACME/edit?usp=sharing
+
+UML class/activity diagrams can be found in git under ./UML folder.
 
 
 
@@ -78,9 +90,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
+
 ## Dependencies
 
 None
+
 
 ## How to build
 
@@ -94,28 +108,36 @@ cmake ..
 make
 ```
 
+
 ## How to run demo
 
-The main program takes in a csv file (if not specified, ../data/default.csv 
-will be used) as known environment and finds a feasible shortest path given a start and a goal indices.
+The main program takes in a csv file (press ctl+d to use default) as 
+known environment and finds a feasible shortest path given a start and a goal indices.
 
-The input map is a NxM matrix with "1" indicating feasible path node and "O" indicating 
+The input map is a NxM matrix with "1" indicating free node and "O" indicating 
 obstacle nodes that cannot be crossed.  It is assumed that there are 8 moving directions 
-with unit movement cost except for diagonal movement which costs 1.5x more than straight 
-movement (i.e. up, down, right, left).
+with unit movement cost except for diagonal movement which costs 1.5x more than horizontal/vertical  
+movement (i.e. up, down, right, left).  User can supply his/her own map using the rules specified.
 
-In the demo, user can visualize the map with indices and choose start, goal indices for the program 
-to compute the shortest path.  The output path can be displayed on screen or output to a 
-CSV and text file as chosen by user.
+In the demo, user can visualize the map with indices  (please maximize console window) and 
+choose start, goal indices for the program to compute the shortest path.  The output path can 
+be displayed on screen or output to a CSV and text file as chosen by user.
 
 - To start the program, in your ./build directory
 
 ```bash
 ./app/shell-app
 ```
+
 - Follow onscreen instructions to run the demo
-- Note that default map is storead at ../data/default.csv.  If you attemp to run demo
+- Note that default map is stored at ../data/default.csv.  If you attempt to run demo
 from a different root, please specify absolute path
+- The resulting shortest path indices will be outputed on screen.
+- More options can be found to output path as:
+    * 0: View path in map on screen
+    * 1: Save path into csv (path in map at ../data/out.csv) and text file (path only at ../data/path.txt)
+    * 2: Both of above
+
 
 ## How to run unit tests
 
@@ -124,6 +146,7 @@ from a different root, please specify absolute path
 ```bash
 ./test/cpp-test
 ```
+
 
 ## How to generate doxygen documentation
 

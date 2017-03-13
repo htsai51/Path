@@ -40,6 +40,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include "AStarAlgorithm.hpp"
 
 using std::cout;
@@ -64,6 +65,9 @@ int main(void) {
     double weight = 0.0;
     vector<int> path;
     AStarAlgorithm aStar;
+    std::clock_t begin;
+    std::clock_t end;
+    double elapsed_secs = 0;
 
     cout << "Please enter map path (or ctl+d to use default):" << endl;
 
@@ -86,9 +90,6 @@ int main(void) {
     cin >> start >> goal;
     cin.clear();
 
-    cout << "start is " << start << endl;
-    cout << "goal is " << goal << endl;
-
     if (aStar.PathFindingAlgorithm::setParam(start, goal) == false) {
         cout << "Start or goal is out of map or obstacle, please try again."
              << endl;
@@ -96,14 +97,17 @@ int main(void) {
     }
 
     weight = 0.0;
-
+    begin = std::clock();
     if (!aStar.computPath(weight)) {
         cout << "Fail to find path" << endl;
         return -1;
     }
+    end = std::clock();
+    elapsed_secs = static_cast<double>(end - begin) / CLOCKS_PER_SEC;
+
 
     path = aStar.PathFindingAlgorithm::getPath();
-    cout << "Dijkstra's Shortest Path:";
+    cout << endl << "Dijkstra's Shortest Path:";
 
     // save into vector from start to goal
     for (auto& n : path) {
@@ -114,8 +118,7 @@ int main(void) {
     cout << "Dijkstra's total cost is "
          << aStar.PathFindingAlgorithm::getTotalCost() << endl;
 
-    cout << "Dijkstra's total step is "
-         << aStar.PathFindingAlgorithm::getSteps() << endl;
+    cout << "Dijkstra's search time is " << elapsed_secs << " seconds" << endl;
 
     // Init again to clear variables
     aStar.PathFindingAlgorithm::init(mapFile);
@@ -123,13 +126,16 @@ int main(void) {
 
     // Compute using A star
     weight = 1.0;
+    begin = std::clock();
     if (!aStar.computPath(weight)) {
         cout << "Fail to find path" << endl;
         return -1;
     }
+    end = std::clock();
+    elapsed_secs = static_cast<double>(end - begin) / CLOCKS_PER_SEC;
 
     path = aStar.PathFindingAlgorithm::getPath();
-    cout << "A Star Shortest Path:";
+    cout << endl << "A Star Shortest Path:";
 
     // save into vector from start to goal
     for (auto& n : path) {
@@ -140,9 +146,9 @@ int main(void) {
     cout << "A Star total cost is "
          << aStar.PathFindingAlgorithm::getTotalCost() << endl;
 
-    cout << "A Star total step is " << aStar.PathFindingAlgorithm::getSteps()
-         << endl;
+    cout << "A Star search time is " << elapsed_secs << " seconds" << endl;
 
+    cout << endl;
     cout << "Output A Star Path Option:" << endl;
     cout << "0: path in map on screen" << endl;
     cout << "1: path output to " << DEFAUTL_OUTPUT_PATH << endl;
@@ -152,6 +158,7 @@ int main(void) {
     cin >> option;
     cin.clear();
 
+    cout << endl << "S: Start, G: Goal, *: Path" << endl;
     aStar.PathFindingAlgorithm::outputPath(option);
 
     return 0;

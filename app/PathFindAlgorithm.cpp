@@ -60,7 +60,6 @@ bool PathFindingAlgorithm::init(string input) {
         path.clear();
 
         totalCost = 0;
-        steps = 0;
 
         buildGraph();
         return true;
