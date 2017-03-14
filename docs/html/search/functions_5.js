@@ -13,6 +13,5 @@ var searchData=
   ['getpos',['getPos',['../df/dd0/classNode.html#a48751434693e836ed19f0cd8184ffdf9',1,'Node']]],
   ['getrow',['getRow',['../d7/db0/classMap.html#a80e0ea134ccb9a22092ce4c520063cd2',1,'Map']]],
   ['getstartindex',['getStartIndex',['../d8/d8c/classEdge.html#a348144efacdd4e840951e3563c8d6efa',1,'Edge']]],
-  ['getsteps',['getSteps',['../d7/df1/classPathFindingAlgorithm.html#a6d2b42a027cd39039861f148cbf624f0',1,'PathFindingAlgorithm']]],
   ['gettotalcost',['getTotalCost',['../d7/df1/classPathFindingAlgorithm.html#a0c0eaaa84d7739a3c09ad012b37e8bd9',1,'PathFindingAlgorithm']]]
 ];

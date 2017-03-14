@@ -4,6 +4,7 @@
 {\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include $<$string$>$}\\*
 {\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
 {\ttfamily \#include \char`\"{}A\-Star\-Algorithm.\-hpp\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -22,104 +23,112 @@ int \hyperlink{app_2main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
 )}}\label{app_2main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}
 
 \begin{DoxyCode}
-59                \{
-60     \textcolor{keywordtype}{string} mapFile;
-61     \textcolor{keywordtype}{int} start = 1;
-62     \textcolor{keywordtype}{int} goal = 2;
-63     \textcolor{keywordtype}{int} option = 0;
-64     \textcolor{keywordtype}{double} weight = 0.0;
-65     vector<int> path;
-66     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
-67 
-68     cout << \textcolor{stringliteral}{"Please enter map path (or ctl+d to use default):"} << endl;
-69 
-70     cin >> mapFile;
-71     cin.clear();
-72 
-73     \textcolor{keywordflow}{if} (mapFile.empty())
-74         mapFile = \hyperlink{PathFindAlgorithm_8hpp_a3fc18846efd2be281ed37ed05956a6de}{DEFAUTL\_DEFAULT\_MAP};
-75 
-76     \textcolor{keywordflow}{if} (!aStar.PathFindingAlgorithm::init(mapFile)) \{
-77         cout << \textcolor{stringliteral}{"Fail to read map.  Please try again or use default map."}
-78              << endl;
-79         \textcolor{keywordflow}{return} -1;
-80     \}
-81 
-82     aStar.PathFindingAlgorithm::outputMap();
-83 
-84     cout << \textcolor{stringliteral}{"Please enter start, goal indices"} << endl;
+60                \{
+61     \textcolor{keywordtype}{string} mapFile;
+62     \textcolor{keywordtype}{int} start = 1;
+63     \textcolor{keywordtype}{int} goal = 2;
+64     \textcolor{keywordtype}{int} option = 0;
+65     \textcolor{keywordtype}{double} weight = 0.0;
+66     vector<int> path;
+67     \hyperlink{classAStarAlgorithm}{AStarAlgorithm} aStar;
+68     std::clock\_t begin;
+69     std::clock\_t end;
+70     \textcolor{keywordtype}{double} elapsed\_secs = 0;
+71 
+72     cout << \textcolor{stringliteral}{"Please enter map path (or ctl+d to use default):"} << endl;
+73 
+74     cin >> mapFile;
+75     cin.clear();
+76 
+77     \textcolor{keywordflow}{if} (mapFile.empty())
+78         mapFile = \hyperlink{PathFindAlgorithm_8hpp_a3fc18846efd2be281ed37ed05956a6de}{DEFAUTL\_DEFAULT\_MAP};
+79 
+80     \textcolor{keywordflow}{if} (!aStar.PathFindingAlgorithm::init(mapFile)) \{
+81         cout << \textcolor{stringliteral}{"Fail to read map.  Please try again or use default map."}
+82              << endl;
+83         \textcolor{keywordflow}{return} -1;
+84     \}
 85 
-86     cin >> start >> goal;
-87     cin.clear();
-88 
-89     cout << \textcolor{stringliteral}{"start is "} << start << endl;
-90     cout << \textcolor{stringliteral}{"goal is "} << goal << endl;
-91 
-92     \textcolor{keywordflow}{if} (aStar.PathFindingAlgorithm::setParam(start, goal) == \textcolor{keyword}{false}) \{
-93         cout << \textcolor{stringliteral}{"Start or goal is out of map or obstacle, please try again."}
-94              << endl;
-95         \textcolor{keywordflow}{return} -1;
-96     \}
-97 
-98     weight = 0.0;
-99 
-100     \textcolor{keywordflow}{if} (!aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(weight)) \{
-101         cout << \textcolor{stringliteral}{"Fail to find path"} << endl;
-102         \textcolor{keywordflow}{return} -1;
-103     \}
-104 
-105     path = aStar.PathFindingAlgorithm::getPath();
-106     cout << \textcolor{stringliteral}{"Dijkstra's Shortest Path:"};
+86     aStar.PathFindingAlgorithm::outputMap();
+87 
+88     cout << \textcolor{stringliteral}{"Please enter start, goal indices"} << endl;
+89 
+90     cin >> start >> goal;
+91     cin.clear();
+92 
+93     \textcolor{keywordflow}{if} (aStar.PathFindingAlgorithm::setParam(start, goal) == \textcolor{keyword}{false}) \{
+94         cout << \textcolor{stringliteral}{"Start or goal is out of map or obstacle, please try again."}
+95              << endl;
+96         \textcolor{keywordflow}{return} -1;
+97     \}
+98 
+99     weight = 0.0;
+100     begin = std::clock();
+101     \textcolor{keywordflow}{if} (!aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(weight)) \{
+102         cout << \textcolor{stringliteral}{"Fail to find path"} << endl;
+103         \textcolor{keywordflow}{return} -1;
+104     \}
+105     end = std::clock();
+106     elapsed\_secs = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(end - begin) / CLOCKS\_PER\_SEC;
 107 
-108     \textcolor{comment}{// save into vector from start to goal}
-109     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : path) \{
-110         cout <<  \textcolor{stringliteral}{" "} << n;
-111     \}
-112     cout << endl;
-113 
-114     cout << \textcolor{stringliteral}{"Dijkstra's total cost is "}
-115          << aStar.PathFindingAlgorithm::getTotalCost() << endl;
-116 
-117     cout << \textcolor{stringliteral}{"Dijkstra's total step is "}
-118          << aStar.PathFindingAlgorithm::getSteps() << endl;
-119 
-120     \textcolor{comment}{// Init again to clear variables}
-121     aStar.PathFindingAlgorithm::init(mapFile);
-122     path.clear();
-123 
-124     \textcolor{comment}{// Compute using A star}
-125     weight = 1.0;
-126     \textcolor{keywordflow}{if} (!aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(weight)) \{
-127         cout << \textcolor{stringliteral}{"Fail to find path"} << endl;
-128         \textcolor{keywordflow}{return} -1;
-129     \}
-130 
-131     path = aStar.PathFindingAlgorithm::getPath();
-132     cout << \textcolor{stringliteral}{"A Star Shortest Path:"};
-133 
-134     \textcolor{comment}{// save into vector from start to goal}
-135     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : path) \{
-136         cout <<  \textcolor{stringliteral}{" "} << n;
-137     \}
-138     cout << endl;
+108 
+109     path = aStar.PathFindingAlgorithm::getPath();
+110     cout << endl << \textcolor{stringliteral}{"Dijkstra's Shortest Path:"};
+111 
+112     \textcolor{comment}{// save into vector from start to goal}
+113     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : path) \{
+114         cout <<  \textcolor{stringliteral}{" "} << n;
+115     \}
+116     cout << endl;
+117 
+118     cout << \textcolor{stringliteral}{"Dijkstra's total cost is "}
+119          << aStar.PathFindingAlgorithm::getTotalCost() << endl;
+120 
+121     cout << \textcolor{stringliteral}{"Dijkstra's search time is "} << elapsed\_secs << \textcolor{stringliteral}{" seconds"} << endl;
+122 
+123     \textcolor{comment}{// Init again to clear variables}
+124     aStar.PathFindingAlgorithm::init(mapFile);
+125     path.clear();
+126 
+127     \textcolor{comment}{// Compute using A star}
+128     weight = 1.0;
+129     begin = std::clock();
+130     \textcolor{keywordflow}{if} (!aStar.\hyperlink{classAStarAlgorithm_af3adf65228c56523489d3bd4e278e66f}{computPath}(weight)) \{
+131         cout << \textcolor{stringliteral}{"Fail to find path"} << endl;
+132         \textcolor{keywordflow}{return} -1;
+133     \}
+134     end = std::clock();
+135     elapsed\_secs = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(end - begin) / CLOCKS\_PER\_SEC;
+136 
+137     path = aStar.PathFindingAlgorithm::getPath();
+138     cout << endl << \textcolor{stringliteral}{"A Star Shortest Path:"};
 139 
-140     cout << \textcolor{stringliteral}{"A Star total cost is "}
-141          << aStar.PathFindingAlgorithm::getTotalCost() << endl;
-142 
-143     cout << \textcolor{stringliteral}{"A Star total step is "} << aStar.PathFindingAlgorithm::getSteps()
-144          << endl;
+140     \textcolor{comment}{// save into vector from start to goal}
+141     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : path) \{
+142         cout <<  \textcolor{stringliteral}{" "} << n;
+143     \}
+144     cout << endl;
 145 
-146     cout << \textcolor{stringliteral}{"Output A Star Path Option:"} << endl;
-147     cout << \textcolor{stringliteral}{"0: path in map on screen"} << endl;
-148     cout << \textcolor{stringliteral}{"1: path output to "} << \hyperlink{PathFindAlgorithm_8hpp_a2fa4f0a512b2d876f34e9aec1765d791}{DEFAUTL\_OUTPUT\_PATH} << endl;
-149     cout << \textcolor{stringliteral}{"   map output to "} << \hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP} << endl;
-150     cout << \textcolor{stringliteral}{"2: both"} << endl;
-151 
-152     cin >> option;
-153     cin.clear();
-154 
-155     aStar.PathFindingAlgorithm::outputPath(option);
-156 
-157     \textcolor{keywordflow}{return} 0;
-158 \}
+146     cout << \textcolor{stringliteral}{"A Star total cost is "}
+147          << aStar.PathFindingAlgorithm::getTotalCost() << endl;
+148 
+149     cout << \textcolor{stringliteral}{"A Star search time is "} << elapsed\_secs << \textcolor{stringliteral}{" seconds"} << endl;
+150 
+151     cout << endl;
+152     cout << \textcolor{stringliteral}{"Output A Star Path Option:"} << endl;
+153     cout << \textcolor{stringliteral}{"0: path in map on screen"} << endl;
+154     cout << \textcolor{stringliteral}{"1: path output to "} << \hyperlink{PathFindAlgorithm_8hpp_a2fa4f0a512b2d876f34e9aec1765d791}{DEFAUTL\_OUTPUT\_PATH} << endl;
+155     cout << \textcolor{stringliteral}{"   map output to "} << \hyperlink{PathFindAlgorithm_8hpp_aaac5b5627661fef63e64ce61808f30f8}{DEFAUTL\_OUTPUT\_MAP} << endl;
+156     cout << \textcolor{stringliteral}{"2: both"} << endl;
+157 
+158     cin >> option;
+159     cin.clear();
+160 
+161     \textcolor{keywordflow}{if} (option == 0 || option == 2)
+162         cout << endl << \textcolor{stringliteral}{"S: Start, G: Goal, *: Path"} << endl;
+163 
+164     aStar.PathFindingAlgorithm::outputPath(option);
+165 
+166     \textcolor{keywordflow}{return} 0;
+167 \}
 \end{DoxyCode}

@@ -7,6 +7,7 @@ Definition of class \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm}.
 
 
 {\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
 {\ttfamily \#include \char`\"{}Path\-Find\-Algorithm.\-hpp\char`\"{}}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
@@ -16,9 +17,9 @@ class \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{AStarAlgorithm_8hpp_a3bd286c26df7f8903336b4b62737a23b}{check\-List} (int, std\-::list$<$ \hyperlink{classNode}{Node} $\ast$ $>$ const \&)
+bool \hyperlink{AStarAlgorithm_8hpp_a1cbf7a807e360f8daf06468217f29333}{check\-List} (int, std\-::list$<$ std\-::shared\-\_\-ptr$<$ \hyperlink{classNode}{Node} $>$$>$ const \&)
 \item 
-bool \hyperlink{AStarAlgorithm_8hpp_a0332537a0869eadf51fac31afb11a034}{compare\-Cost} (\hyperlink{classNode}{Node} $\ast$, \hyperlink{classNode}{Node} $\ast$)
+bool \hyperlink{AStarAlgorithm_8hpp_a9060cc10f060fff684261810228b7a34}{compare\-Cost} (const std\-::shared\-\_\-ptr$<$ \hyperlink{classNode}{Node} $>$ \&, const std\-::shared\-\_\-ptr$<$ \hyperlink{classNode}{Node} $>$ \&)
 \end{DoxyCompactItemize}
 
 
@@ -34,28 +35,19 @@ Huei Tzu Tsai
 
 
 \subsection{Function Documentation}
-\hypertarget{AStarAlgorithm_8hpp_a3bd286c26df7f8903336b4b62737a23b}{\index{A\-Star\-Algorithm.\-hpp@{A\-Star\-Algorithm.\-hpp}!check\-List@{check\-List}}
+\hypertarget{AStarAlgorithm_8hpp_a1cbf7a807e360f8daf06468217f29333}{\index{A\-Star\-Algorithm.\-hpp@{A\-Star\-Algorithm.\-hpp}!check\-List@{check\-List}}
 \index{check\-List@{check\-List}!AStarAlgorithm.hpp@{A\-Star\-Algorithm.\-hpp}}
 \subsubsection[{check\-List}]{\setlength{\rightskip}{0pt plus 5cm}bool check\-List (
 \begin{DoxyParamCaption}
 \item[{int}]{, }
-\item[{std\-::list$<$ {\bf Node} $\ast$ $>$ const \&}]{}
+\item[{std\-::list$<$ std\-::shared\-\_\-ptr$<$ {\bf Node} $>$$>$ const \&}]{}
 \end{DoxyParamCaption}
-)}}\label{AStarAlgorithm_8hpp_a3bd286c26df7f8903336b4b62737a23b}
-\hypertarget{AStarAlgorithm_8hpp_a0332537a0869eadf51fac31afb11a034}{\index{A\-Star\-Algorithm.\-hpp@{A\-Star\-Algorithm.\-hpp}!compare\-Cost@{compare\-Cost}}
+)}}\label{AStarAlgorithm_8hpp_a1cbf7a807e360f8daf06468217f29333}
+\hypertarget{AStarAlgorithm_8hpp_a9060cc10f060fff684261810228b7a34}{\index{A\-Star\-Algorithm.\-hpp@{A\-Star\-Algorithm.\-hpp}!compare\-Cost@{compare\-Cost}}
 \index{compare\-Cost@{compare\-Cost}!AStarAlgorithm.hpp@{A\-Star\-Algorithm.\-hpp}}
 \subsubsection[{compare\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}bool compare\-Cost (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} $\ast$}]{, }
-\item[{{\bf Node} $\ast$}]{}
+\item[{const std\-::shared\-\_\-ptr$<$ {\bf Node} $>$ \&}]{, }
+\item[{const std\-::shared\-\_\-ptr$<$ {\bf Node} $>$ \&}]{}
 \end{DoxyParamCaption}
-)}}\label{AStarAlgorithm_8hpp_a0332537a0869eadf51fac31afb11a034}
-
-\begin{DoxyCode}
-243                                             \{
-244     \textcolor{keywordflow}{if} (first->getEstimateCost() < second->getEstimateCost())
-245         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-246     \textcolor{keywordflow}{else}
-247         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-248 \}
-\end{DoxyCode}
+)}}\label{AStarAlgorithm_8hpp_a9060cc10f060fff684261810228b7a34}

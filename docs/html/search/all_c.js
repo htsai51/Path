@@ -6,6 +6,5 @@ var searchData=
   ['setparam',['setParam',['../d7/df1/classPathFindingAlgorithm.html#a2b48e12615aecc6fd952efcb5d920864',1,'PathFindingAlgorithm']]],
   ['setparentindex',['setParentIndex',['../df/dd0/classNode.html#aa7e882fae3b07f7add46f3315c9e7e1b',1,'Node']]],
   ['setstartgoal',['setStartGoal',['../d7/db0/classMap.html#aa64162f950a1936e1eaf42609e091524',1,'Map']]],
-  ['start',['start',['../d7/df1/classPathFindingAlgorithm.html#a1c31bd6b8c57459c32ada19cf9bf412a',1,'PathFindingAlgorithm']]],
-  ['steps',['steps',['../d7/df1/classPathFindingAlgorithm.html#aa4d442ba7d2499f61e81b8c0fabc55a5',1,'PathFindingAlgorithm']]]
+  ['start',['start',['../d7/df1/classPathFindingAlgorithm.html#a1c31bd6b8c57459c32ada19cf9bf412a',1,'PathFindingAlgorithm']]]
 ];

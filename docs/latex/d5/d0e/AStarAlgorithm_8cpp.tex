@@ -10,12 +10,13 @@ Implementation of class \hyperlink{classAStarAlgorithm}{A\-Star\-Algorithm} meth
 {\ttfamily \#include $<$math.\-h$>$}\\*
 {\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include $<$limits$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{check\-List} (int index, list$<$ \hyperlink{classNode}{Node} $\ast$ $>$ const \&nodes)
+bool \hyperlink{AStarAlgorithm_8cpp_a0d8733d22835ee24959813c563a8c878}{check\-List} (int index, list$<$ shared\-\_\-ptr$<$ \hyperlink{classNode}{Node} $>$$>$ const \&nodes)
 \item 
-bool \hyperlink{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{compare\-Cost} (\hyperlink{classNode}{Node} $\ast$first, \hyperlink{classNode}{Node} $\ast$second)
+bool \hyperlink{AStarAlgorithm_8cpp_a24917ae77aa11fe6ccd7791689bca952}{compare\-Cost} (const shared\-\_\-ptr$<$ \hyperlink{classNode}{Node} $>$ \&first, const shared\-\_\-ptr$<$ \hyperlink{classNode}{Node} $>$ \&second)
 \end{DoxyCompactItemize}
 
 
@@ -33,43 +34,43 @@ Huei Tzu Tsai
 
 
 \subsection{Function Documentation}
-\hypertarget{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!check\-List@{check\-List}}
+\hypertarget{AStarAlgorithm_8cpp_a0d8733d22835ee24959813c563a8c878}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!check\-List@{check\-List}}
 \index{check\-List@{check\-List}!AStarAlgorithm.cpp@{A\-Star\-Algorithm.\-cpp}}
 \subsubsection[{check\-List}]{\setlength{\rightskip}{0pt plus 5cm}bool check\-List (
 \begin{DoxyParamCaption}
 \item[{int}]{index, }
-\item[{list$<$ {\bf Node} $\ast$ $>$ const \&}]{nodes}
+\item[{list$<$ shared\-\_\-ptr$<$ {\bf Node} $>$$>$ const \&}]{nodes}
 \end{DoxyParamCaption}
-)}}\label{AStarAlgorithm_8cpp_a79d7a8f837b09f62b8595c351f24f367}
+)}}\label{AStarAlgorithm_8cpp_a0d8733d22835ee24959813c563a8c878}
 
 \begin{DoxyCode}
-229                                                     \{
-230     \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
-231 
-232     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : nodes) \{
-233         \textcolor{keywordflow}{if} (n->getIndex() == index) \{
-234             found = \textcolor{keyword}{true};
-235             \textcolor{keywordflow}{break};
-236         \}
-237     \}
-238 
-239     \textcolor{keywordflow}{return} found;
-240 \}
+227                                                                \{
+228     \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
+229 
+230     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& n : nodes) \{
+231         \textcolor{keywordflow}{if} (n->getIndex() == index) \{
+232             found = \textcolor{keyword}{true};
+233             \textcolor{keywordflow}{break};
+234         \}
+235     \}
+236 
+237     \textcolor{keywordflow}{return} found;
+238 \}
 \end{DoxyCode}
-\hypertarget{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!compare\-Cost@{compare\-Cost}}
+\hypertarget{AStarAlgorithm_8cpp_a24917ae77aa11fe6ccd7791689bca952}{\index{A\-Star\-Algorithm.\-cpp@{A\-Star\-Algorithm.\-cpp}!compare\-Cost@{compare\-Cost}}
 \index{compare\-Cost@{compare\-Cost}!AStarAlgorithm.cpp@{A\-Star\-Algorithm.\-cpp}}
 \subsubsection[{compare\-Cost}]{\setlength{\rightskip}{0pt plus 5cm}bool compare\-Cost (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} $\ast$}]{first, }
-\item[{{\bf Node} $\ast$}]{second}
+\item[{const shared\-\_\-ptr$<$ {\bf Node} $>$ \&}]{first, }
+\item[{const shared\-\_\-ptr$<$ {\bf Node} $>$ \&}]{second}
 \end{DoxyParamCaption}
-)}}\label{AStarAlgorithm_8cpp_a9941f2d9671bce063d16ba2ecd046d6a}
+)}}\label{AStarAlgorithm_8cpp_a24917ae77aa11fe6ccd7791689bca952}
 
 \begin{DoxyCode}
-243                                             \{
-244     \textcolor{keywordflow}{if} (first->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}() < second->\hyperlink{classNode_a9c7e1456a27ec44e98d75ca1d2db21f1}{getEstimateCost}())
-245         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-246     \textcolor{keywordflow}{else}
-247         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-248 \}
+242                                                  \{
+243     \textcolor{keywordflow}{if} (first->getEstimateCost() < second->getEstimateCost())
+244         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+245     \textcolor{keywordflow}{else}
+246         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+247 \}
 \end{DoxyCode}
