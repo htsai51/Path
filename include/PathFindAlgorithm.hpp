@@ -37,6 +37,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "Node.hpp"
 #include "Edge.hpp"
 #include "Map.hpp"
@@ -94,10 +95,10 @@ class PathFindingAlgorithm {
       *           parentIndex of nodes and store the path indices in member
       *           path which is a vector of integers
       *
-      *   @param  Node pointer of goal
+      *   @param  reference to pointer of goal node
       *   @return none
      */
-     void reconstructPath(Node*);
+     void reconstructPath(std::shared_ptr<Node> &);
 
 
      /**
@@ -116,7 +117,7 @@ class PathFindingAlgorithm {
       *
       *   @param  option to output path in int \n
       *           0: display path in map on screen \n
-      *           1: output path in map to file \n
+      *           1: output path to csv and txt file\n
       *           2: both display path in map on screen and save to file
       *   @return none
      */
@@ -162,8 +163,8 @@ class PathFindingAlgorithm {
 
 
  protected:
-     std::vector<Node> nodes;               ///< vector of nodes
-     std::vector<Edge> edges;               ///< vector of edges
+     std::vector<std::shared_ptr<Node>> nodes;           ///< vector of nodes
+     std::vector<std::shared_ptr<Edge>> edges;           ///< vector of edges
      int start;                             ///< start index
      int goal;                              ///< goal index
      double totalCost;                      ///< cost of shortest path

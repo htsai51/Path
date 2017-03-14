@@ -41,6 +41,7 @@
 #include <fstream>
 #include <list>
 #include <limits>
+#include <memory>
 #include "PathFindAlgorithm.hpp"
 #include "Map.hpp"
 
@@ -51,6 +52,9 @@ using std::string;
 using std::list;
 using std::vector;
 using std::ofstream;
+
+using std::shared_ptr;
+using std::make_shared;
 
 
 bool PathFindingAlgorithm::init(string input) {
@@ -105,7 +109,7 @@ void PathFindingAlgorithm::buildGraph(void) {
 
             // cout << index << " (" << i << ", " << j << ")" << endl;
 
-            nodes.emplace_back(index, i, j);
+            nodes.emplace_back(make_shared<Node>(index, i, j));
             ++index;
         }
     }
@@ -149,7 +153,8 @@ void PathFindingAlgorithm::buildGraph(void) {
                     // cout << k << " (" << startIdx << "," << endIdx << ") "
                     //      << cost << endl;
 
-                    edges.emplace_back(startIdx, endIdx, cost);
+                    edges.emplace_back(make_shared<Edge>(startIdx,
+                                                         endIdx, cost));
                 }
             }
         }
@@ -159,9 +164,9 @@ void PathFindingAlgorithm::buildGraph(void) {
 }
 
 
-void PathFindingAlgorithm::reconstructPath(Node *node) {
-    list<Node*> tempPath;
-    Node *temp = node;
+void PathFindingAlgorithm::reconstructPath(shared_ptr<Node> &node) {
+    list<shared_ptr<Node>> tempPath;
+    shared_ptr<Node> temp = node;
 
     if (temp == nullptr)
         return;
@@ -175,7 +180,7 @@ void PathFindingAlgorithm::reconstructPath(Node *node) {
         }
 
         tempPath.emplace_front(temp);
-        temp = &nodes[temp->getParentIndex()-1];
+        temp = nodes[temp->getParentIndex()-1];
     }
 
 

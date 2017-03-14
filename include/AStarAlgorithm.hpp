@@ -37,6 +37,7 @@
 
 
 #include <list>
+#include <memory>
 #include "PathFindAlgorithm.hpp"
 
 
@@ -74,19 +75,22 @@ class AStarAlgorithm : public PathFindingAlgorithm {
      bool computPath(double);
 
  private:
-     std::list<Node*> openSet;             ///< pointers to nodes in open set
-     std::list<Node*> closedSet;           ///< pointers to nodes in closed set
+     ///< pointers to nodes in open set
+     std::list<std::shared_ptr<Node>> openSet;
+
+     ///< pointers to nodes in closed set
+     std::list<std::shared_ptr<Node>> closedSet;
 
 
      /**
       *   @brief  Compute heuristic cost between start and end nodes
       *           using euclidean distance
       *
-      *   @param  reference pointer to start node
-      *   @param  reference pointer to end node
+      *   @param  reference to pointer of start node
+      *   @param  reference to pointer of end node
       *   @return heuristic cost estimation in double
      */
-     double getHeuristicCost(Node *, Node *);
+     double getHeuristicCost(std::shared_ptr<Node> &, std::shared_ptr<Node> &);
 
 
      /**
@@ -103,10 +107,10 @@ class AStarAlgorithm : public PathFindingAlgorithm {
       *   @brief  Find the list of neighbors for given node index
       *
       *   @param  node index in int
-      *   @param  reference to the node neighbor list to return
+      *   @param  reference to the node neighbor pointer list
       *   @return none
      */
-     void findNeighbors(int, std::list<Node*> &);
+     void findNeighbors(int, std::list<std::shared_ptr<Node>> &);
 };
 
 
@@ -114,20 +118,20 @@ class AStarAlgorithm : public PathFindingAlgorithm {
  *   @brief  Helper function, check if node is in a given list
  *  
  *   @param  node index in int
- *   @param  reference to the node list to check
+ *   @param  reference to the node pointer list to check
  *   @return true if node is in the list, false otherwise
 */
-bool checkList(int, std::list<Node*> const &);
+bool checkList(int, std::list<std::shared_ptr<Node>> const &);
 
 
 /*
  *   @brief  Helper function, compare estimated cost of two nodes
  *  
- *   @param  node pointer to first node
- *   @param  node pointer to second node
+ *   @param  pointer to first node
+ *   @param  pointer to second node
  *   @return true if estimated cost of first node is lower than second node
  *           false otherwise
 */
-bool compareCost(Node *, Node *);
+bool compareCost(const std::shared_ptr<Node> &, const std::shared_ptr<Node> &);
 
 #endif  // INCLUDE_ASTARALGORITHM_HPP_

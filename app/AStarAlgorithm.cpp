@@ -42,12 +42,14 @@
 #include <math.h>
 #include <iostream>
 #include <limits>
+#include <memory>
 
 
 using std::cout;
 using std::endl;
 using std::string;
 using std::list;
+using std::shared_ptr;
 
 
 bool AStarAlgorithm::computPath(double weight) {
@@ -64,12 +66,12 @@ bool AStarAlgorithm::computPath(double weight) {
     }
 
     // initialize start node's cost and heuristic cost to goal
-    nodes[start-1].setCost(0);
-    nodes[start-1].setEstimateCost(weight * getHeuristicCost(&nodes[start-1],
-                                   &nodes[goal-1]));
+    nodes[start-1]->setCost(0);
+    nodes[start-1]->setEstimateCost(weight * getHeuristicCost(nodes[start-1],
+                                   nodes[goal-1]));
 
     // add start node to open set
-    openSet.emplace_back(&nodes[start-1]);
+    openSet.emplace_back(nodes[start-1]);
 
 #if 0
     double curXPos = 0;
@@ -85,7 +87,7 @@ bool AStarAlgorithm::computPath(double weight) {
         openSet.sort(compareCost);
 
         // current node in open set with lowest cost
-        Node *curNode = openSet.front();
+        shared_ptr<Node> curNode = openSet.front();
 
         // cout << "pop open front index: " << curNode->getIndex() << endl;
 
@@ -121,7 +123,7 @@ bool AStarAlgorithm::computPath(double weight) {
                  << ")" << endl;
         }
 #endif
-        list<Node*> neighbors;
+        list<shared_ptr<Node>> neighbors;
         findNeighbors(curNode->getIndex(), neighbors);
 
         // cout << "Neighbors:" << endl;
@@ -158,7 +160,7 @@ bool AStarAlgorithm::computPath(double weight) {
 
             // update neighbor's goal cost (i.e. cost to goal) to
             // tempCost + heuristic estimate
-            double heuristic = weight * getHeuristicCost(n, &nodes[goal-1]);
+            double heuristic = weight * getHeuristicCost(n, nodes[goal-1]);
             n->setEstimateCost(tempCost + heuristic);
 #if 0
             double xPos = 0;
@@ -176,7 +178,8 @@ bool AStarAlgorithm::computPath(double weight) {
 }
 
 
-double AStarAlgorithm::getHeuristicCost(Node *start, Node *end) {
+double AStarAlgorithm::getHeuristicCost(shared_ptr<Node> &start,
+                                        shared_ptr<Node> &end) {
     double xdiff = 0;
     double ydiff = 0;
 
@@ -199,8 +202,8 @@ double AStarAlgorithm::getCostToNeighbor(int startIndex, int endIndex) {
     double cost = 0;
 
     for (auto& e : edges) {
-        if (e.getStartIndex() == startIndex && e.getEndIndex() == endIndex) {
-            cost = e.getCost();
+        if (e->getStartIndex() == startIndex && e->getEndIndex() == endIndex) {
+            cost = e->getCost();
             break;
         }
     }
@@ -209,10 +212,11 @@ double AStarAlgorithm::getCostToNeighbor(int startIndex, int endIndex) {
 }
 
 
-void AStarAlgorithm::findNeighbors(int index, list<Node*> &neighbors) {
+void AStarAlgorithm::findNeighbors(int index,
+                                   list<shared_ptr<Node>> &neighbors) {
     for (auto& e : edges) {
-        if (e.getStartIndex() == index) {
-            neighbors.emplace_back(&nodes[e.getEndIndex()-1]);
+        if (e->getStartIndex() == index) {
+            neighbors.emplace_back(nodes[e->getEndIndex()-1]);
         }
     }
 
@@ -220,7 +224,7 @@ void AStarAlgorithm::findNeighbors(int index, list<Node*> &neighbors) {
 }
 
 
-bool checkList(int index, list<Node*> const &nodes) {
+bool checkList(int index, list<shared_ptr<Node>> const &nodes) {
     bool found = false;
 
     for (auto& n : nodes) {
@@ -234,7 +238,8 @@ bool checkList(int index, list<Node*> const &nodes) {
 }
 
 
-bool compareCost(Node *first, Node *second) {
+bool compareCost(const shared_ptr<Node> &first,
+                 const shared_ptr<Node> &second) {
     if (first->getEstimateCost() < second->getEstimateCost())
         return true;
     else
