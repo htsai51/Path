@@ -233,6 +233,14 @@ void PathFindingAlgorithm::outputPath(int option) {
         default:
             map.displayPath(path);
             map.saveMap(DEFAUTL_OUTPUT_MAP, path);
+            outputFs.open(DEFAUTL_OUTPUT_PATH);
+
+            if (outputFs.is_open()) {
+                for (auto& n : path) {
+                    outputFs << n << endl;
+                }
+                outputFs.close();
+            }
             break;
     }
 }

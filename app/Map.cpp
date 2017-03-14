@@ -112,7 +112,9 @@ bool Map::saveMap(string outputFile, vector<int> &path) {
             for (int j = 0; j < col; ++j) {
                 int index = i * col + j + 1;
 
-                if (index == startIdx)
+                if ((index == startIdx) && (index == goalIdx))
+                    outputFs << "S/G";
+                else if (index == startIdx)
                     outputFs << "S";
                 else if (index == goalIdx)
                     outputFs << "G";

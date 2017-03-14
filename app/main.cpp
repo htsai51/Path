@@ -158,7 +158,9 @@ int main(void) {
     cin >> option;
     cin.clear();
 
-    cout << endl << "S: Start, G: Goal, *: Path" << endl;
+    if (option == 0 || option == 2)
+        cout << endl << "S: Start, G: Goal, *: Path" << endl;
+
     aStar.PathFindingAlgorithm::outputPath(option);
 
     return 0;
